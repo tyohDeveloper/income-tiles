@@ -104,6 +104,15 @@ const V3 = [
 ];
 for (const f of V3) await copyJson(path.join('v3', f), path.join('v3', f));
 
+// v4.1 — household size by decile, total population, price deflators, kids split.
+const V4 = [
+  'household_size_by_decile.json',
+  'population_by_year.json',
+  'inflation_deflators.json',
+  'kids_split_expenditure.json',
+];
+for (const f of V4) await copyJson(path.join('v4', f), path.join('v4', f));
+
 // Modeled Norwegian and Swedish expenditure, published under v3 but read as v2 surveys.
 await copyModeledExpenditure(path.join('v3', 'no_expenditure_modeled.json'), path.join('v2', 'no_expenditure.json'));
 await copyModeledExpenditure(path.join('v3', 'se_expenditure_modeled.json'), path.join('v2', 'se_expenditure.json'));

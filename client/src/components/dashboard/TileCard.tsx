@@ -4,6 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { DistributionModel, GeoId, fmtMoney, fmtPct, fmtShare } from '@/lib/incomeModel';
 import { ComputedTile, provenanceDetail, provenanceLabel, supportsBand, tileCaption, tileHeadline } from '@/lib/tiles';
 import { BAND_TOOLTIP, THRESHOLD_TOOLTIP } from '@/lib/bands';
+import { fmtPeople } from '@/lib/v4data';
 import { cn } from '@/lib/utils';
 
 function Delta({ value }: { value: number | null }) {
@@ -25,6 +26,62 @@ function Delta({ value }: { value: number | null }) {
   );
 }
 
+/**
+ * v4.1 — both readings of the same growth rate, always side by side. There is no toggle: the
+ * distinction between "the number got bigger" and "it bought more" is the whole point, and a
+ * toggle lets the reader forget which one they are looking at.
+ */
+function DualGrowth({ tile, deflatorNote }: { tile: ComputedTile; deflatorNote?: string }) {
+  const fmt = (v: number | null) =>
+    v === null || !Number.isFinite(v) ? '\u2014' : `${v >= 0 ? '+' : '\u2212'}${Math.abs(v).toFixed(1)}%`;
+  const tone = (v: number | null) =>
+    v === null || !Number.isFinite(v)
+      ? 'text-muted-foreground/60'
+      : Math.abs(v) < 0.05
+        ? 'text-muted-foreground'
+        : v > 0
+          ? 'text-primary'
+          : 'text-destructive';
+  const nominal = tile.trimmedOut ? null : tile.nominalYoy;
+  const real = tile.trimmedOut ? null : tile.realYoy;
+  return (
+    <span className="inline-flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+      <span className="tnum whitespace-nowrap">
+        <span className="text-muted-foreground">Δ nominal YoY: </span>
+        <span className={cn('font-medium', tone(nominal))} data-testid={`text-yoy-nominal-${tile.def.id}`}>
+          {fmt(nominal)}
+        </span>
+      </span>
+      <span className="text-border" aria-hidden="true">
+        |
+      </span>
+      <span className="tnum whitespace-nowrap">
+        <span className="text-muted-foreground">Δ real YoY: </span>
+        <span className={cn('font-medium', tone(real))} data-testid={`text-yoy-real-${tile.def.id}`}>
+          {fmt(real)}
+        </span>
+      </span>
+      {deflatorNote && (
+        <Popover>
+          <PopoverTrigger asChild>
+            <button
+              type="button"
+              className="shrink-0 text-muted-foreground/60 transition-colors hover:text-foreground"
+              aria-label="About the real growth deflator"
+              data-testid={`button-info-deflator-${tile.def.id}`}
+            >
+              <Info className="h-3 w-3" />
+            </button>
+          </PopoverTrigger>
+          <PopoverContent align="start" className="w-72 text-xs leading-relaxed">
+            {deflatorNote}
+          </PopoverContent>
+        </Popover>
+      )}
+    </span>
+  );
+}
+
 interface Props {
   tile: ComputedTile;
   compare?: ComputedTile | null;
@@ -33,9 +90,11 @@ interface Props {
   compareGeo?: GeoId;
   model: DistributionModel;
   unitNote?: string;
+  /** v4.1 — one-line explanation of which deflator produced the real reading. */
+  deflatorNote?: string;
 }
 
-export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, unitNote }: Props) {
+export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, unitNote, deflatorNote }: Props) {
   const { def } = tile;
   const headline = tileHeadline(tile);
   const compareHeadline = compare ? tileHeadline(compare) : null;
@@ -156,6 +215,18 @@ export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, 
             {bandRange}
           </div>
         )}
+        {!tile.trimmedOut && tile.perEquivalentAdult !== null && (
+          <div
+            className="mt-1 tnum text-[10px] leading-snug text-muted-foreground"
+            data-testid={`text-per-equivalent-adult-${def.id}`}
+            title={`Square-root equivalence scale: headline income \u00f7 \u221a${(tile.avgHouseholdSize ?? 1).toFixed(2)}.`}
+          >
+            {fmtMoney(tile.perEquivalentAdult, geo, { compact: true })} per equivalent adult
+            {tile.avgHouseholdSize !== null && (
+              <span className="text-muted-foreground/70"> · hh {tile.avgHouseholdSize.toFixed(2)}</span>
+            )}
+          </div>
+        )}
         {tile.note && <div className="mt-1 text-[10px] leading-snug text-chart-4">{tile.note}</div>}
       </div>
 
@@ -168,6 +239,17 @@ export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, 
               : isBand && band
                 ? fmtPct(band.popShare * 100, band.popShare * 100 < 1 ? 3 : 1)
                 : fmtPct(tile.pctAtOrAbove, tile.pctAtOrAbove !== null && tile.pctAtOrAbove < 1 ? 2 : 1)}
+            {!tile.trimmedOut && tile.bandPopulation !== null && (
+              <span
+                className="ml-1 font-normal text-muted-foreground"
+                data-testid={`text-bandpop-${def.id}`}
+                title={`${new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
+                  Math.round(tile.bandPopulation)
+                )} people, from the total resident population.`}
+              >
+                ({fmtPeople(tile.bandPopulation)})
+              </span>
+            )}
           </dd>
         </div>
         <div>
@@ -176,10 +258,10 @@ export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, 
             {tile.trimmedOut ? '—' : isBand && band ? fmtShare(band.incomeShare) : fmtShare(tile.shareAbove)}
           </dd>
         </div>
-        <div>
-          <dt className="text-muted-foreground">Year on year</dt>
-          <dd data-testid={`text-yoy-${def.id}`}>
-            <Delta value={tile.trimmedOut ? null : tile.yoy} />
+        <div className="col-span-2">
+          <dt className="sr-only">Year on year growth, nominal and real</dt>
+          <dd className="text-[10.5px]" data-testid={`text-yoy-${def.id}`}>
+            <DualGrowth tile={tile} deflatorNote={deflatorNote} />
           </dd>
         </div>
         {compare && (

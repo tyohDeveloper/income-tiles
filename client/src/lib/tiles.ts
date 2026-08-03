@@ -8,6 +8,7 @@ import {
   percentileTile,
 } from './incomeModel';
 import { BAND_TOOLTIP, BandMode, BandValue, TopListAggregate, computeBand } from './bands';
+import { HouseholdSizeCountry, equivalentAdultFactor, householdSizeInBand, splitGrowth } from './v4data';
 
 export type TileKind = 'percentile' | 'sigma' | 'poverty';
 
@@ -184,6 +185,26 @@ export interface ComputedTile extends TileValue {
   reading: 'threshold' | 'band';
   /** v3: set when band mode was requested but the band could not be formed. */
   bandFellBack?: string;
+
+  /* ------------------------------------------------------------------ v4.1 */
+
+  /**
+   * Head-count of people in the band (band reading) or at or above the threshold (threshold
+   * reading). Population share × total resident population. Null when no population series
+   * is available for the geography.
+   */
+  bandPopulation: number | null;
+  /** Average household size across the band, interpolated from the decile profile. */
+  avgHouseholdSize: number | null;
+  /** Headline income divided by √(average household size) — the square-root equivalence scale. */
+  perEquivalentAdult: number | null;
+  /**
+   * The two readings of the same growth rate. Exactly one of them is the measured change and
+   * the other is derived by applying the selected deflator, depending on whether the underlying
+   * series is published in nominal or constant prices.
+   */
+  nominalYoy: number | null;
+  realYoy: number | null;
 }
 
 export interface TileComputeOptions {
@@ -191,6 +212,16 @@ export interface TileComputeOptions {
   /** Named top-N list to net out of the highest band. */
   topList?: TopListAggregate | null;
   population?: number;
+
+  /* v4.1 */
+  /** Total resident population of the geography in the tile's year. */
+  totalPopulation?: number | null;
+  /** Average household size by income decile for the geography. */
+  householdSize?: HouseholdSizeCountry | null;
+  /** Consumer-price inflation between the previous year and the tile's year, as a fraction. */
+  inflation?: number | null;
+  /** True when the income series is already published in constant prices (CBO, WID). */
+  seriesIsReal?: boolean;
 }
 
 /** True when this tile definition can produce a disjoint band at all. */
@@ -264,7 +295,47 @@ export function computeTile(
         : null;
   }
 
-  return { ...cur, def, yoy: bandYoy, note, band, reading, bandFellBack };
+  /* ---- v4.1: population count, per-equivalent-adult income, dual growth ---- */
+
+  const popShare = reading === 'band' ? band!.popShare : cur.shareAbove;
+  const bandPopulation =
+    opts.totalPopulation != null && popShare != null && Number.isFinite(popShare)
+      ? opts.totalPopulation * popShare
+      : null;
+
+  // Rank range the tile covers: the band's own edges, or "this rank upward" for a threshold.
+  const curRank: number = cur.p ?? def.p ?? 0.5;
+  const lowerRank = reading === 'band' ? def.bandLower ?? def.p ?? curRank : curRank;
+  const upperRank = (reading === 'band' ? def.bandUpper : 1) ?? 1;
+  const avgHouseholdSize = opts.householdSize
+    ? householdSizeInBand(opts.householdSize, lowerRank, upperRank)
+    : null;
+
+  const headline = reading === 'band' ? band!.mean : cur.value;
+  const perEquivalentAdult =
+    headline != null && Number.isFinite(headline) && avgHouseholdSize != null
+      ? headline / equivalentAdultFactor(avgHouseholdSize)
+      : null;
+
+  // HHS poverty guidelines are published in current dollars, so a flat guideline is a flat
+  // *nominal* line that loses ground in real terms — never a real-terms constant.
+  const growthSeriesIsReal = def.kind === 'poverty' ? false : opts.seriesIsReal ?? false;
+  const growth = splitGrowth(bandYoy, opts.inflation ?? null, growthSeriesIsReal);
+
+  return {
+    ...cur,
+    def,
+    yoy: bandYoy,
+    note,
+    band,
+    reading,
+    bandFellBack,
+    bandPopulation,
+    avgHouseholdSize,
+    perEquivalentAdult,
+    nominalYoy: growth.nominal,
+    realYoy: growth.real,
+  };
 }
 
 /** The number a tile card should print, given the active reading. */

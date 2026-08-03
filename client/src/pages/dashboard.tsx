@@ -25,7 +25,10 @@ import {
   V2_DEFAULTS,
   V3Selection,
   V3_DEFAULTS,
+  V4Selection,
+  V4_DEFAULTS,
 } from '@/components/dashboard/ControlPanel';
+import { KidsSplitSection } from '@/components/dashboard/V4Sections';
 import {
   BenefitsSection,
   CrossCountrySection,
@@ -56,6 +59,8 @@ import { OUTLIER_SECTION, TILE_SECTIONS, V2_TILE_SECTIONS, computeTile, computeV
 import { TopListAggregate } from '@/lib/bands';
 import { forbesFor, loadV3 } from '@/lib/v3data';
 import { computeCrossCountry } from '@/lib/crossCountry';
+import { DEFLATORS, deflatorPair, loadV4, populationFor, v4Country } from '@/lib/v4data';
+import { computeKidsSplit } from '@/lib/kidsSplit';
 import { GEO_TO_V2, MoneyBasis, PPP_BASE_YEAR, basisLabel, fmtBasisMoney, loadPPP, toBasis } from '@/lib/ppp';
 import { loadV2, tierLabel } from '@/lib/expenditure';
 import { HH_TYPES } from '@/lib/householdType';
@@ -102,6 +107,8 @@ export default function Dashboard() {
   const setV2 = useCallback((patch: Partial<V2Selection>) => setV2State((s) => ({ ...s, ...patch })), []);
   const [v3sel, setV3State] = useState<V3Selection>(V3_DEFAULTS);
   const setV3 = useCallback((patch: Partial<V3Selection>) => setV3State((s) => ({ ...s, ...patch })), []);
+  const [v4sel, setV4State] = useState<V4Selection>(V4_DEFAULTS);
+  const setV4 = useCallback((patch: Partial<V4Selection>) => setV4State((s) => ({ ...s, ...patch })), []);
 
   const setSel = useCallback((patch: Partial<Selection>) => setSelState((s) => ({ ...s, ...patch })), []);
   const setCompare = useCallback((patch: Partial<CompareState>) => setCompareState((s) => ({ ...s, ...patch })), []);
@@ -124,6 +131,8 @@ export default function Dashboard() {
     staleTime: Infinity,
     gcTime: Infinity,
   });
+  // v4.1 files are standalone — they never mutate `store`, so they load in parallel.
+  const { data: v4store } = useQuery({ queryKey: ['v4-data'], queryFn: loadV4, staleTime: Infinity, gcTime: Infinity });
 
   const resolved = useMemo(
     () => resolveSource(sel.sourceChoice, sel.def, sel.geo, sel.year),
@@ -185,9 +194,61 @@ export default function Dashboard() {
     };
   }, [v3store, sel.geo]);
 
+  /* ------------------------------------------------------------------ v4.1 */
+
+  const v4c = v4Country(sel.geo);
+  /** PCE and CPI-U exist for the US only; everywhere else the choice collapses to HICP. */
+  const deflatorForcedHicp = v4c !== 'US';
+
+  const deflator = useMemo(
+    () => (v4store ? deflatorPair(v4store.deflators, v4c, v4sel.deflator, clampedYear) : null),
+    [v4store, v4c, v4sel.deflator, clampedYear]
+  );
+
+  const totalPopulation = useMemo(
+    () => (v4store ? populationFor(v4store.population, v4c, clampedYear) : null),
+    [v4store, v4c, clampedYear]
+  );
+
+  const householdSize = v4store && v4c ? v4store.householdSize.byCountry[v4c] ?? null : null;
+
+  /**
+   * Whether the *measured* year-on-year change is already a real one. WID and CBO publish in
+   * constant prices, Census and BEA in current dollars, so the deflator has to be applied in
+   * opposite directions — see `splitGrowth`.
+   */
+  const seriesIsReal = resolved ? /^real/i.test(SOURCES[resolved].prices) : false;
+
+  const deflatorNote = useMemo(() => {
+    if (!deflator) return undefined;
+    const chosen = DEFLATORS.find((d) => d.id === v4sel.deflator);
+    const inflation =
+      deflator.inflation !== null ? `${(deflator.inflation * 100).toFixed(1)}% for ${clampedYear}` : 'not available for this year';
+    return [
+      `Real growth is deflated by ${deflator.label} (${inflation}).`,
+      deflator.substituted
+        ? `${chosen?.label ?? v4sel.deflator} is a US-only index, so this geography reads against its own HICP series.`
+        : '',
+      seriesIsReal
+        ? 'This source publishes in constant prices, so the measured change is the real one and the nominal reading is derived by adding inflation back.'
+        : 'This source publishes in current-year prices, so the measured change is the nominal one and the real reading nets inflation out.',
+      deflator.source ? `Index: ${deflator.source}.` : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }, [deflator, v4sel.deflator, clampedYear, seriesIsReal]);
+
   const tileOpts = useMemo(
-    () => ({ mode: v3sel.bandMode, topList, population: ADULT_POPULATION[sel.geo] }),
-    [v3sel.bandMode, topList, sel.geo]
+    () => ({
+      mode: v3sel.bandMode,
+      topList,
+      population: ADULT_POPULATION[sel.geo],
+      totalPopulation,
+      householdSize,
+      inflation: deflator?.inflation ?? null,
+      seriesIsReal,
+    }),
+    [v3sel.bandMode, topList, sel.geo, totalPopulation, householdSize, deflator, seriesIsReal]
   );
 
   const sections = useMemo(() => {
@@ -279,6 +340,11 @@ export default function Dashboard() {
 
   const allTiles = useMemo(() => sections.flatMap((s) => s.computed.map((c) => c.tile)), [sections]);
 
+  const kidsSplit = useMemo(
+    () => computeKidsSplit(v4store?.kids, pppBundle?.rates ?? {}),
+    [v4store, pppBundle]
+  );
+
   const compareLabel =
     compare.mode === 'year'
       ? String(Math.min(Math.max(compare.year, SOURCES[resolved ?? 'wid'].minYear), SOURCES[resolved ?? 'wid'].maxYear))
@@ -309,6 +375,9 @@ export default function Dashboard() {
       setV2={setV2}
       v3={v3sel}
       setV3={setV3}
+      v4={v4sel}
+      setV4={setV4}
+      deflatorForcedHicp={deflatorForcedHicp}
       v2Country={v2Country}
       regions={regions}
       regionsSupported={regionSupported(v2Country)}
@@ -318,6 +387,7 @@ export default function Dashboard() {
         setCompareState(DEFAULT_COMPARE);
         setV2State(V2_DEFAULTS);
         setV3State(V3_DEFAULTS);
+        setV4State(V4_DEFAULTS);
       }}
     />
   );
@@ -460,6 +530,19 @@ export default function Dashboard() {
           </Alert>
         )}
 
+        {!isLoading && v4store && v4store.missing.length > 0 && (
+          <Alert className="mb-4 max-w-3xl border-chart-4/50" data-testid="alert-v4-pending">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Some v4.1 data pending</AlertTitle>
+            <AlertDescription className="text-xs">
+              {v4store.missing.length} v4.1 file{v4store.missing.length === 1 ? '' : 's'} did not load
+              ({v4store.missing.join(', ')}). Per-equivalent-adult income, band population counts, the real growth
+              line and the kids-split section fall back to indicative placeholder levels until the pipeline publishes
+              them. Everything else on the page is unaffected.
+            </AlertDescription>
+          </Alert>
+        )}
+
         {!isLoading && v2result?.placeholder && (
           <Alert className="mb-4 max-w-3xl border-destructive/40" data-testid="alert-placeholder">
             <AlertTriangle className="h-4 w-4" />
@@ -562,6 +645,7 @@ export default function Dashboard() {
                       geo={sel.geo}
                       model={model}
                       unitNote={tile.def.kind === 'poverty' ? povertyUnitNote : undefined}
+                      deflatorNote={deflatorNote}
                     />
                   ))}
                 </div>
@@ -651,6 +735,9 @@ export default function Dashboard() {
 
             {/* v3 §9 — non-monetary benefits */}
             {v3store && <BenefitsSection bundle={v3store.benefits} selected={v2Country} />}
+
+            {/* v4.1 §11 — households with and without children */}
+            <KidsSplitSection result={kidsSplit} selected={v2Country} />
 
             {/* ancillary */}
             <section aria-labelledby="h-ancillary">
@@ -818,6 +905,38 @@ export default function Dashboard() {
                       childcare, health, tuition, unemployment and transit entitlements are reported as published levels
                       and are never netted into any monetary tile. Colour ranks within a row only, and inverts on rows
                       where less is better. Categorical entitlements are scored on a five-point generosity scale.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Per equivalent adult.</span> Every top-tail tile
+                      also prints the band's income divided by √(average household size in that band). Household size
+                      is interpolated across the decile means published by the country's survey, integrated over the
+                      band's own rank range, so a band that straddles two deciles gets a weighted size rather than a
+                      single decile's. The square-root scale is the same one offered in section 5 and assumes
+                      economies of scale but no adult/child distinction.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Dual growth.</span> Both readings are always
+                      shown, never toggled. Whichever one the source publishes is the measured quantity and the other
+                      is derived: nominal series (Census, BEA) have inflation netted out, constant-price series (CBO,
+                      WID) have it added back. The default deflator is the BEA PCE price index for the United States
+                      and each country's own HICP elsewhere; CPI-U is available as an alternative but, like PCE, is a
+                      US-only index, so non-US geographies fall back to HICP regardless of the selection.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Robust σ column (section 8).</span> The
+                      Median+2σ column is median + 2 × (P75 − P25) / 1.349 read off the same WID pre-tax distribution,
+                      then inverted back to a percentile rank so the tax rate, necessity floor and savings target are
+                      applied at the correct point of the distribution. It describes the upper-middle mass, not the
+                      top tail — for a right-skewed income distribution it typically lands between P90 and P95.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Kids split (section 11).</span> Gross income for
+                      households with and without children comes from each country's household survey read at the same
+                      three tiers; the necessity floor is the survey's own expenditure basket for that household
+                      composition, which is why childcare and the larger housing and food requirement show up as a
+                      higher floor rather than as a tax. No savings target and no pension deduction are applied on
+                      either side, so the two columns differ only by household composition. Countries without a
+                      published child/no-child breakdown are modeled from a Nordic donor and labelled as such.
                     </li>
                     <li>
                       <span className="font-medium text-foreground">Data tiers.</span> <strong>A</strong> — a recent

@@ -1,0 +1,90 @@
+{
+  "us": {
+    "file": "/home/user/workspace/income-tiles/data/wid_us.json",
+    "already_present_years": {
+      "pretax_national": 0,
+      "posttax_national": 0
+    },
+    "newly_added_years": {
+      "pretax_national": 45,
+      "posttax_national": 45
+    }
+  },
+  "deu": {
+    "file": "/home/user/workspace/income-tiles/data/wid_deu.json",
+    "already_present_years": {
+      "pretax_national": 0,
+      "posttax_national": 0
+    },
+    "newly_added_years": {
+      "pretax_national": 45,
+      "posttax_national": 45
+    }
+  },
+  "gbr": {
+    "file": "/home/user/workspace/income-tiles/data/wid_gbr.json",
+    "already_present_years": {
+      "pretax_national": 0,
+      "posttax_national": 0
+    },
+    "newly_added_years": {
+      "pretax_national": 45,
+      "posttax_national": 45
+    }
+  },
+  "jpn": {
+    "file": "/home/user/workspace/income-tiles/data/wid_jpn.json",
+    "already_present_years": {
+      "pretax_national": 0,
+      "posttax_national": 0
+    },
+    "newly_added_years": {
+      "pretax_national": 45,
+      "posttax_national": 45
+    }
+  },
+  "che": {
+    "file": "/home/user/workspace/income-tiles/data/wid_che.json",
+    "already_present_years": {
+      "pretax_national": 0,
+      "posttax_national": 0
+    },
+    "newly_added_years": {
+      "pretax_national": 45,
+      "posttax_national": 45
+    }
+  },
+  "nor": {
+    "file": "/home/user/workspace/income-tiles/data/wid_nor.json",
+    "already_present_years": {
+      "pretax_national": 0,
+      "posttax_national": 0
+    },
+    "newly_added_years": {
+      "pretax_national": 45,
+      "posttax_national": 45
+    }
+  },
+  "swe": {
+    "file": "/home/user/workspace/income-tiles/data/wid_swe.json",
+    "already_present_years": {
+      "pretax_national": 0,
+      "posttax_national": 0
+    },
+    "newly_added_years": {
+      "pretax_national": 45,
+      "posttax_national": 45
+    }
+  },
+  "fin": {
+    "file": "/home/user/workspace/income-tiles/data/wid_fin.json",
+    "already_present_years": {
+      "pretax_national": 0,
+      "posttax_national": 0
+    },
+    "newly_added_years": {
+      "pretax_national": 45,
+      "posttax_national": 45
+    }
+  }
+}

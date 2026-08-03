@@ -1,0 +1,164 @@
+{
+  "as_of": "2026-08-03",
+  "countries": {
+    "US": {
+      "source": "US Census Bureau, Current Population Survey Annual Social and Economic Supplement (CPS ASEC), Table HINC-01",
+      "source_url": "https://www2.census.gov/programs-surveys/cps/tables/hinc-01/2024/hinc01_1.xlsx",
+      "year": 2023,
+      "data_tier": "A",
+      "method": "Household-count-weighted mean household size, computed by allocating each of the 41 published $5,000-wide income brackets (plus open-ended $200k+ bracket) proportionally across income deciles by cumulative household share, then weighting each bracket's published mean household size by its overlap with each decile band. NOTE: HINC-01 is used instead of HINC-04 because HINC-01 publishes mean household size directly cross-tabulated with income brackets at fine granularity; HINC-04 cross-tabulates by presence-of-children x household type, not by income decile, so does not support decile-level household-size estimation as directly.",
+      "deciles": {
+        "d1": 1.674,
+        "d2": 1.859,
+        "d3": 2.157,
+        "d4": 2.275,
+        "d5": 2.424,
+        "d6": 2.622,
+        "d7": 2.823,
+        "d8": 2.962,
+        "d9": 3.133,
+        "d10": 3.19
+      }
+    },
+    "DE": {
+      "source": "Eurostat ilc_lvph01 (Average household size, national avg 2024) shape-modeled across income deciles",
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvph01/default/table",
+      "year": 2024,
+      "data_tier": "C",
+      "method": "Modeled (Tier C): OECD Family Database SF1.1 publishes household size by household TYPE, not by income decile, and Eurostat SILC does not publish a cross-country household-size-by-income-decile table. We use the UK's own published decile-level shape (ONS Family Spending / Living Costs and Food Survey: D1=1.3 people, D10=3.3 people, ratio 2.538x) combined with the empirically observed convex decile-shape from US Census HINC-01 (income-bracket-weighted mean household size) as the normalized cross-country curve shape, rescaled per country so its decile average matches that country's own published national average household size (Eurostat ilc_lvph01 2024 for DE/NO/SE/FI/CH; ONS 2024 for UK; Japan national statistics for JP). See build_household_size_intl.py for full methodology and rationale.",
+      "national_avg_household_size_anchor": 2.0,
+      "deciles": {
+        "d1": 1.081,
+        "d2": 1.284,
+        "d3": 1.611,
+        "d4": 1.74,
+        "d5": 1.904,
+        "d6": 2.121,
+        "d7": 2.341,
+        "d8": 2.494,
+        "d9": 2.681,
+        "d10": 2.744
+      }
+    },
+    "UK": {
+      "source": "ONS Family Spending / Living Costs and Food Survey (decile shape anchor D1=1.3, D10=3.3) + ONS Families and households in the UK 2024 (national avg 2.35) rescale",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/incomeandwealth/compendium/familyspending/2015/chapter3equivalisedincome",
+      "year": 2024,
+      "data_tier": "C",
+      "method": "Modeled (Tier C): OECD Family Database SF1.1 publishes household size by household TYPE, not by income decile, and Eurostat SILC does not publish a cross-country household-size-by-income-decile table. We use the UK's own published decile-level shape (ONS Family Spending / Living Costs and Food Survey: D1=1.3 people, D10=3.3 people, ratio 2.538x) combined with the empirically observed convex decile-shape from US Census HINC-01 (income-bracket-weighted mean household size) as the normalized cross-country curve shape, rescaled per country so its decile average matches that country's own published national average household size (Eurostat ilc_lvph01 2024 for DE/NO/SE/FI/CH; ONS 2024 for UK; Japan national statistics for JP). See build_household_size_intl.py for full methodology and rationale.",
+      "national_avg_household_size_anchor": 2.35,
+      "deciles": {
+        "d1": 1.27,
+        "d2": 1.508,
+        "d3": 1.893,
+        "d4": 2.045,
+        "d5": 2.237,
+        "d6": 2.492,
+        "d7": 2.751,
+        "d8": 2.93,
+        "d9": 3.151,
+        "d10": 3.224
+      }
+    },
+    "NO": {
+      "source": "Eurostat ilc_lvph01 (Average household size, national avg 2024) shape-modeled across income deciles",
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvph01/default/table",
+      "year": 2024,
+      "data_tier": "C",
+      "method": "Modeled (Tier C): OECD Family Database SF1.1 publishes household size by household TYPE, not by income decile, and Eurostat SILC does not publish a cross-country household-size-by-income-decile table. We use the UK's own published decile-level shape (ONS Family Spending / Living Costs and Food Survey: D1=1.3 people, D10=3.3 people, ratio 2.538x) combined with the empirically observed convex decile-shape from US Census HINC-01 (income-bracket-weighted mean household size) as the normalized cross-country curve shape, rescaled per country so its decile average matches that country's own published national average household size (Eurostat ilc_lvph01 2024 for DE/NO/SE/FI/CH; ONS 2024 for UK; Japan national statistics for JP). See build_household_size_intl.py for full methodology and rationale.",
+      "national_avg_household_size_anchor": 2.0,
+      "deciles": {
+        "d1": 1.081,
+        "d2": 1.284,
+        "d3": 1.611,
+        "d4": 1.74,
+        "d5": 1.904,
+        "d6": 2.121,
+        "d7": 2.341,
+        "d8": 2.494,
+        "d9": 2.681,
+        "d10": 2.744
+      }
+    },
+    "SE": {
+      "source": "Eurostat ilc_lvph01 (Average household size, national avg 2024) shape-modeled across income deciles",
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvph01/default/table",
+      "year": 2024,
+      "data_tier": "C",
+      "method": "Modeled (Tier C): OECD Family Database SF1.1 publishes household size by household TYPE, not by income decile, and Eurostat SILC does not publish a cross-country household-size-by-income-decile table. We use the UK's own published decile-level shape (ONS Family Spending / Living Costs and Food Survey: D1=1.3 people, D10=3.3 people, ratio 2.538x) combined with the empirically observed convex decile-shape from US Census HINC-01 (income-bracket-weighted mean household size) as the normalized cross-country curve shape, rescaled per country so its decile average matches that country's own published national average household size (Eurostat ilc_lvph01 2024 for DE/NO/SE/FI/CH; ONS 2024 for UK; Japan national statistics for JP). See build_household_size_intl.py for full methodology and rationale.",
+      "national_avg_household_size_anchor": 2.0,
+      "deciles": {
+        "d1": 1.081,
+        "d2": 1.284,
+        "d3": 1.611,
+        "d4": 1.74,
+        "d5": 1.904,
+        "d6": 2.121,
+        "d7": 2.341,
+        "d8": 2.494,
+        "d9": 2.681,
+        "d10": 2.744
+      }
+    },
+    "FI": {
+      "source": "Eurostat ilc_lvph01 (Average household size, national avg 2024) shape-modeled across income deciles",
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvph01/default/table",
+      "year": 2024,
+      "data_tier": "C",
+      "method": "Modeled (Tier C): OECD Family Database SF1.1 publishes household size by household TYPE, not by income decile, and Eurostat SILC does not publish a cross-country household-size-by-income-decile table. We use the UK's own published decile-level shape (ONS Family Spending / Living Costs and Food Survey: D1=1.3 people, D10=3.3 people, ratio 2.538x) combined with the empirically observed convex decile-shape from US Census HINC-01 (income-bracket-weighted mean household size) as the normalized cross-country curve shape, rescaled per country so its decile average matches that country's own published national average household size (Eurostat ilc_lvph01 2024 for DE/NO/SE/FI/CH; ONS 2024 for UK; Japan national statistics for JP). See build_household_size_intl.py for full methodology and rationale.",
+      "national_avg_household_size_anchor": 1.9,
+      "deciles": {
+        "d1": 1.027,
+        "d2": 1.22,
+        "d3": 1.53,
+        "d4": 1.653,
+        "d5": 1.808,
+        "d6": 2.015,
+        "d7": 2.224,
+        "d8": 2.369,
+        "d9": 2.547,
+        "d10": 2.607
+      }
+    },
+    "CH": {
+      "source": "Eurostat ilc_lvph01 (Average household size, national avg 2024) shape-modeled across income deciles",
+      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvph01/default/table",
+      "year": 2024,
+      "data_tier": "C",
+      "method": "Modeled (Tier C): OECD Family Database SF1.1 publishes household size by household TYPE, not by income decile, and Eurostat SILC does not publish a cross-country household-size-by-income-decile table. We use the UK's own published decile-level shape (ONS Family Spending / Living Costs and Food Survey: D1=1.3 people, D10=3.3 people, ratio 2.538x) combined with the empirically observed convex decile-shape from US Census HINC-01 (income-bracket-weighted mean household size) as the normalized cross-country curve shape, rescaled per country so its decile average matches that country's own published national average household size (Eurostat ilc_lvph01 2024 for DE/NO/SE/FI/CH; ONS 2024 for UK; Japan national statistics for JP). See build_household_size_intl.py for full methodology and rationale.",
+      "national_avg_household_size_anchor": 2.2,
+      "deciles": {
+        "d1": 1.189,
+        "d2": 1.412,
+        "d3": 1.772,
+        "d4": 1.914,
+        "d5": 2.094,
+        "d6": 2.333,
+        "d7": 2.575,
+        "d8": 2.743,
+        "d9": 2.949,
+        "d10": 3.018
+      }
+    },
+    "JP": {
+      "source": "Japan MIC / Statistics Bureau household survey (national avg ~2.21, 2024) shape-modeled across income deciles",
+      "source_url": "https://www.nippon.com/en/japan-data/h02059/",
+      "year": 2024,
+      "data_tier": "C",
+      "method": "Modeled (Tier C): OECD Family Database SF1.1 publishes household size by household TYPE, not by income decile, and Eurostat SILC does not publish a cross-country household-size-by-income-decile table. We use the UK's own published decile-level shape (ONS Family Spending / Living Costs and Food Survey: D1=1.3 people, D10=3.3 people, ratio 2.538x) combined with the empirically observed convex decile-shape from US Census HINC-01 (income-bracket-weighted mean household size) as the normalized cross-country curve shape, rescaled per country so its decile average matches that country's own published national average household size (Eurostat ilc_lvph01 2024 for DE/NO/SE/FI/CH; ONS 2024 for UK; Japan national statistics for JP). See build_household_size_intl.py for full methodology and rationale.",
+      "national_avg_household_size_anchor": 2.21,
+      "deciles": {
+        "d1": 1.194,
+        "d2": 1.419,
+        "d3": 1.78,
+        "d4": 1.923,
+        "d5": 2.103,
+        "d6": 2.343,
+        "d7": 2.587,
+        "d8": 2.756,
+        "d9": 2.963,
+        "d10": 3.032
+      }
+    }
+  }
+}

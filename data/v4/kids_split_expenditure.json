@@ -1,0 +1,232 @@
+{
+  "as_of": "2026-08-03",
+  "note": "A.6 data-quality note: OECD Family Database PF1.1 ('Public spending on family benefits', % of GDP) and PF1.4 ('Tax neutrality of family policies') do NOT publish household gross income by presence of children, contrary to the task brief's assumption. Gross/net income by kids status is instead folded in per-country from the same national household budget/income survey used for A.5 (see each country's 'income_source' field below). Where no clean with/without-kids income split is published by the national survey, income is approximated via decile/quintile position and flagged 'Tier C' or 'N/A'.",
+  "countries": {
+    "US": {
+      "source": "BLS Consumer Expenditure Survey (CES) 2024, by household type",
+      "source_url": "https://www.bls.gov/cex/tables.htm",
+      "income_source": "BLS CES 2024 (same survey; income before tax reported per consumer unit type)",
+      "year": 2024,
+      "data_tier": "A",
+      "no_kids": {
+        "avg_gross_income": 120105,
+        "avg_expenditure": 88687,
+        "necessity_share_by_tier": {
+          "p50": 0.628,
+          "p90": 0.5301,
+          "p99": 0.4532
+        },
+        "note": "necessity_share p50 computed directly from BLS CES 'couple_no_kids' consumer-unit type mean; p90/p99 extrapolated by applying the US CES national necessity-share-by-decile curve's own p50->p90->p99 ratio to this group's mean share (Engel's-law decline in necessity share as income rises), per V4_1_BUILD_SPEC.md instruction to extrapolate from decile data when direct percentile detail isn't published."
+      },
+      "with_kids": {
+        "avg_gross_income": 172292.0,
+        "avg_expenditure": 114581.0,
+        "necessity_share_by_tier": {
+          "p50": 0.5969,
+          "p90": 0.5039,
+          "p99": 0.4308
+        },
+        "note": "with_kids = weighted average of BLS CES 'with_kids_under6' and 'with_kids_6to17' consumer-unit types, weighted by n_consumer_units_thousands. p90/p99 extrapolated via the same US CES decile-curve ratio technique as no_kids."
+      }
+    },
+    "DE": {
+      "source": "Statistisches Bundesamt (Destatis), Einkommens- und Verbrauchsstichprobe (EVS) 2023, by household type (via BMBF/BPB Sozialbericht 2024 summary tables)",
+      "source_url": "https://www.bpb.de/system/files/dokument_pdf/05_sozialbericht_24_bf.pdf",
+      "income_source": "Destatis EVS 2023 (Jahresbruttoeinkommen / Jahresnettoeinkommen nach Haushaltstyp)",
+      "year": 2023,
+      "data_tier": "A",
+      "no_kids": {
+        "avg_gross_income": 53669,
+        "avg_net_income": 38043,
+        "avg_expenditure_monthly": 3372,
+        "avg_expenditure": 40464,
+        "necessity_share_by_tier": {
+          "p50": null,
+          "p90": null,
+          "p99": null
+        },
+        "note": "'Haushalte ohne Kind' (income; annual EUR) matched with 'Paare ohne Kind' (expenditure; monthly EUR, x12 for annual) -- these are closely-related but not identical household-type definitions (income group includes all no-kids households incl. singles/3+ adults; expenditure group is couples-only). Full EVS category-level expenditure breakdown for these exact groups not extracted (source table gives only total monthly consumption expenditure by household type); necessity_share requires the category breakdown, which was not available within this session's source coverage -- flagged as gap, see README."
+      },
+      "with_kids": {
+        "avg_gross_income": 90905,
+        "avg_net_income": 62336,
+        "avg_expenditure_monthly": 4029,
+        "avg_expenditure": 48348,
+        "necessity_share_by_tier": {
+          "p50": null,
+          "p90": null,
+          "p99": null
+        },
+        "note": "'Haushalte mit Kind(ern)' (income) matched with 'Paare mit Kind(ern)' (expenditure, monthly EUR x12). Same category-breakdown gap as no_kids."
+      }
+    },
+    "UK": {
+      "source": "ONS Living Costs and Food Survey (LCF) via Family Spending, detailed household expenditure by household composition, UK, FYE 2024",
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/datasets/familyspendingworkbook4expenditurebyhouseholdcharacteristic/fye2024/workbook4expenditurebyhouseholdcharacteristics.xlsx",
+      "income_source": "N/A - ONS LCF household-composition breakdown tables used here do not publish income (before/after tax) cross-tabulated by household composition at this granularity; income fields are null in the underlying uk_lcf_by_hhtype.json source file",
+      "year": 2024,
+      "data_tier": "A",
+      "no_kids": {
+        "avg_gross_income": null,
+        "avg_expenditure": 37980.8,
+        "necessity_share_by_tier": {
+          "p50": 0.5308,
+          "p90": 0.4481,
+          "p99": 0.3831
+        },
+        "note": "group = 'nonretired_two_adults' (proxy for couple, no kids). Income not available in source (see income_source note)."
+      },
+      "with_kids": {
+        "avg_gross_income": null,
+        "avg_expenditure": 39350.25,
+        "necessity_share_by_tier": {
+          "p50": 0.5535,
+          "p90": 0.4671,
+          "p99": 0.3994
+        },
+        "note": "with_kids = weighted average of 'one_or_two_adults_with_one_child' and 'one_or_two_adults_with_two_or_more_children' groups, weighted by weighted_households_thousands. Income not available in source."
+      }
+    },
+    "JP": {
+      "source": "MHLW Comprehensive Survey of Living Conditions (Kokumin Seikatsu Kiso Chosa) 2023 income year, Table 38, nuclear-family household income by structure; expenditure interpolated from Statistics Bureau Family Income and Expenditure Survey (FIES) 2024 by-decile curve at the matching income level",
+      "source_url": "https://www.mhlw.go.jp/toukei/saikin/hw/k-tyosa/k-tyosa24/dl/10.pdf",
+      "income_source": "MHLW Comprehensive Survey of Living Conditions 2023, Table 38 (via e-Stat/ecitizen.jp mirror of official table): \u6838\u5bb6\u65cf\u4e16\u5e2f_\u592b\u5a66\u306e\u307f\u306e\u4e16\u5e2f (couple only) = \u00a55,241,000; \u6838\u5bb6\u65cf\u4e16\u5e2f_\u592b\u5a66\u3068\u672a\u5a5a\u306e\u5b50\u306e\u307f\u306e\u4e16\u5e2f (couple + unmarried children only) = \u00a58,239,000",
+      "year": 2023,
+      "data_tier": "B",
+      "no_kids": {
+        "avg_gross_income": 5241000,
+        "avg_expenditure": 2837959.0,
+        "necessity_share_by_tier": {
+          "p50": 0.5304,
+          "p90": 0.4477,
+          "p99": 0.3828
+        },
+        "note": "income is Tier A/direct (MHLW national survey, couple-only nuclear household). Expenditure is Tier B: not a direct kids-split FIES figure -- interpolated from the FIES 2024 by-decile income/expenditure curve at the income level matching this group's income (\u00a55,241,000, close to FIES d4-d5)."
+      },
+      "with_kids": {
+        "avg_gross_income": 8239000,
+        "avg_expenditure": 4051001.0,
+        "necessity_share_by_tier": {
+          "p50": 0.4555,
+          "p90": 0.3845,
+          "p99": 0.3287
+        },
+        "note": "income is Tier A/direct (MHLW national survey, couple + unmarried children nuclear household). Expenditure interpolated from FIES 2024 by-decile curve at \u00a58,239,000 (close to FIES d7-d8), same caveat as no_kids."
+      }
+    },
+    "CH": {
+      "source": "Modeled: Swiss Federal Statistical Office (BFS) Household Budget Survey (HABE) 2023 quintile income/expenditure curve (ch_habe.json) x kids-income-uplift ratio averaged from DE (Destatis EVS 2023) and JP (MHLW 2023) with/without-kids gross-income ratios",
+      "source_url": "https://www.bfs.admin.ch/bfs/en/home/statistics/economic-social-situation-population/income-consumption-wealth/household-budget.html",
+      "income_source": "Modeled -- BFS HABE standard tables [31-33] 'couples without children' and [41-43] 'couples with children' exist per BFS HBS methodology documentation (https://dam-api.bfs.admin.ch/hub/api/dam/assets/29805023/master) but rendered numeric tables were not retrievable within this session's time budget; documented as a Tier 3 gap and modeled instead",
+      "year": 2023,
+      "data_tier": "C",
+      "modeled_from": "DE+JP kids-income-ratio applied to CH's own quintile curve",
+      "no_kids": {
+        "avg_gross_income": 78646.0,
+        "avg_expenditure": 51582.0,
+        "necessity_share_by_tier": {
+          "p50": 0.6243,
+          "p90": 0.5269,
+          "p99": 0.4505
+        },
+        "note": "Modeled (Tier C) -- see country-level source note. Not a direct BFS with/without-kids figure."
+      },
+      "with_kids": {
+        "avg_gross_income": 128422.0,
+        "avg_expenditure": 70615.0,
+        "necessity_share_by_tier": {
+          "p50": 0.5855,
+          "p90": 0.4942,
+          "p99": 0.4225
+        },
+        "note": "Modeled (Tier C) -- see country-level source note. Not a direct BFS with/without-kids figure."
+      }
+    },
+    "FI": {
+      "source": "Modeled: Statistics Finland Household Budget Survey (HBS) quintile income/expenditure curve (fi_hbs.json) x kids-income-uplift ratio averaged from DE and JP with/without-kids gross-income ratios",
+      "source_url": "https://pxdata.stat.fi/PxWeb/pxweb/en/StatFin/StatFin__ktutk/statfin_ktutk_pxt_14q5.px/",
+      "income_source": "Modeled -- StatFin table 12ec ('Households' income by number of adults and children, 1987-2023') is the ideal direct source but its PxWeb query-builder page could not be extracted as numeric values via fetch_url within this session's time budget (needs a PxWeb JSON-stat API call, not completed); documented as a Tier 3 gap and modeled instead",
+      "year": 2022,
+      "data_tier": "C",
+      "modeled_from": "DE+JP kids-income-ratio applied to FI's own quintile curve",
+      "no_kids": {
+        "avg_gross_income": 33841.0,
+        "avg_expenditure": 30834.0,
+        "necessity_share_by_tier": {
+          "p50": 0.6663,
+          "p90": 0.5624,
+          "p99": 0.4808
+        },
+        "note": "Modeled (Tier C) -- see country-level source note. Not a direct StatFin with/without-kids figure. Income basis is after-tax (fi_hbs.json only has avg_income_after_tax, not before_tax)."
+      },
+      "with_kids": {
+        "avg_gross_income": 55259.0,
+        "avg_expenditure": 44737.0,
+        "necessity_share_by_tier": {
+          "p50": 0.634,
+          "p90": 0.5352,
+          "p99": 0.4575
+        },
+        "note": "Modeled (Tier C) -- see country-level source note. Same after-tax income basis caveat as no_kids."
+      }
+    },
+    "NO": {
+      "source": "Modeled: NO income/expenditure decile (v3 peer-modeled from FI, no_expenditure_modeled.json / se_expenditure_modeled.json, d5 anchor) x Finland with_kids/no_kids ratios (income, expenditure, necessity_share) derived in this file",
+      "source_url": "https://pxdata.stat.fi/PxWeb/pxweb/en/StatFin/StatFin__ktutk/statfin_ktutk_pxt_14q5.px/",
+      "income_source": "Modeled -- no direct NO national household-income-by-kids-status source found; OECD Family Database PF1.1/PF1.4 do not publish this indicator (see top-level note). Peer-modeled from Finland per V4_1_BUILD_SPEC.md instruction.",
+      "year": 2024,
+      "unit": "NOK",
+      "data_tier": "C",
+      "modeled_from": "FI",
+      "no_kids": {
+        "avg_gross_income": 394239.0,
+        "avg_expenditure": 423521.0,
+        "necessity_share_by_tier": {
+          "p50": 0.6129,
+          "p90": 0.5173,
+          "p99": 0.4423
+        },
+        "note": "Modeled (Tier C), peer-modeled from Finland's with_kids/no_kids ratio applied to NO's own d5 (median decile) income and expenditure from the v3 peer-modeled file."
+      },
+      "with_kids": {
+        "avg_gross_income": 643761.0,
+        "avg_expenditure": 614479.0,
+        "necessity_share_by_tier": {
+          "p50": 0.5833,
+          "p90": 0.4923,
+          "p99": 0.4209
+        },
+        "note": "Modeled (Tier C), same peer-modeling approach as no_kids."
+      }
+    },
+    "SE": {
+      "source": "Modeled: SE income/expenditure decile (v3 peer-modeled from FI, no_expenditure_modeled.json / se_expenditure_modeled.json, d5 anchor) x Finland with_kids/no_kids ratios (income, expenditure, necessity_share) derived in this file",
+      "source_url": "https://pxdata.stat.fi/PxWeb/pxweb/en/StatFin/StatFin__ktutk/statfin_ktutk_pxt_14q5.px/",
+      "income_source": "Modeled -- no direct SE national household-income-by-kids-status source found; OECD Family Database PF1.1/PF1.4 do not publish this indicator (see top-level note). Peer-modeled from Finland per V4_1_BUILD_SPEC.md instruction.",
+      "year": 2024,
+      "unit": "SEK",
+      "data_tier": "C",
+      "modeled_from": "FI",
+      "no_kids": {
+        "avg_gross_income": 226517.0,
+        "avg_expenditure": 243341.0,
+        "necessity_share_by_tier": {
+          "p50": 0.6129,
+          "p90": 0.5173,
+          "p99": 0.4423
+        },
+        "note": "Modeled (Tier C), peer-modeled from Finland's with_kids/no_kids ratio applied to SE's own d5 (median decile) income and expenditure from the v3 peer-modeled file."
+      },
+      "with_kids": {
+        "avg_gross_income": 369883.0,
+        "avg_expenditure": 353059.0,
+        "necessity_share_by_tier": {
+          "p50": 0.5833,
+          "p90": 0.4923,
+          "p99": 0.4209
+        },
+        "note": "Modeled (Tier C), same peer-modeling approach as no_kids."
+      }
+    }
+  }
+}

@@ -20,3 +20,6 @@ data/v2/raw/
 
 # Subagent scratch verification scripts (not needed at build)
 scratch/
+
+# v4 P25/P75 WID backup dir (pre-modification snapshots)
+data/v4/backup_pre_p25p75/

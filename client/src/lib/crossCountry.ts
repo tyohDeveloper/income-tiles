@@ -35,13 +35,37 @@ import { V2Params } from './v2Compute';
 export const CROSS_PERCENTILES = [0.5, 0.9, 0.95, 0.99, 0.999] as const;
 export type CrossPercentile = (typeof CROSS_PERCENTILES)[number];
 
+/**
+ * Sentinel column key for the robust Median+2σ tier (v4.1). It is deliberately a negative
+ * number so it can never collide with a real percentile in `CrossRow.cells`, which is keyed by
+ * percentile.
+ */
+export const MEDIAN_2SIGMA = -2;
+
+/** Column order the table renders: the robust tier sits between P50 and P90. */
+export const CROSS_COLUMNS: number[] = [0.5, MEDIAN_2SIGMA, 0.9, 0.95, 0.99, 0.999];
+
 export const CROSS_PERCENTILE_LABELS: Record<number, string> = {
   0.5: 'P50',
+  [MEDIAN_2SIGMA]: 'Median+2σ',
   0.9: 'P90',
   0.95: 'P95',
   0.99: 'P99',
   0.999: 'P99.9',
 };
+
+/** Slug-safe label, for `data-testid` values. */
+export const CROSS_COLUMN_SLUGS: Record<number, string> = {
+  0.5: 'P50',
+  [MEDIAN_2SIGMA]: 'median-2sigma',
+  0.9: 'P90',
+  0.95: 'P95',
+  0.99: 'P99',
+  0.999: 'P99.9',
+};
+
+export const MEDIAN_2SIGMA_TOOLTIP =
+  'Robust σ from median (IQR-based). Represents upper-middle mass, not the top tail.';
 
 /**
  * Countries whose necessity shares are modelled on a peer. Norway and Sweden discontinued their
@@ -65,6 +89,11 @@ export interface CrossCell {
   effectiveRate: number | null;
   taxBasis: TaxBasis;
   necessity: number | null;
+  /**
+   * Percentile rank the cell was evaluated at. Equals `p` for the fixed percentile columns; for
+   * the Median+2σ column it is the rank whose quantile equals median + 2σ, solved numerically.
+   */
+  rank: number;
   /** Discretionary income after the savings target, local currency. */
   discretionary: number | null;
   /** Same figure in USD at PPP — what the table actually prints. */
@@ -179,6 +208,25 @@ function necessityAt(
   return { breakdown: scaled, extrapolated: true };
 }
 
+/**
+ * Percentile rank whose quantile equals `level`, by bisection. Returns null when the level sits
+ * outside the searchable range (below P50 or above P99.9), which keeps the robust column honest:
+ * if median + 2σ lands in the extreme tail there is no upper-middle mass to report.
+ */
+function invertQuantile(view: DerivedView, level: number): number | null {
+  if (!Number.isFinite(level) || level <= 0) return null;
+  let lo = 0.5;
+  let hi = 0.999;
+  if (view.quantile(hi) < level) return null;
+  if (view.quantile(lo) >= level) return lo;
+  for (let i = 0; i < 48; i++) {
+    const mid = (lo + hi) / 2;
+    if (view.quantile(mid) < level) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
 export function computeCrossCountry(
   store: DataStore | undefined,
   v2: V2Store | undefined,
@@ -236,9 +284,15 @@ export function computeCrossCountry(
     const pension = pensionRate(v2!.pensions, country);
     const cells: Partial<Record<number, CrossCell>> = {};
 
-    for (const p of CROSS_PERCENTILES) {
+    /**
+     * One cell, evaluated at percentile rank `rank` and filed under column key `key`.
+     * Every column — including the Median+2σ one — goes through this, so the tax basis,
+     * necessity extrapolation, pension and savings treatment are identical across the table.
+     */
+    const makeCell = (key: number, rank: number): void => {
+      const p = rank;
       const gross = preView.quantile(p);
-      if (!Number.isFinite(gross) || gross <= 0) continue;
+      if (!Number.isFinite(gross) || gross <= 0) return;
 
       /**
        * OECD publishes tax rates against earnings as a share of the average wage, so the
@@ -257,15 +311,16 @@ export function computeCrossCountry(
         postTax = gross * (1 - rate);
         basis = 'oecd_effective';
       }
-      if (postTax === null || !Number.isFinite(postTax)) continue;
+      if (postTax === null || !Number.isFinite(postTax)) return;
 
       const loan = studentLoanPayment(v2!.studentLoans, country, p);
       const nec = necessityAt(v2!, country, p, params, { studentLoan: loan.amount });
-      if (!nec) continue;
+      if (!nec) return;
 
       const d: DiscretionaryBreakdown = computeDiscretionary(postTax, nec.breakdown, params.savingsPct, pension.pct);
-      cells[p] = {
-        p,
+      cells[key] = {
+        p: key,
+        rank,
         gross,
         postTax,
         effectiveRate: rate,
@@ -276,7 +331,20 @@ export function computeCrossCountry(
         extrapolated: nec.extrapolated,
         belowFloor: d.belowFloor,
       };
-    }
+    };
+
+    for (const p of CROSS_PERCENTILES) makeCell(p, p);
+
+    /**
+     * v4.1 — the robust Median+2σ tier. σ is (P75 − P25) / 1.349 rather than the second moment,
+     * because a Pareto tail makes the ordinary standard deviation a function of where the series
+     * is truncated. The level is inverted back into a percentile rank so the tax rate, necessity
+     * floor and student-loan payment used for the cell are the ones that actually apply at that
+     * income — which keeps the column on the same footing as its neighbours.
+     */
+    const m2sLevel = preView.median + 2 * preView.sigmaRobust;
+    const m2sRank = invertQuantile(preView, m2sLevel);
+    if (m2sRank !== null) makeCell(MEDIAN_2SIGMA, m2sRank);
 
     const tier: DataTier = modeledFrom ? 'C' : exp.dist.placeholder ? 'C' : exp.dist.data_tier;
     rows.push({

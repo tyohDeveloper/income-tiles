@@ -4,7 +4,7 @@
  * of them is large enough to justify its own module.
  */
 import { useMemo, useState } from 'react';
-import { ChevronDown, ChevronRight, ChevronsUpDown, ExternalLink, TriangleAlert } from 'lucide-react';
+import { ChevronDown, ChevronRight, ChevronsUpDown, ExternalLink, Info, TriangleAlert } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -14,10 +14,13 @@ import { ComputedTile } from '@/lib/tiles';
 import { TileCard } from '@/components/dashboard/TileCard';
 import { OUTLIER_FOOTNOTE, ForbesBundle, BenefitsBundle, benefitRanks, forbesFor, V3_AS_OF } from '@/lib/v3data';
 import {
-  CROSS_PERCENTILES,
+  CROSS_COLUMNS,
+  CROSS_COLUMN_SLUGS,
   CROSS_PERCENTILE_LABELS,
   CrossCountryResult,
   CrossRow,
+  MEDIAN_2SIGMA,
+  MEDIAN_2SIGMA_TOOLTIP,
   SortDir,
   sortCrossRows,
 } from '@/lib/crossCountry';
@@ -302,7 +305,7 @@ export function CrossCountrySection({
       <SectionHeading
         id="cross"
         title="Discretionary income by tier, across countries"
-        hint="What is left after tax, necessities and the savings target — at five points in each distribution."
+        hint="What is left after tax, necessities and the savings target — at six points in each distribution."
         meta={`${result.year} · USD at PPP · ${
           result.taxBasis === 'oecd_effective' ? 'OECD effective tax rates' : 'WID/DINA post-tax national income'
         }`}
@@ -324,16 +327,49 @@ export function CrossCountrySection({
                     Country <ChevronsUpDown className="h-3 w-3" />
                   </button>
                 </th>
-                {CROSS_PERCENTILES.map((p) => (
-                  <th key={p} scope="col" className="px-3 py-2 text-right font-medium">
-                    <button
-                      type="button"
-                      onClick={() => toggleSort(p)}
-                      className={cn('inline-flex items-center gap-1 hover:text-foreground', sortBy === p && 'text-foreground')}
-                      data-testid={`button-sort-${CROSS_PERCENTILE_LABELS[p]}`}
-                    >
-                      {CROSS_PERCENTILE_LABELS[p]} <ChevronsUpDown className="h-3 w-3" />
-                    </button>
+                {CROSS_COLUMNS.map((p) => (
+                  <th
+                    key={p}
+                    scope="col"
+                    className={cn(
+                      'px-3 py-2 text-right font-medium',
+                      p === MEDIAN_2SIGMA && 'bg-muted/40 text-foreground'
+                    )}
+                  >
+                    <span className="inline-flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => toggleSort(p)}
+                        className={cn('inline-flex items-center gap-1 hover:text-foreground', sortBy === p && 'text-foreground')}
+                        data-testid={`button-sort-${CROSS_COLUMN_SLUGS[p]}`}
+                      >
+                        {CROSS_PERCENTILE_LABELS[p]} <ChevronsUpDown className="h-3 w-3" />
+                      </button>
+                      {p === MEDIAN_2SIGMA && (
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <button
+                              type="button"
+                              className="rounded-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                              aria-label="About the Median+2σ column"
+                              data-testid="button-info-median-2sigma"
+                            >
+                              <Info className="h-3 w-3" />
+                            </button>
+                          </PopoverTrigger>
+                          <PopoverContent align="end" className="w-72 text-[11px] leading-relaxed" data-testid="popover-median-2sigma">
+                            <p className="font-medium text-foreground">Median + 2σ (robust)</p>
+                            <p className="mt-1 text-muted-foreground">{MEDIAN_2SIGMA_TOOLTIP}</p>
+                            <p className="mt-1.5 text-muted-foreground">
+                              σ is (P75 − P25) / 1.349, the interquartile estimate of the standard deviation. The ordinary second
+                              moment is not usable here: with a Pareto tail it depends almost entirely on where the series is
+                              truncated. The level is inverted back to a percentile rank so the tax rate and necessity floor
+                              applied are the ones that hold at that income.
+                            </p>
+                          </PopoverContent>
+                        </Popover>
+                      )}
+                    </span>
                   </th>
                 ))}
               </tr>
@@ -390,7 +426,7 @@ export function CrossCountrySection({
             expenditure surveys (2012 and 2009). Their necessity shares are Finland's, applied to their own register
             income deciles in kroner, which is why both rows carry a tier-C badge. Their published top decile averages
             roughly twice the ninth, so the necessity floor steps up sharply around P90 and their P90–P95 cells can read
-            flat or slightly lower than P50 \u2014 an artefact of decile-average anchoring, not a real cliff.
+            flat or slightly lower than P50 — an artefact of decile-average anchoring, not a real cliff.
           </li>
           <li>
             <span className="font-medium text-foreground">Delta chips</span> compare each cell to the selected country at
@@ -437,7 +473,7 @@ function CrossTableRow({
           />
         </span>
       </th>
-      {CROSS_PERCENTILES.map((p) => {
+      {CROSS_COLUMNS.map((p) => {
         const cell = row.cells[p];
         const base = baseline?.cells[p];
         const delta =
@@ -445,7 +481,16 @@ function CrossTableRow({
             ? cell.discretionaryPPP - base.discretionaryPPP
             : null;
         return (
-          <td key={p} className="px-3 py-1.5 text-right align-top" data-testid={`cell-cross-${row.country}-${CROSS_PERCENTILE_LABELS[p]}`}>
+          <td
+            key={p}
+            className={cn('px-3 py-1.5 text-right align-top', p === MEDIAN_2SIGMA && 'bg-muted/30')}
+            title={
+              p === MEDIAN_2SIGMA && cell
+                ? `Median + 2\u03c3 lands at percentile ${(cell.rank * 100).toFixed(1)} in ${row.label}.`
+                : undefined
+            }
+            data-testid={`cell-cross-${row.country}-${CROSS_COLUMN_SLUGS[p]}`}
+          >
             {!cell ? (
               <span className="text-muted-foreground/60">—</span>
             ) : (
@@ -816,6 +861,70 @@ const SOURCE_GROUPS: SourceGroup[] = [
         what: 'Monthly urban transit pass prices.',
       },
     ],
+  },
+  {
+    id: 'household-and-prices',
+    title: 'Household size, population and prices',
+    sections: 'Sections 1\u20134, 7, 11',
+    entries: [
+      {
+        name: 'Census ASEC — Income and Poverty in the United States',
+        url: 'https://www.census.gov/data/tables/2024/demo/income-poverty/p60-286.html',
+        what: 'Average household size by income decile and the household counts behind the per-equivalent-adult line.',
+        vintage: '2024 report (2023 income year)',
+      },
+      {
+        name: 'World Bank World Development Indicators — SP.POP.TOTL',
+        url: 'https://data.worldbank.org/indicator/SP.POP.TOTL',
+        what: 'Total resident population by country and year, used to turn a band population share into a headcount.',
+        vintage: '1980\u20132024',
+      },
+      {
+        name: 'BEA Personal Consumption Expenditures Price Index',
+        url: 'https://www.bea.gov/data/personal-consumption-expenditures-price-index',
+        what: 'Default US deflator behind the real growth reading on every tile.',
+        vintage: '1980\u20132024',
+      },
+      {
+        name: 'BLS Consumer Price Index (CPI-U)',
+        url: 'https://www.bls.gov/cpi/',
+        what: 'Alternative US deflator, selectable in the sidebar.',
+        vintage: '1980\u20132024',
+      },
+      {
+        name: 'OECD Harmonised Index of Consumer Prices (HICP)',
+        url: 'https://data-explorer.oecd.org/vis?tm=inflation',
+        what: 'Deflator for every non-US geography; PCE and CPI-U are US-only, so non-US selections fall back to this.',
+        vintage: '1996\u20132024',
+      },
+    ],
+    note:
+      'Household size is integrated across decile mid-ranks so a band that straddles two deciles gets a weighted average rather than a single decile value.',
+  },
+  {
+    id: 'kids-split',
+    title: 'Households with and without children',
+    sections: 'Section 11',
+    entries: [
+      {
+        name: 'OECD Family Database — SF1.1 Family size and composition',
+        url: 'https://www.oecd.org/els/family/database.htm',
+        what: 'Household composition shares and the child-related expenditure and childcare-cost anchors behind the kids split.',
+      },
+      {
+        name: 'ONS Living Costs and Food Survey — Table A22',
+        url: 'https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure',
+        what: 'UK household expenditure by household composition, giving the with-children and no-children necessity baskets.',
+      },
+      {
+        name: 'Census ASEC — Income and Poverty in the United States',
+        url: 'https://www.census.gov/data/tables/2024/demo/income-poverty/p60-286.html',
+        what: 'US gross income by presence of related children under 18, at each of the three tiers.',
+        vintage: '2024 report (2023 income year)',
+      },
+    ],
+    note:
+      'Countries with no published child / no-child breakdown are modeled from a donor country with a comparable transfer system and labelled with the donor on the block.',
   },
 ];
 

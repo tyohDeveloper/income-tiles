@@ -29,6 +29,7 @@ import { POVERTY_REGIONS, PovertyConfig } from '@/lib/tiles';
 import { BAND_TOOLTIP, BandMode, THRESHOLD_TOOLTIP } from '@/lib/bands';
 import { V2Country } from '@/lib/ppp';
 import { EquivalenceScale, HH_TYPES, HH_TYPE_ORDER, HouseholdTypeId } from '@/lib/householdType';
+import { DEFLATORS, DeflatorId } from '@/lib/v4data';
 import { HousingMode, STRICTNESS_LEVELS, Strictness } from '@/lib/necessity';
 import { SAVINGS_MARKS } from '@/lib/discretionary';
 import { RegionOption } from '@/lib/regional';
@@ -62,12 +63,25 @@ export const V3_DEFAULTS: V3Selection = {
   showOutliers: false,
 };
 
+/** v4.1 advanced state. Currently just the price index behind the real growth reading. */
+export interface V4Selection {
+  deflator: DeflatorId;
+}
+
+export const V4_DEFAULTS: V4Selection = {
+  deflator: 'PCE',
+};
+
 interface Props {
   sel: Selection;
   v2: V2Selection;
   setV2: (patch: Partial<V2Selection>) => void;
   v3: V3Selection;
   setV3: (patch: Partial<V3Selection>) => void;
+  v4: V4Selection;
+  setV4: (patch: Partial<V4Selection>) => void;
+  /** True when the selected geography has no US-only index, so HICP is forced. */
+  deflatorForcedHicp: boolean;
   v2Country: V2Country | null;
   regions: RegionOption[];
   regionsSupported: boolean;
@@ -119,6 +133,9 @@ export function ControlPanel({
   setV2,
   v3,
   setV3,
+  v4,
+  setV4,
+  deflatorForcedHicp,
   v2Country,
   regions,
   regionsSupported,
@@ -430,6 +447,31 @@ export function ControlPanel({
             <DisabledNote>Currently {fmtMoney(sel.trim.cap, sel.geo)}.</DisabledNote>
           </div>
         )}
+      </section>
+
+      <Separator />
+
+      <section data-testid="section-inflation-deflator">
+        <FieldLabel info="Every tile prints growth twice: the nominal change and the same change after prices. This picks the price index behind the real reading. It changes nothing about the income levels — only the real growth line.">
+          Inflation deflator
+        </FieldLabel>
+        <Select value={v4.deflator} onValueChange={(v) => setV4({ deflator: v as DeflatorId })}>
+          <SelectTrigger className="h-9 text-xs" data-testid="select-deflator">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {DEFLATORS.map((d) => (
+              <SelectItem key={d.id} value={d.id} className="text-xs" data-testid={`option-deflator-${d.id}`}>
+                {d.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <DisabledNote>
+          {deflatorForcedHicp && v4.deflator !== 'HICP'
+            ? 'PCE and CPI-U are published for the United States only, so this geography reads against its own HICP series.'
+            : DEFLATORS.find((d) => d.id === v4.deflator)?.blurb}
+        </DisabledNote>
       </section>
 
       <Separator />
