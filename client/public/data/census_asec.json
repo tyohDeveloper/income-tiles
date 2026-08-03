@@ -46,7 +46,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 71790,
+      "mean_real_2024usd": 97690
     },
     {
       "year": 2001,
@@ -90,7 +92,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 70610,
+      "mean_real_2024usd": 97330
     },
     {
       "year": 2002,
@@ -134,7 +138,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 70040,
+      "mean_real_2024usd": 95540
     },
     {
       "year": 2003,
@@ -178,7 +184,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 70080,
+      "mean_real_2024usd": 95560
     },
     {
       "year": 2004,
@@ -222,7 +230,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 69970,
+      "mean_real_2024usd": 95430
     },
     {
       "year": 2005,
@@ -266,7 +276,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 71060,
+      "mean_real_2024usd": 97160
     },
     {
       "year": 2006,
@@ -310,7 +322,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 71850,
+      "mean_real_2024usd": 99230
     },
     {
       "year": 2007,
@@ -354,7 +368,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 73010,
+      "mean_real_2024usd": 98260
     },
     {
       "year": 2008,
@@ -398,7 +414,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 70520,
+      "mean_real_2024usd": 95930
     },
     {
       "year": 2009,
@@ -442,7 +460,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 70070,
+      "mean_real_2024usd": 95680
     },
     {
       "year": 2010,
@@ -486,7 +506,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 68420,
+      "mean_real_2024usd": 93580
     },
     {
       "year": 2011,
@@ -530,7 +552,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 67410,
+      "mean_real_2024usd": 93840
     },
     {
       "year": 2012,
@@ -574,7 +598,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 67400,
+      "mean_real_2024usd": 94170
     },
     {
       "year": 2013,
@@ -618,7 +644,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 69950,
+      "mean_real_2024usd": 98160
     },
     {
       "year": 2014,
@@ -662,7 +690,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 69060,
+      "mean_real_2024usd": 97480
     },
     {
       "year": 2015,
@@ -706,7 +736,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 72790,
+      "mean_real_2024usd": 102100
     },
     {
       "year": 2016,
@@ -750,7 +782,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 75380,
+      "mean_real_2024usd": 106200
     },
     {
       "year": 2017,
@@ -794,7 +828,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 76710,
+      "mean_real_2024usd": 110000
     },
     {
       "year": 2018,
@@ -838,7 +874,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 77700,
+      "mean_real_2024usd": 110700
     },
     {
       "year": 2019,
@@ -882,7 +920,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 83260,
+      "mean_real_2024usd": 118900
     },
     {
       "year": 2020,
@@ -926,7 +966,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 81580,
+      "mean_real_2024usd": 116900
     },
     {
       "year": 2021,
@@ -970,7 +1012,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 81270,
+      "mean_real_2024usd": 117500
     },
     {
       "year": 2022,
@@ -1014,7 +1058,9 @@
       },
       "quintile_shares_pct": null,
       "percentile_ratios": null,
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 79500,
+      "mean_real_2024usd": 113400
     },
     {
       "year": 2023,
@@ -1069,7 +1115,9 @@
         "p90_p50": 2.91,
         "p50_p10": 4.25
       },
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 82690,
+      "mean_real_2024usd": 117500
     },
     {
       "year": 2024,
@@ -1117,9 +1165,15 @@
         "p90_p50": 3.0,
         "p50_p10": 4.21
       },
-      "sd_log_income": null
+      "sd_log_income": null,
+      "median_real_2024usd": 83730,
+      "mean_real_2024usd": 121000
     }
   ],
   "source_url": "https://www.census.gov/library/publications/2025/demo/p60-286.html",
-  "notes": "U.S. Census Bureau Current Population Survey Annual Social and Economic Supplement (CPS ASEC) household money income series, 2000-2024. 'median' and 'mean' are national household money income in current dollars (Historical Table H-5, https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h05.xlsx). 'percentiles' p20/p40/p60/p80/p95 are upper income limits of each quintile / lower limit of top 5% from Historical Table H-1 (https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h01ar.xlsx); p50 duplicates the median. p10 and p90 are only available for 2023-2024 from the P60-286 report's Table A-3 (https://www2.census.gov/programs-surveys/demo/tables/p60/286/tableA3.xlsx) and are null for earlier years in this dataset (Census does not publish a consistent historical P10/P90 time series in the same table). 'gini' is the national Gini index from Historical Table H-4 (https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h04.xlsx). 'quintile_mean_income' (2000-2023) is mean income received within each quintile/top-5% group from Historical Table H-3 (https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h03ar.xlsx). 'quintile_shares_pct' and 'percentile_ratios' are only available for 2023-2024 from Table A-3 of the 'Income in the United States: 2024' report (P60-286). Income concept is CPS 'money income': pre-tax cash income including wages, self-employment, interest, dividends, rents, and cash transfers (Social Security, unemployment insurance, public assistance, etc.), but EXCLUDING capital gains, non-cash transfers (SNAP, Medicaid, employer health insurance), and taxes. This is closer to 'market'/pre-tax cash income than to a disposable-income concept; it is NOT equivalence-adjusted (equivalence-adjusted figures are separately published in Table A-3 but not included in this file's main series). All dollar figures are nominal (current-year) dollars unless noted."
+  "notes": "U.S. Census Bureau Current Population Survey Annual Social and Economic Supplement (CPS ASEC) household money income series, 2000-2024. 'median' and 'mean' are national household money income in current dollars (Historical Table H-5, https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h05.xlsx). 'percentiles' p20/p40/p60/p80/p95 are upper income limits of each quintile / lower limit of top 5% from Historical Table H-1 (https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h01ar.xlsx); p50 duplicates the median. p10 and p90 are only available for 2023-2024 from the P60-286 report's Table A-3 (https://www2.census.gov/programs-surveys/demo/tables/p60/286/tableA3.xlsx) and are null for earlier years in this dataset (Census does not publish a consistent historical P10/P90 time series in the same table). 'gini' is the national Gini index from Historical Table H-4 (https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h04.xlsx). 'quintile_mean_income' (2000-2023) is mean income received within each quintile/top-5% group from Historical Table H-3 (https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h03ar.xlsx). 'quintile_shares_pct' and 'percentile_ratios' are only available for 2023-2024 from Table A-3 of the 'Income in the United States: 2024' report (P60-286). Income concept is CPS 'money income': pre-tax cash income including wages, self-employment, interest, dividends, rents, and cash transfers (Social Security, unemployment insurance, public assistance, etc.), but EXCLUDING capital gains, non-cash transfers (SNAP, Medicaid, employer health insurance), and taxes. This is closer to 'market'/pre-tax cash income than to a disposable-income concept; it is NOT equivalence-adjusted (equivalence-adjusted figures are separately published in Table A-3 but not included in this file's main series). All dollar figures are nominal (current-year) dollars unless noted.",
+  "price_basis": "nominal",
+  "real_series_note": "This file's primary 'median'/'mean' fields are NOMINAL (current-year) dollars, per Census Historical Table H-5's 'Current dollars' column. Census ALSO publishes, in the same table, a real/inflation-adjusted 'Median income / 2024 dollars' and 'Mean income / 2024 dollars' column (using the Chained CPI-U for 2000-2024 and R-CPI-U-RS pre-2000, per table footnote 28). Each year's real figure is Census's own inflation adjustment of that year's nominal figure into 2024-dollar terms, NOT a value the dashboard should re-deflate a second time. The 'median_real_2024usd' and 'mean_real_2024usd' fields below are that published real series, added so downstream growth calculations can read the real YoY change directly from Census's own numbers rather than applying a second (and inconsistent) external deflator (e.g. PCE or CPI-U from inflation_deflators.json) on top of an already-adjusted or already-nominal series. See DATA_FIXES_SPEC.md FIX 1.",
+  "real_series_base_year": 2024,
+  "real_series_source_url": "https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h05.xlsx"
 }

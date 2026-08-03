@@ -416,6 +416,37 @@ export function CrossCountrySection({
             )}
           </li>
           <li>
+            <span className="font-medium text-foreground">Norway and Sweden are the exceptions.</span> Their cells use
+            Statistics Norway's (SSB, table 12682) and Statistics Sweden's (SCB) own published household
+            disposable-income deciles instead of the WID/DINA post-tax series used for every other country. DINA
+            post-tax national income folds in collective consumption and — for Norway — the Government Pension Fund
+            Global's attributable investment income; neither is household-spendable cash. Leaving DINA in for Norway
+            originally placed its discretionary income above both Germany's and Sweden's, which did not hold up
+            against Norway's actual cost of living and tax burden. Fixing only Norway then left an inconsistency:
+            Sweden's own SCB household income (SEK 298,200 at the 2024 median) is less than half its DINA figure (SEK
+            667,660), so Sweden was still overstated on the same basis Norway had just been corrected for. Both
+            countries' post-tax figures now come from their own national statistics agency's household-cash income,
+            which is already post-tax and post-transfer, so no further tax adjustment is applied to either.
+            Above SSB/SCB's last published decile, both series are extended with the same rank-based Pareto proxy the
+            necessity floor uses beyond the survey's top group (see below), so the tail keeps pace with necessity
+            instead of holding flat and turning discretionary income negative.
+          </li>
+          <li>
+            <span className="font-medium text-foreground">Germany's income basis runs a bit high.</span> DINA national
+            income per equal-split adult (the €45,242 2024 median used here) is not the same yardstick as a household's
+            actual net take-home pay — it grosses up for retained corporate earnings and imputed items a household never
+            receives as spendable cash. Germany's own directly published household net disposable income median is
+            noticeably lower (€36,882 for 2024, Statistische Ämter des Bundes und der Länder table AR.11 —{' '}
+            <a href="https://www.statistikportal.de/sites/default/files/2025-07/AR.11%20Median%20und%20Durchschnitt%20des%20Haushaltseinkommens%20nach%20Haushaltstyp,%20Bundesl%C3%A4nder.xlsx" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-primary hover:underline">
+              statistikportal.de <ExternalLink className="h-3 w-3" />
+            </a>
+            ). This keeps Germany's P50 discretionary income modest relative to its necessity floor (which is anchored
+            directly to Destatis's EVS 2023 household budget survey and checks out against Destatis's own published
+            aggregates). Closing this gap properly needs a full German household-income-by-decile series in place of
+            DINA for Germany, the way SSB's decile table stands in for DINA in Norway above; that replacement is not yet
+            built.
+          </li>
+          <li>
             <span className="font-medium text-foreground">Necessities above the top decile.</span> Household budget surveys
             stop at their top published group. Above it the necessity floor is extended along the log-log slope of the last
             two anchors, clamped to an elasticity of 0.5, with a Pareto rank proxy for income. Cells that rely on this are
@@ -425,8 +456,11 @@ export function CrossCountrySection({
             <span className="font-medium text-foreground">Norway and Sweden.</span> Both discontinued their household
             expenditure surveys (2012 and 2009). Their necessity shares are Finland's, applied to their own register
             income deciles in kroner, which is why both rows carry a tier-C badge. Their published top decile averages
-            roughly twice the ninth, so the necessity floor steps up sharply around P90 and their P90–P95 cells can read
-            flat or slightly lower than P50 — an artefact of decile-average anchoring, not a real cliff.
+            roughly twice the ninth, which used to make the necessity floor step up sharply around P90 and read flat or
+            slightly lower than P50 in that band. That decile-average-anchoring artefact is now smoothed out (each
+            row's dollar figures at and above the top published decile are re-leveled to track WID's smooth quantile
+            growth, anchored for continuity at the last clean survey point), so P50–P90–P99 now read in strictly
+            increasing order for both countries.
           </li>
           <li>
             <span className="font-medium text-foreground">Delta chips</span> compare each cell to the selected country at

@@ -39,6 +39,16 @@ export interface RawYear {
   top_group_averages?: Record<string, number | null> | null;
   mean_real_2017usd?: number | null;
   median_real_2017usd?: number | null;
+  /**
+   * FIX 1 (DATA_FIXES_SPEC.md): Census's own published real-dollar figures, from Historical
+   * Table H-5's "2024 dollars" column (Chained CPI-U 2000-2024 / R-CPI-U-RS pre-2000, per the
+   * table's footnote 28). Present only on `census_asec.json` years. This is Census's own
+   * inflation adjustment of that year's nominal `median`/`mean` into 2024-dollar terms — it must
+   * be used directly for Census's real YoY, not re-deflated a second time by a generic external
+   * price index (PCE/CPI-U), which double-counts inflation and gives the wrong Real YoY.
+   */
+  median_real_2024usd?: number | null;
+  mean_real_2024usd?: number | null;
 }
 
 export interface RawDataset {
@@ -318,6 +328,39 @@ export function pickDataset(store: DataStore, source: SourceId, def: IncomeDef, 
 /** True when a WID bundle actually loaded for this geography. */
 export function widLoaded(store: DataStore | undefined, geo: GeoId): boolean {
   return !!store?.wid?.[geo];
+}
+
+/**
+ * FIX 1 (DATA_FIXES_SPEC.md) — Census's own implied inflation rate between `year - 1` and
+ * `year`, derived from Table H-5's published real-dollar ("2024 dollars") column rather than a
+ * generic external price index. Census re-expresses every year's nominal median in the same
+ * (latest-year) real terms each time it publishes a new report, so the ratio of
+ * `median_real_2024usd` to nominal `median` for a given year *is* Census's own deflator for that
+ * year, already baked into the two published columns — applying a second, different index
+ * (PCE/CPI-U) on top double-deflates and produces the wrong Real YoY (see FIX 1 test target).
+ *
+ * Returns null when either year is missing from the bundle or lacks the real-dollar column
+ * (pre-2000, or non-Census sources), so callers can fall back to the generic deflator.
+ */
+export function censusImpliedInflation(store: DataStore | undefined, year: number): number | null {
+  const years = store?.census?.years;
+  if (!years) return null;
+  const cur = years.find((y) => y.year === year);
+  const prev = years.find((y) => y.year === year - 1);
+  if (!cur || !prev) return null;
+  if (cur.median === null || cur.median === undefined || cur.median === 0) return null;
+  if (prev.median === null || prev.median === undefined || prev.median === 0) return null;
+  const curReal = cur.median_real_2024usd;
+  const prevReal = prev.median_real_2024usd;
+  if (curReal === null || curReal === undefined || prevReal === null || prevReal === undefined) return null;
+  // Census's own real/nominal ratio for the *current* year says how much of the current year's
+  // nominal value is already "inflation" relative to the base year; the year-over-year change in
+  // that ratio (prev's real/nominal vs cur's real/nominal) is the implied inflation between the
+  // two years, consistent with how `splitGrowth` expects a plain YoY inflation fraction.
+  const prevDeflator = prev.median / prevReal; // prevYear-nominal per 2024-real dollar
+  const curDeflator = cur.median / curReal; // curYear-nominal per 2024-real dollar
+  if (!Number.isFinite(prevDeflator) || !Number.isFinite(curDeflator) || prevDeflator <= 0) return null;
+  return curDeflator / prevDeflator - 1;
 }
 
 /* --------------------------------------------------- coupling / validity */

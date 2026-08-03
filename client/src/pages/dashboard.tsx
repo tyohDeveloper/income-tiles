@@ -48,6 +48,7 @@ import {
   SOURCES,
   UNITS,
   buildModel,
+  censusImpliedInflation,
   deriveView,
   fmtMoney,
   fmtNum,
@@ -205,6 +206,20 @@ export default function Dashboard() {
     [v4store, v4c, v4sel.deflator, clampedYear]
   );
 
+  /**
+   * FIX 1 (DATA_FIXES_SPEC.md): when the resolved source is Census, use Census's own implied
+   * inflation (from Table H-5's published real-dollar column) instead of the generic PCE/CPI-U
+   * deflator. Census ASEC's real-dollar column already bakes in Census's own price adjustment;
+   * applying a second, different index on top double-deflates and produces the wrong Real YoY.
+   * Falls back to the generic deflator's inflation figure when Census's own real-column data
+   * isn't available for this year pair (e.g. pre-2000).
+   */
+  const censusOwnInflation = useMemo(
+    () => (resolved === 'census' ? censusImpliedInflation(store, clampedYear) : null),
+    [resolved, store, clampedYear]
+  );
+  const effectiveInflation = resolved === 'census' && censusOwnInflation !== null ? censusOwnInflation : deflator?.inflation ?? null;
+
   const totalPopulation = useMemo(
     () => (v4store ? populationFor(v4store.population, v4c, clampedYear) : null),
     [v4store, v4c, clampedYear]
@@ -222,21 +237,24 @@ export default function Dashboard() {
   const deflatorNote = useMemo(() => {
     if (!deflator) return undefined;
     const chosen = DEFLATORS.find((d) => d.id === v4sel.deflator);
+    const usingCensusOwn = resolved === 'census' && censusOwnInflation !== null;
     const inflation =
-      deflator.inflation !== null ? `${(deflator.inflation * 100).toFixed(1)}% for ${clampedYear}` : 'not available for this year';
+      effectiveInflation !== null ? `${(effectiveInflation * 100).toFixed(1)}% for ${clampedYear}` : 'not available for this year';
     return [
-      `Real growth is deflated by ${deflator.label} (${inflation}).`,
-      deflator.substituted
+      usingCensusOwn
+        ? `Real growth uses Census's own published real-dollar column (${inflation}), not a generic price index — Census ASEC values are already inflation-adjusted by Census itself, so applying a second external deflator would double-count inflation.`
+        : `Real growth is deflated by ${deflator.label} (${inflation}).`,
+      !usingCensusOwn && deflator.substituted
         ? `${chosen?.label ?? v4sel.deflator} is a US-only index, so this geography reads against its own HICP series.`
         : '',
       seriesIsReal
         ? 'This source publishes in constant prices, so the measured change is the real one and the nominal reading is derived by adding inflation back.'
         : 'This source publishes in current-year prices, so the measured change is the nominal one and the real reading nets inflation out.',
-      deflator.source ? `Index: ${deflator.source}.` : '',
+      !usingCensusOwn && deflator.source ? `Index: ${deflator.source}.` : '',
     ]
       .filter(Boolean)
       .join(' ');
-  }, [deflator, v4sel.deflator, clampedYear, seriesIsReal]);
+  }, [deflator, v4sel.deflator, clampedYear, seriesIsReal, resolved, censusOwnInflation, effectiveInflation]);
 
   const tileOpts = useMemo(
     () => ({
@@ -245,10 +263,10 @@ export default function Dashboard() {
       population: ADULT_POPULATION[sel.geo],
       totalPopulation,
       householdSize,
-      inflation: deflator?.inflation ?? null,
+      inflation: effectiveInflation,
       seriesIsReal,
     }),
-    [v3sel.bandMode, topList, sel.geo, totalPopulation, householdSize, deflator, seriesIsReal]
+    [v3sel.bandMode, topList, sel.geo, totalPopulation, householdSize, effectiveInflation, seriesIsReal]
   );
 
   const sections = useMemo(() => {
