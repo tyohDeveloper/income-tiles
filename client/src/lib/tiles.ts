@@ -7,6 +7,7 @@ import {
   dollarTile,
   percentileTile,
 } from './incomeModel';
+import { BAND_TOOLTIP, BandMode, BandValue, TopListAggregate, computeBand } from './bands';
 
 export type TileKind = 'percentile' | 'sigma' | 'poverty';
 
@@ -17,12 +18,27 @@ export interface TileDef {
   kind: TileKind;
   /** percentile tiles */
   p?: number;
+  /**
+   * v3: upper edge of this tile's disjoint band. When set and band mode is on, the tile
+   * headline is the mean income of people between `p` and `bandUpper` rather than the `p`
+   * threshold. `1` means "up to the very top of the distribution".
+   */
+  bandUpper?: number;
+  /**
+   * v3: below-median tiles get the symmetric treatment — their band runs *downward* to
+   * `bandLower` — so "P20" reads as the mean of the people between P20 and P40's floor.
+   */
+  bandLower?: number;
+  /** Net a named top-N list out of this tile's band numerator (top band only). */
+  subtractTopList?: boolean;
   /** sigma tiles: median + k·σ_robust */
   k?: number;
   /** poverty tiles: multiple of the HHS guideline */
   mult?: number;
   info?: string;
   emphasis?: boolean;
+  /** Caption shown when band mode is on, replacing the threshold caption. */
+  bandCaption?: string;
 }
 
 export interface TileSection {
@@ -63,6 +79,9 @@ export const TILE_SECTIONS: TileSection[] = [
         caption: 'P50 — the middle unit',
         kind: 'percentile',
         p: 0.5,
+        bandLower: 0.4,
+        bandUpper: 0.6,
+        bandCaption: 'P40–P60 band mean',
         emphasis: true,
         info: 'The 50th percentile of the selected source, definition, unit and year.',
       },
@@ -75,8 +94,8 @@ export const TILE_SECTIONS: TileSection[] = [
     tiles: [
       { id: 'sigma-2', label: 'Median − 2σ', caption: 'Robust σ from median', kind: 'sigma', k: -2, info: SIGMA_INFO },
       { id: 'sigma-1', label: 'Median − 1σ', caption: 'Robust σ from median', kind: 'sigma', k: -1, info: SIGMA_INFO },
-      { id: 'p20', label: 'P20', caption: 'Bottom quintile ceiling', kind: 'percentile', p: 0.2 },
-      { id: 'p40', label: 'P40', caption: 'Second quintile ceiling', kind: 'percentile', p: 0.4 },
+      { id: 'p20', label: 'P20', caption: 'Bottom quintile ceiling', kind: 'percentile', p: 0.2, bandLower: 0, bandUpper: 0.2, bandCaption: 'Bottom quintile band mean' },
+      { id: 'p40', label: 'P40', caption: 'Second quintile ceiling', kind: 'percentile', p: 0.4, bandLower: 0.2, bandUpper: 0.4, bandCaption: 'P20–P40 band mean' },
     ],
   },
   {
@@ -84,8 +103,8 @@ export const TILE_SECTIONS: TileSection[] = [
     title: 'Above the median',
     hint: 'Upper quintile cut points and robust spread upward.',
     tiles: [
-      { id: 'p60', label: 'P60', caption: 'Third quintile ceiling', kind: 'percentile', p: 0.6 },
-      { id: 'p80', label: 'P80', caption: 'Top quintile floor', kind: 'percentile', p: 0.8 },
+      { id: 'p60', label: 'P60', caption: 'Third quintile ceiling', kind: 'percentile', p: 0.6, bandLower: 0.6, bandUpper: 0.8, bandCaption: 'P60–P80 band mean' },
+      { id: 'p80', label: 'P80', caption: 'Top quintile floor', kind: 'percentile', p: 0.8, bandLower: 0.8, bandUpper: 0.9, bandCaption: 'P80–P90 band mean' },
       { id: 'sigma1', label: 'Median + 1σ', caption: 'Robust σ from median', kind: 'sigma', k: 1, info: SIGMA_INFO },
       { id: 'sigma2', label: 'Median + 2σ', caption: 'Robust σ from median', kind: 'sigma', k: 2, info: SIGMA_INFO },
     ],
@@ -95,15 +114,51 @@ export const TILE_SECTIONS: TileSection[] = [
     title: 'Top tail',
     hint: 'Entry thresholds for each top group, and the income each captures.',
     tiles: [
-      { id: 'p90', label: 'Top 10%', caption: 'P90 threshold', kind: 'percentile', p: 0.9, emphasis: true },
-      { id: 'p95', label: 'Top 5%', caption: 'P95 threshold', kind: 'percentile', p: 0.95 },
-      { id: 'p98', label: 'Top 2%', caption: 'P98 threshold', kind: 'percentile', p: 0.98 },
-      { id: 'p99', label: 'Top 1%', caption: 'P99 threshold', kind: 'percentile', p: 0.99, emphasis: true },
-      { id: 'p995', label: 'Top 0.5%', caption: 'P99.5 threshold', kind: 'percentile', p: 0.995 },
-      { id: 'p999', label: 'Top 0.1%', caption: 'P99.9 threshold', kind: 'percentile', p: 0.999 },
+      { id: 'p90', label: 'Top 10%', caption: 'P90 threshold', kind: 'percentile', p: 0.9, bandUpper: 0.95, bandCaption: 'P90–P95 band mean', emphasis: true },
+      { id: 'p95', label: 'Top 5%', caption: 'P95 threshold', kind: 'percentile', p: 0.95, bandUpper: 0.98, bandCaption: 'P95–P98 band mean' },
+      { id: 'p98', label: 'Top 2%', caption: 'P98 threshold', kind: 'percentile', p: 0.98, bandUpper: 0.99, bandCaption: 'P98–P99 band mean' },
+      { id: 'p99', label: 'Top 1%', caption: 'P99 threshold', kind: 'percentile', p: 0.99, bandUpper: 0.995, bandCaption: 'P99–P99.5 band mean', emphasis: true },
+      { id: 'p995', label: 'Top 0.5%', caption: 'P99.5 threshold', kind: 'percentile', p: 0.995, bandUpper: 0.999, bandCaption: 'P99.5–P99.9 band mean' },
+      { id: 'p999', label: 'Top 0.1%', caption: 'P99.9 threshold', kind: 'percentile', p: 0.999, bandUpper: 0.9999, bandCaption: 'P99.9–P99.99 band mean' },
     ],
   },
 ];
+
+/**
+ * Section 7 — the extreme tail. Split out of Section 3 and collapsed by default because
+ * these bands are (a) thin enough that WID's own estimates carry real uncertainty and
+ * (b) dominated by realized capital gains rather than anything resembling a salary.
+ */
+export const OUTLIER_SECTION: TileSection = {
+  id: 'outliers',
+  title: 'Outliers — the extreme tail',
+  hint: 'The top hundredth of the top percent, and the ten largest individual incomes.',
+  tiles: [
+    {
+      id: 'p9999',
+      label: 'Top 0.01%',
+      caption: 'P99.99 threshold',
+      kind: 'percentile',
+      p: 0.9999,
+      bandUpper: 0.99999,
+      bandCaption: 'P99.99–P99.999 band mean',
+      emphasis: true,
+      info: 'About 26,000 adults in the United States. WID extrapolates this cut point from tax-unit data with a Pareto tail, so treat it as an estimate with real uncertainty rather than a published count.',
+    },
+    {
+      id: 'p99999',
+      label: 'Top 0.001%',
+      caption: 'P99.999 threshold',
+      kind: 'percentile',
+      p: 0.99999,
+      bandUpper: 1,
+      subtractTopList: true,
+      bandCaption: 'P99.999 to the top, less the named top 10',
+      emphasis: true,
+      info: 'About 2,600 adults in the United States. In band mode the ten largest individual incomes are removed from this band and reported separately, so the figure is not simply ten people averaged with everyone else.',
+    },
+  ],
+};
 
 export const ALL_TILES: TileDef[] = TILE_SECTIONS.flatMap((s) => s.tiles);
 
@@ -123,6 +178,24 @@ export interface ComputedTile extends TileValue {
   /** % change versus the same tile one year earlier, or null */
   yoy: number | null;
   note?: string;
+  /** v3: the disjoint-band reading, when this tile supports one. */
+  band?: BandValue | null;
+  /** v3: which reading the tile headline is showing. */
+  reading: 'threshold' | 'band';
+  /** v3: set when band mode was requested but the band could not be formed. */
+  bandFellBack?: string;
+}
+
+export interface TileComputeOptions {
+  mode?: BandMode;
+  /** Named top-N list to net out of the highest band. */
+  topList?: TopListAggregate | null;
+  population?: number;
+}
+
+/** True when this tile definition can produce a disjoint band at all. */
+export function supportsBand(def: TileDef): boolean {
+  return def.kind === 'percentile' && typeof def.bandUpper === 'number';
 }
 
 export function computeTile(
@@ -130,7 +203,8 @@ export function computeTile(
   view: DerivedView,
   povertyValue: number,
   prevView?: DerivedView | null,
-  prevPoverty?: number
+  prevPoverty?: number,
+  opts: TileComputeOptions = {}
 ): ComputedTile {
   const one = (v: DerivedView, pov: number): TileValue => {
     if (def.kind === 'percentile') return percentileTile(v, def.p!);
@@ -155,8 +229,54 @@ export function computeTile(
   if (def.kind === 'sigma' && cur.value !== null && cur.value <= 0) {
     note = 'Falls below zero — the robust spread exceeds the median at this skew.';
   }
-  return { ...cur, def, yoy, note };
+
+  /* ---- v3: disjoint band reading ---- */
+  const mode: BandMode = opts.mode ?? 'threshold';
+  let band: BandValue | null = null;
+  let bandFellBack: string | undefined;
+  if (supportsBand(def)) {
+    band = computeBand(view, def.bandLower ?? def.p!, def.bandUpper!, {
+      topList: def.subtractTopList ? opts.topList ?? null : null,
+      population: opts.population,
+    });
+    if (!band.ok) {
+      bandFellBack = band.note;
+      band = null;
+    }
+  } else if (mode === 'band' && def.kind === 'sigma') {
+    bandFellBack =
+      'Robust-σ tiles are defined as a dollar distance from the median, not as a percentile range, so they always read as a threshold.';
+  } else if (mode === 'band' && def.kind === 'poverty') {
+    bandFellBack = 'Policy lines are fixed dollar amounts, so they always read as a threshold.';
+  }
+
+  const reading: 'threshold' | 'band' = mode === 'band' && band ? 'band' : 'threshold';
+
+  let bandYoy: number | null = yoy;
+  if (reading === 'band' && prevView) {
+    const prevBand = computeBand(prevView, def.bandLower ?? def.p!, def.bandUpper!, {
+      topList: null,
+      population: opts.population,
+    });
+    bandYoy =
+      prevBand.ok && prevBand.mean !== null && prevBand.mean > 0 && band!.mean !== null
+        ? ((band!.mean - prevBand.mean) / prevBand.mean) * 100
+        : null;
+  }
+
+  return { ...cur, def, yoy: bandYoy, note, band, reading, bandFellBack };
 }
+
+/** The number a tile card should print, given the active reading. */
+export function tileHeadline(t: ComputedTile): number | null {
+  return t.reading === 'band' ? t.band?.mean ?? null : t.value;
+}
+
+export function tileCaption(t: ComputedTile): string {
+  return t.reading === 'band' ? t.def.bandCaption ?? 'Band mean' : t.def.caption;
+}
+
+export const BAND_QUALIFIER_TOOLTIP = BAND_TOOLTIP;
 
 export function povertyGuideline(
   guidelines: Record<string, { by_household_size: Record<string, number>; additional_person_increment: number }>,

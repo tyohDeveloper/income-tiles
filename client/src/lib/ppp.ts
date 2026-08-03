@@ -36,7 +36,26 @@ export const GEO_TO_V2: Record<GeoId, V2Country | null> = {
   DEU: 'DE',
   FRA: null,
   JPN: 'JP',
+  CHE: 'CH',
+  NOR: 'NO',
+  SWE: 'SE',
+  FIN: 'FI',
 };
+
+/** v2 country code → v1 geography, for the v3 cross-country sections. */
+export const V2_TO_GEO: Record<V2Country, GeoId> = {
+  US: 'US',
+  DE: 'DEU',
+  UK: 'GBR',
+  NO: 'NOR',
+  SE: 'SWE',
+  FI: 'FIN',
+  CH: 'CHE',
+  JP: 'JPN',
+};
+
+/** Row/column order for every v3 cross-country table (docs/v3-plan.md). */
+export const V3_COUNTRY_ORDER: V2Country[] = ['US', 'DE', 'UK', 'NO', 'SE', 'FI', 'CH', 'JP'];
 
 export interface PPPRate {
   lcu_per_usd_ppp: number;
@@ -140,6 +159,10 @@ const LOCALE_FOR: Record<GeoId, { currency: string; locale: string }> = {
   DEU: { currency: 'EUR', locale: 'de-DE' },
   FRA: { currency: 'EUR', locale: 'fr-FR' },
   JPN: { currency: 'JPY', locale: 'ja-JP' },
+  CHE: { currency: 'CHF', locale: 'de-CH' },
+  NOR: { currency: 'NOK', locale: 'nb-NO' },
+  SWE: { currency: 'SEK', locale: 'sv-SE' },
+  FIN: { currency: 'EUR', locale: 'fi-FI' },
 };
 
 /** Convert a local-currency amount into the currently displayed basis. */

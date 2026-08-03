@@ -23,8 +23,10 @@ import {
   UnitId,
   fmtMoney,
   sourceSupports,
+  visibleGeos,
 } from '@/lib/incomeModel';
 import { POVERTY_REGIONS, PovertyConfig } from '@/lib/tiles';
+import { BAND_TOOLTIP, BandMode, THRESHOLD_TOOLTIP } from '@/lib/bands';
 import { V2Country } from '@/lib/ppp';
 import { EquivalenceScale, HH_TYPES, HH_TYPE_ORDER, HouseholdTypeId } from '@/lib/householdType';
 import { HousingMode, STRICTNESS_LEVELS, Strictness } from '@/lib/necessity';
@@ -47,10 +49,25 @@ export interface CompareState {
   geo: GeoId;
 }
 
+/** v3 reading-mode and outlier-visibility state. */
+export interface V3Selection {
+  /** Whether percentile tiles read as disjoint bands or at-or-above thresholds. */
+  bandMode: BandMode;
+  /** Whether Section 7 (P99.99 / P99.999 / named top-10) is rendered at all. */
+  showOutliers: boolean;
+}
+
+export const V3_DEFAULTS: V3Selection = {
+  bandMode: 'band',
+  showOutliers: false,
+};
+
 interface Props {
   sel: Selection;
   v2: V2Selection;
   setV2: (patch: Partial<V2Selection>) => void;
+  v3: V3Selection;
+  setV3: (patch: Partial<V3Selection>) => void;
   v2Country: V2Country | null;
   regions: RegionOption[];
   regionsSupported: boolean;
@@ -100,6 +117,8 @@ export function ControlPanel({
   onReset,
   v2,
   setV2,
+  v3,
+  setV3,
   v2Country,
   regions,
   regionsSupported,
@@ -120,6 +139,7 @@ export function ControlPanel({
    * would leave non-US countries unreachable from a Census or BEA selection.
    */
   const geoNeedsSwitch = (g: GeoId) => g !== 'US' && !(resolved === 'wid' && SOURCES.wid.defs.includes(sel.def));
+  const geoOptions = visibleGeos();
   const sourceEnabled = (s: SourceId) => sourceSupports(s, sel.def, sel.geo);
   const unitEnabled = (u: UnitId) => (resolved ? SOURCES[resolved].unit === u : false);
 
@@ -237,7 +257,7 @@ export function ControlPanel({
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {GEOS.map((g) => (
+            {geoOptions.map((g) => (
               <SelectItem key={g.id} value={g.id} className="text-sm">
                 <span className="flex items-center gap-2">
                   {g.label}
@@ -247,7 +267,7 @@ export function ControlPanel({
             ))}
           </SelectContent>
         </Select>
-        {GEOS.some((g) => geoNeedsSwitch(g.id)) && sel.geo === 'US' && (
+        {geoOptions.some((g) => geoNeedsSwitch(g.id)) && sel.geo === 'US' && (
           <DisabledNote>Choosing another country switches the source to WID / DINA — the only loaded series with international coverage.</DisabledNote>
         )}
         {sel.geo !== 'US' && <DisabledNote>{GEOS.find((g) => g.id === sel.geo)?.currency} at current prices, per equal-split adult.</DisabledNote>}
@@ -273,6 +293,26 @@ export function ControlPanel({
           <span>{yearMin}</span>
           <span>{yearMax}</span>
         </div>
+      </section>
+
+      <Separator />
+
+      <section data-testid="section-reading-mode">
+        <FieldLabel info={`${BAND_TOOLTIP} ${THRESHOLD_TOOLTIP}`}>Percentile reading</FieldLabel>
+        <ToggleGroup
+          type="single"
+          value={v3.bandMode}
+          onValueChange={(val) => val && setV3({ bandMode: val as BandMode })}
+          className="grid grid-cols-2 gap-1"
+        >
+          <ToggleGroupItem value="band" className="h-8 text-xs" data-testid="button-reading-band">
+            Disjoint bands
+          </ToggleGroupItem>
+          <ToggleGroupItem value="threshold" className="h-8 text-xs" data-testid="button-reading-threshold">
+            Thresholds
+          </ToggleGroupItem>
+        </ToggleGroup>
+        <DisabledNote>{v3.bandMode === 'band' ? BAND_TOOLTIP : THRESHOLD_TOOLTIP}</DisabledNote>
       </section>
 
       <Separator />
@@ -394,6 +434,28 @@ export function ControlPanel({
 
       <Separator />
 
+      <section data-testid="section-outlier-detail">
+        <FieldLabel info="Section 7 adds the P99.99 and P99.999 bands and the ten largest individual incomes, estimated from published wealth. It is off by default because those figures are extrapolated from tax data and dominated by realized capital gains, so they behave nothing like the tiles above them.">
+          Outlier detail
+        </FieldLabel>
+        <div className="flex items-start justify-between gap-3 rounded-md border border-border/60 bg-muted/30 px-3 py-2">
+          <div className="min-w-0">
+            <div className="text-xs font-medium">Show outliers section</div>
+            <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">
+              P99.99, P99.999 and the named top 10
+            </div>
+          </div>
+          <Switch
+            checked={v3.showOutliers}
+            onCheckedChange={(c) => setV3({ showOutliers: c })}
+            aria-label="Show outliers section"
+            data-testid="switch-show-outliers"
+          />
+        </div>
+      </section>
+
+      <Separator />
+
       <section>
         <FieldLabel info="Pick a second data point and every tile gains a comparison figure with the percent change.">
           Compare
@@ -440,7 +502,7 @@ export function ControlPanel({
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {GEOS.filter((g) => SOURCES.wid.geos.includes(g.id)).map((g) => (
+                {geoOptions.filter((g) => SOURCES.wid.geos.includes(g.id)).map((g) => (
                   <SelectItem key={g.id} value={g.id} className="text-sm">
                     {g.label}
                   </SelectItem>

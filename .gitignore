@@ -17,3 +17,6 @@ data.db-journal
 
 # Raw v2 source archives (30MB, reproducible via build_*.py scripts)
 data/v2/raw/
+
+# Subagent scratch verification scripts (not needed at build)
+scratch/

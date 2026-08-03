@@ -1,0 +1,163 @@
+{
+  "source": "OECD Taxing Wages 2025 (data year 2024)",
+  "source_url": "https://www.oecd.org/en/publications/2025/04/taxing-wages-2025_20d1a01d/full-report/effective-tax-rates-on-labour-income-in-2024_878e20ff.html",
+  "extracted": "2026-08-03",
+  "household_type": "single person, no children",
+  "measure": "income tax + employee social security contributions, as % of gross wage earnings (net personal average tax rate components; does not include employer SSC, state/local/cantonal income tax on top of federal in some countries, or means-tested cash benefits)",
+  "wage_basis": "% of national average wage (AW), OECD Taxing Wages definition (avg annual gross wage of full-time adult workers)",
+  "notes": "67%, 100%, and 167% AW values are the OECD's own standardised published data points (Table 3.2 of Taxing Wages 2025). OECD does not publish a 250% AW point for this table; the 250% figure is LINEARLY EXTRAPOLATED from the 100%->167% slope and capped at an approximate top statutory combined marginal rate per country -- treat as directional, not an official OECD figure (flagged 'extrapolated': true below). A supplementary 'tax_wedge_pct' block (income tax + employee + employer SSC as % of labour cost, Table 3.1) is included per country for cross-checking / alternate definitions. For the US specifically, cross-check this single-filer OECD series against CBO's federal effective tax rate by income group in cbo_us.json -- the two use different scope (OECD = income tax + employee SSC only; CBO = all federal taxes including corporate and payroll incidence) so they will not match exactly, but should move in the same direction across the income scale.",
+  "countries": {
+    "US": {
+      "effective_tax_pct_of_gross_wage": {
+        "67": 21.6,
+        "100": 24.4,
+        "167": 29.2,
+        "250": 35.1
+      },
+      "extrapolated": {
+        "67": false,
+        "100": false,
+        "167": false,
+        "250": true
+      },
+      "tax_wedge_pct_of_labour_cost": {
+        "67": 27.6,
+        "100": 30.1,
+        "167": 34.4
+      }
+    },
+    "DE": {
+      "effective_tax_pct_of_gross_wage": {
+        "67": 32.7,
+        "100": 37.4,
+        "167": 41.5,
+        "250": 46.6
+      },
+      "extrapolated": {
+        "67": false,
+        "100": false,
+        "167": false,
+        "250": true
+      },
+      "tax_wedge_pct_of_labour_cost": {
+        "67": 43.9,
+        "100": 47.9,
+        "167": 49.1
+      }
+    },
+    "UK": {
+      "effective_tax_pct_of_gross_wage": {
+        "67": 17.8,
+        "100": 21.4,
+        "167": 29.7,
+        "250": 40.0
+      },
+      "extrapolated": {
+        "67": false,
+        "100": false,
+        "167": false,
+        "250": true
+      },
+      "tax_wedge_pct_of_labour_cost": {
+        "67": 25.3,
+        "100": 29.4,
+        "167": 37.4
+      }
+    },
+    "NO": {
+      "effective_tax_pct_of_gross_wage": {
+        "67": 23.5,
+        "100": 28.1,
+        "167": 35.0,
+        "250": 43.5
+      },
+      "extrapolated": {
+        "67": false,
+        "100": false,
+        "167": false,
+        "250": true
+      },
+      "tax_wedge_pct_of_labour_cost": {
+        "67": 32.3,
+        "100": 36.4,
+        "167": 43.3
+      }
+    },
+    "SE": {
+      "effective_tax_pct_of_gross_wage": {
+        "67": 20.0,
+        "100": 23.1,
+        "167": 33.5,
+        "250": 46.4
+      },
+      "extrapolated": {
+        "67": false,
+        "100": false,
+        "167": false,
+        "250": true
+      },
+      "tax_wedge_pct_of_labour_cost": {
+        "67": 39.1,
+        "100": 41.5,
+        "167": 49.4
+      }
+    },
+    "FI": {
+      "effective_tax_pct_of_gross_wage": {
+        "67": 22.3,
+        "100": 30.3,
+        "167": 38.3,
+        "250": 48.2
+      },
+      "extrapolated": {
+        "67": false,
+        "100": false,
+        "167": false,
+        "250": true
+      },
+      "tax_wedge_pct_of_labour_cost": {
+        "67": 35.2,
+        "100": 41.9,
+        "167": 48.5
+      }
+    },
+    "CH": {
+      "effective_tax_pct_of_gross_wage": {
+        "67": 14.9,
+        "100": 18.0,
+        "167": 22.8,
+        "250": 22.5
+      },
+      "extrapolated": {
+        "67": false,
+        "100": false,
+        "167": false,
+        "250": true
+      },
+      "tax_wedge_pct_of_labour_cost": {
+        "67": 20.0,
+        "100": 22.9,
+        "167": 27.4
+      }
+    },
+    "JP": {
+      "effective_tax_pct_of_gross_wage": {
+        "67": 19.8,
+        "100": 22.0,
+        "167": 26.4,
+        "250": 31.9
+      },
+      "extrapolated": {
+        "67": false,
+        "100": false,
+        "167": false,
+        "250": true
+      },
+      "tax_wedge_pct_of_labour_cost": {
+        "67": 30.7,
+        "100": 32.6,
+        "167": 35.7
+      }
+    }
+  }
+}

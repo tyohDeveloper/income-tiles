@@ -108,9 +108,10 @@ export function computeV2ForGeo(
 
 /** Geographies the v2 layer can render, in v1 GeoId terms. */
 export function v2Geos(store: DataStore | undefined, v2: V2Store | undefined): GeoId[] {
-  const all: GeoId[] = ['US', 'CAN', 'GBR', 'DEU', 'FRA', 'JPN'];
+  const all: GeoId[] = ['US', 'CAN', 'GBR', 'DEU', 'FRA', 'JPN', 'CHE', 'NOR', 'SWE', 'FIN'];
   return all.filter((g) => {
     const c = GEO_TO_V2[g];
-    return !!c && !!v2?.expenditure[c] && !!store;
+    // v3 additions only qualify once their WID bundle has actually loaded.
+    return !!c && !!v2?.expenditure[c] && !!store?.wid?.[g];
   });
 }

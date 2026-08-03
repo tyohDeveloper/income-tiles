@@ -2,7 +2,8 @@ import { ArrowDownRight, ArrowRight, ArrowUpRight, Info } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { DistributionModel, GeoId, fmtMoney, fmtPct, fmtShare } from '@/lib/incomeModel';
-import { ComputedTile, provenanceDetail, provenanceLabel } from '@/lib/tiles';
+import { ComputedTile, provenanceDetail, provenanceLabel, supportsBand, tileCaption, tileHeadline } from '@/lib/tiles';
+import { BAND_TOOLTIP, THRESHOLD_TOOLTIP } from '@/lib/bands';
 import { cn } from '@/lib/utils';
 
 function Delta({ value }: { value: number | null }) {
@@ -36,9 +37,21 @@ interface Props {
 
 export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, unitNote }: Props) {
   const { def } = tile;
+  const headline = tileHeadline(tile);
+  const compareHeadline = compare ? tileHeadline(compare) : null;
   const pctChange =
-    compare && compare.value !== null && tile.value !== null && compare.value > 0
-      ? ((tile.value - compare.value) / compare.value) * 100
+    compareHeadline !== null && headline !== null && compareHeadline > 0
+      ? ((headline - compareHeadline) / compareHeadline) * 100
+      : null;
+  const isBand = tile.reading === 'band';
+  const band = tile.band;
+  const bandRange =
+    isBand && band
+      ? band.lowerP <= 0
+        ? `up to ${fmtMoney(band.upperThreshold, geo, { compact: true })}`
+        : band.upperThreshold === null
+          ? `${fmtMoney(band.lowerThreshold, geo, { compact: true })} and up`
+          : `${fmtMoney(band.lowerThreshold, geo, { compact: true })} \u2013 ${fmtMoney(band.upperThreshold, geo, { compact: true })}`
       : null;
 
   return (
@@ -74,30 +87,51 @@ export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, 
             )}
           </div>
           <div className="mt-0.5 line-clamp-2 min-h-[1.9rem] text-[11px] leading-snug text-muted-foreground">
-            {def.caption}
+            {tileCaption(tile)}
           </div>
         </div>
-        <Popover>
-          <PopoverTrigger asChild>
-            <button
-              type="button"
-              className={cn(
-                'shrink-0 rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider transition-colors',
-                tile.provenance === 'published'
-                  ? 'bg-primary/12 text-primary'
-                  : tile.provenance === 'interpolated'
-                    ? 'bg-muted text-muted-foreground'
-                    : 'bg-chart-4/15 text-chart-4'
-              )}
-              data-testid={`badge-provenance-${def.id}`}
-            >
-              {provenanceLabel(tile.provenance)}
-            </button>
-          </PopoverTrigger>
-          <PopoverContent align="end" className="w-72 text-xs leading-relaxed">
-            {provenanceDetail(tile.provenance, model, geo)}
-          </PopoverContent>
-        </Popover>
+        <div className="flex shrink-0 flex-col items-end gap-1">
+          <Popover>
+            <PopoverTrigger asChild>
+              <button
+                type="button"
+                className={cn(
+                  'shrink-0 rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider transition-colors',
+                  tile.provenance === 'published'
+                    ? 'bg-primary/12 text-primary'
+                    : tile.provenance === 'interpolated'
+                      ? 'bg-muted text-muted-foreground'
+                      : 'bg-chart-4/15 text-chart-4'
+                )}
+                data-testid={`badge-provenance-${def.id}`}
+              >
+                {provenanceLabel(isBand && band ? band.provenance : tile.provenance)}
+              </button>
+            </PopoverTrigger>
+            <PopoverContent align="end" className="w-72 space-y-2 text-xs leading-relaxed">
+              <p>{provenanceDetail(isBand && band ? band.provenance : tile.provenance, model, geo)}</p>
+              {isBand && band?.note && <p className="text-muted-foreground">{band.note}</p>}
+            </PopoverContent>
+          </Popover>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button
+                type="button"
+                className={cn(
+                  'shrink-0 rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider transition-colors',
+                  isBand ? 'bg-chart-2/15 text-chart-2' : 'bg-muted/60 text-muted-foreground'
+                )}
+                data-testid={`badge-reading-${def.id}`}
+              >
+                {isBand ? 'band' : supportsBand(def) ? 'threshold' : 'threshold-only'}
+              </button>
+            </PopoverTrigger>
+            <PopoverContent align="end" className="w-72 space-y-2 text-xs leading-relaxed">
+              <p>{isBand ? BAND_TOOLTIP : THRESHOLD_TOOLTIP}</p>
+              {!isBand && tile.bandFellBack && <p className="text-muted-foreground">{tile.bandFellBack}</p>}
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
 
       <div>
@@ -110,11 +144,16 @@ export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, 
             className="tnum text-xl font-semibold leading-none tracking-tight"
             data-testid={`text-value-${def.id}`}
           >
-            {tile.value !== null && tile.value <= 0 ? (
-              <span className="text-muted-foreground">{fmtMoney(tile.value, geo)}</span>
+            {headline !== null && headline <= 0 ? (
+              <span className="text-muted-foreground">{fmtMoney(headline, geo)}</span>
             ) : (
-              fmtMoney(tile.value, geo)
+              fmtMoney(headline, geo)
             )}
+          </div>
+        )}
+        {isBand && bandRange && !tile.trimmedOut && (
+          <div className="mt-1 tnum text-[10px] leading-snug text-muted-foreground" data-testid={`text-bandrange-${def.id}`}>
+            {bandRange}
           </div>
         )}
         {tile.note && <div className="mt-1 text-[10px] leading-snug text-chart-4">{tile.note}</div>}
@@ -122,15 +161,19 @@ export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, 
 
       <dl className="grid grid-cols-2 gap-x-3 gap-y-1 border-t border-border/60 pt-2 text-[11px]">
         <div>
-          <dt className="text-muted-foreground">At or above</dt>
+          <dt className="text-muted-foreground">{isBand ? 'In this band' : 'At or above'}</dt>
           <dd className="tnum font-medium" data-testid={`text-popshare-${def.id}`}>
-            {tile.trimmedOut ? '—' : fmtPct(tile.pctAtOrAbove, tile.pctAtOrAbove !== null && tile.pctAtOrAbove < 1 ? 2 : 1)}
+            {tile.trimmedOut
+              ? '—'
+              : isBand && band
+                ? fmtPct(band.popShare * 100, band.popShare * 100 < 1 ? 3 : 1)
+                : fmtPct(tile.pctAtOrAbove, tile.pctAtOrAbove !== null && tile.pctAtOrAbove < 1 ? 2 : 1)}
           </dd>
         </div>
         <div>
-          <dt className="text-muted-foreground">Income above</dt>
+          <dt className="text-muted-foreground">{isBand ? 'Income in band' : 'Income above'}</dt>
           <dd className="tnum font-medium" data-testid={`text-incshare-${def.id}`}>
-            {tile.trimmedOut ? '—' : fmtShare(tile.shareAbove)}
+            {tile.trimmedOut ? '—' : isBand && band ? fmtShare(band.incomeShare) : fmtShare(tile.shareAbove)}
           </dd>
         </div>
         <div>
@@ -144,7 +187,7 @@ export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, 
             <dt className="text-muted-foreground truncate">vs {compareLabel}</dt>
             <dd className="flex items-center gap-1.5">
               <span className="tnum font-medium text-[11px]" data-testid={`text-compare-${def.id}`}>
-                {compare.trimmedOut ? '—' : fmtMoney(compare.value, compareGeo ?? geo, { compact: true })}
+                {compare.trimmedOut ? '—' : fmtMoney(compareHeadline, compareGeo ?? geo, { compact: true })}
               </span>
               <Delta value={pctChange} />
             </dd>
@@ -152,6 +195,11 @@ export function TileCard({ tile, compare, compareLabel, geo, compareGeo, model, 
         )}
       </dl>
 
+      {isBand && band?.subtracted && (
+        <div className="text-[10px] leading-snug text-chart-4" data-testid={`text-subtracted-${def.id}`}>
+          Top {band.subtracted.count} individuals removed and reported separately.
+        </div>
+      )}
       {unitNote && <div className="text-[10px] leading-snug text-muted-foreground/80">{unitNote}</div>}
     </Card>
   );

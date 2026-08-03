@@ -20,7 +20,7 @@ export type SourceId = 'census' | 'bea' | 'cbo' | 'wid';
 export type SourceChoice = SourceId | 'auto';
 export type IncomeDef = 'market' | 'personal' | 'disposable' | 'pretax_national' | 'posttax_national';
 export type UnitId = 'household' | 'tax_filer' | 'equal_split_adult';
-export type GeoId = 'US' | 'CAN' | 'GBR' | 'DEU' | 'FRA' | 'JPN';
+export type GeoId = 'US' | 'CAN' | 'GBR' | 'DEU' | 'FRA' | 'JPN' | 'CHE' | 'NOR' | 'SWE' | 'FIN';
 
 export interface RawYear {
   year: number;
@@ -102,7 +102,40 @@ export const GEOS: { id: GeoId; label: string; currency: string; locale: string 
   { id: 'DEU', label: 'Germany', currency: 'EUR', locale: 'de-DE' },
   { id: 'FRA', label: 'France', currency: 'EUR', locale: 'fr-FR' },
   { id: 'JPN', label: 'Japan', currency: 'JPY', locale: 'ja-JP' },
+  { id: 'CHE', label: 'Switzerland', currency: 'CHF', locale: 'de-CH' },
+  { id: 'NOR', label: 'Norway', currency: 'NOK', locale: 'nb-NO' },
+  { id: 'SWE', label: 'Sweden', currency: 'SEK', locale: 'sv-SE' },
+  { id: 'FIN', label: 'Finland', currency: 'EUR', locale: 'fi-FI' },
 ];
+
+/**
+ * v3: France is withdrawn from the country picker (docs/v3-plan.md decision 2) but
+ * `wid_fra.json` is still loaded and every France code path still works, so any saved
+ * selection or programmatic call referencing FRA keeps rendering.
+ */
+export const HIDDEN_GEOS: GeoId[] = ['FRA'];
+
+/** Countries offered in the picker. */
+export function visibleGeos(): typeof GEOS {
+  return GEOS.filter((g) => !HIDDEN_GEOS.includes(g.id));
+}
+
+/**
+ * Approximate adult (20+) population, used only to convert a named top-10 list into a
+ * population share for the disjoint-band math. Rounded UN/national estimates for 2024.
+ */
+export const ADULT_POPULATION: Record<GeoId, number> = {
+  US: 262_000_000,
+  CAN: 32_500_000,
+  GBR: 53_500_000,
+  DEU: 69_000_000,
+  FRA: 52_500_000,
+  JPN: 103_000_000,
+  CHE: 7_200_000,
+  NOR: 4_300_000,
+  SWE: 8_400_000,
+  FIN: 4_500_000,
+};
 
 export interface SourceMeta {
   id: SourceId;
@@ -173,7 +206,7 @@ export const SOURCES: Record<SourceId, SourceMeta> = {
     label: 'WID / DINA',
     short: 'WID',
     defs: ['pretax_national', 'posttax_national'],
-    geos: ['US', 'CAN', 'GBR', 'DEU', 'FRA', 'JPN'],
+    geos: ['US', 'CAN', 'GBR', 'DEU', 'FRA', 'JPN', 'CHE', 'NOR', 'SWE', 'FIN'],
     unit: 'equal_split_adult',
     minYear: 1980,
     maxYear: 2024,
@@ -200,7 +233,18 @@ const WID_FILES: Record<GeoId, string> = {
   DEU: 'wid_deu.json',
   FRA: 'wid_fra.json',
   JPN: 'wid_jpn.json',
+  CHE: 'wid_che.json',
+  NOR: 'wid_nor.json',
+  SWE: 'wid_swe.json',
+  FIN: 'wid_fin.json',
 };
+
+/**
+ * v3 additions. Their files are produced by the v3 data pipeline; until they land the
+ * loader tolerates a 404 and the country simply reports "no series" instead of taking the
+ * whole dashboard down with it.
+ */
+const OPTIONAL_WID_GEOS: GeoId[] = ['CHE', 'NOR', 'SWE', 'FIN'];
 
 export const DATA_FILES = [
   'census_asec.json',
@@ -224,16 +268,26 @@ export async function loadAll(): Promise<DataStore> {
     if (!res.ok) throw new Error(`Failed to load ${f} (${res.status})`);
     return res.json();
   };
+  const getSoft = async (f: string) => {
+    try {
+      const res = await fetch(dataUrl(f));
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  };
+  const geoOrder = Object.keys(WID_FILES) as GeoId[];
   const [census, bea, cbo, poverty, ...wids] = await Promise.all([
     get('census_asec.json'),
     get('bea_national.json'),
     get('cbo_us.json'),
     get('poverty_2026.json'),
-    ...(Object.keys(WID_FILES) as GeoId[]).map((g) => get(WID_FILES[g])),
+    ...geoOrder.map((g) => (OPTIONAL_WID_GEOS.includes(g) ? getSoft(WID_FILES[g]) : get(WID_FILES[g]))),
   ]);
   const wid = {} as Record<GeoId, RawBundle>;
-  (Object.keys(WID_FILES) as GeoId[]).forEach((g, i) => {
-    wid[g] = wids[i];
+  geoOrder.forEach((g, i) => {
+    if (wids[i]) wid[g] = wids[i];
   });
   return { census, bea, cbo, poverty, wid };
 }
@@ -259,6 +313,11 @@ function datasetsOf(bundle: RawBundle | undefined): RawDataset[] {
 export function pickDataset(store: DataStore, source: SourceId, def: IncomeDef, geo: GeoId): RawDataset | undefined {
   const bundle = source === 'wid' ? store.wid[geo] : (store as any)[source];
   return datasetsOf(bundle).find((d) => d.income_definition === def);
+}
+
+/** True when a WID bundle actually loaded for this geography. */
+export function widLoaded(store: DataStore | undefined, geo: GeoId): boolean {
+  return !!store?.wid?.[geo];
 }
 
 /* --------------------------------------------------- coupling / validity */
@@ -307,6 +366,9 @@ const P_KEYS: { key: string; p: number }[] = [
   { key: 'p99', p: 0.99 },
   { key: 'p99_5', p: 0.995 },
   { key: 'p99_9', p: 0.999 },
+  // v3 top-tail thresholds, merged in from data/v3/wid_toptail_thresholds.json when present.
+  { key: 'p99_99', p: 0.9999 },
+  { key: 'p99_999', p: 0.99999 },
 ];
 
 export type Provenance = 'published' | 'interpolated' | 'modeled';
@@ -502,9 +564,14 @@ function lorenzAnchorsFor(source: SourceId, y: RawYear): { anchors: LorenzPoint[
   } else {
     addTop(0.9, ts.top10_share);
     addTop(0.95, ts.top5_share);
+    addTop(0.98, ts.top2_share);
     addTop(0.99, ts.top1_share);
+    addTop(0.995, ts.top0_5_share);
     addTop(0.999, ts.top0_1_share);
-    note = 'Lorenz pinned to WID published top 10 / 5 / 1 / 0.1% shares; the rest follows the published percentile thresholds.';
+    // v3: extra top-tail anchors, merged in from data/v3/wid_top_shares.json when available.
+    addTop(0.9999, ts.top0_01_share);
+    addTop(0.99999, ts.top0_001_share);
+    note = 'Lorenz pinned to every published WID top-share anchor (10 / 5 / 2 / 1 / 0.5 / 0.1% and, where available, 0.01 / 0.001%); the rest follows the published percentile thresholds.';
   }
 
   if (anchors.length <= 1) {

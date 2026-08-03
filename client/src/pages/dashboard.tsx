@@ -23,11 +23,20 @@ import {
   Selection,
   V2Selection,
   V2_DEFAULTS,
+  V3Selection,
+  V3_DEFAULTS,
 } from '@/components/dashboard/ControlPanel';
+import {
+  BenefitsSection,
+  CrossCountrySection,
+  OutlierSection,
+  SourcesSection,
+} from '@/components/dashboard/V3Sections';
 import { StatTile, TileCard, V2TileCard } from '@/components/dashboard/TileCard';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useTheme } from '@/lib/theme';
 import {
+  ADULT_POPULATION,
   DEFAULT_TRIM,
   DerivedView,
   GEOS,
@@ -43,7 +52,10 @@ import {
   loadAll,
   resolveSource,
 } from '@/lib/incomeModel';
-import { TILE_SECTIONS, V2_TILE_SECTIONS, computeTile, computeV2Tile, povertyGuideline } from '@/lib/tiles';
+import { OUTLIER_SECTION, TILE_SECTIONS, V2_TILE_SECTIONS, computeTile, computeV2Tile, povertyGuideline } from '@/lib/tiles';
+import { TopListAggregate } from '@/lib/bands';
+import { forbesFor, loadV3 } from '@/lib/v3data';
+import { computeCrossCountry } from '@/lib/crossCountry';
 import { GEO_TO_V2, MoneyBasis, PPP_BASE_YEAR, basisLabel, fmtBasisMoney, loadPPP, toBasis } from '@/lib/ppp';
 import { loadV2, tierLabel } from '@/lib/expenditure';
 import { HH_TYPES } from '@/lib/householdType';
@@ -88,6 +100,8 @@ export default function Dashboard() {
   const [compare, setCompareState] = useState<CompareState>(DEFAULT_COMPARE);
   const [v2sel, setV2State] = useState<V2Selection>(V2_DEFAULTS);
   const setV2 = useCallback((patch: Partial<V2Selection>) => setV2State((s) => ({ ...s, ...patch })), []);
+  const [v3sel, setV3State] = useState<V3Selection>(V3_DEFAULTS);
+  const setV3 = useCallback((patch: Partial<V3Selection>) => setV3State((s) => ({ ...s, ...patch })), []);
 
   const setSel = useCallback((patch: Partial<Selection>) => setSelState((s) => ({ ...s, ...patch })), []);
   const setCompare = useCallback((patch: Partial<CompareState>) => setCompareState((s) => ({ ...s, ...patch })), []);
@@ -101,6 +115,15 @@ export default function Dashboard() {
 
   const { data: v2store } = useQuery({ queryKey: ['v2-data'], queryFn: loadV2, staleTime: Infinity, gcTime: Infinity });
   const { data: pppBundle } = useQuery({ queryKey: ['ppp'], queryFn: loadPPP, staleTime: Infinity, gcTime: Infinity });
+  // `loadV3` merges published top-tail thresholds and shares into `store` in place, so it
+  // has to run after the base bundle and the model memo has to depend on its result.
+  const { data: v3store } = useQuery({
+    queryKey: ['v3-data', !!store],
+    queryFn: () => loadV3(store),
+    enabled: !!store,
+    staleTime: Infinity,
+    gcTime: Infinity,
+  });
 
   const resolved = useMemo(
     () => resolveSource(sel.sourceChoice, sel.def, sel.geo, sel.year),
@@ -113,13 +136,16 @@ export default function Dashboard() {
     return Math.min(Math.max(sel.year, SOURCES[resolved].minYear), SOURCES[resolved].maxYear);
   }, [resolved, sel.year]);
 
+  // `topTailMerged` is in the dep list because loadV3 mutates `store` in place — the object
+  // identity does not change when the extra top shares land, but the model must be rebuilt.
+  const topTailMerged = v3store?.topTailMerged ?? 0;
   const model = useMemo(
     () => (store && resolved ? buildModel(store, resolved, sel.def, sel.geo, clampedYear) : null),
-    [store, resolved, sel.def, sel.geo, clampedYear]
+    [store, resolved, sel.def, sel.geo, clampedYear, topTailMerged]
   );
   const prevModel = useMemo(
     () => (store && resolved ? buildModel(store, resolved, sel.def, sel.geo, clampedYear - 1) : null),
-    [store, resolved, sel.def, sel.geo, clampedYear]
+    [store, resolved, sel.def, sel.geo, clampedYear, topTailMerged]
   );
   const compareModel = useMemo(() => {
     if (!store || !resolved || compare.mode === 'off') return null;
@@ -129,7 +155,7 @@ export default function Dashboard() {
     }
     if (resolved !== 'wid') return null;
     return buildModel(store, 'wid', sel.def, compare.geo, clampedYear);
-  }, [store, resolved, compare, sel.def, sel.geo, clampedYear]);
+  }, [store, resolved, compare, sel.def, sel.geo, clampedYear, topTailMerged]);
 
   const view = useMemo(() => (model ? deriveView(model, sel.trim) : null), [model, sel.trim]);
   const prevView = useMemo(() => (prevModel ? deriveView(prevModel, sel.trim) : null), [prevModel, sel.trim]);
@@ -143,16 +169,45 @@ export default function Dashboard() {
     [store, sel.poverty]
   );
 
+  /**
+   * The Forbes list is published in USD with no market FX series in the bundle, so it is only
+   * netted out of the top band when the selected distribution is itself denominated in USD.
+   */
+  const topList: TopListAggregate | null = useMemo(() => {
+    const f = v3store?.forbes;
+    if (!f || sel.geo !== 'US') return null;
+    const us = forbesFor(f, 'US');
+    if (us.aggregateIncomeUSD <= 0) return null;
+    return {
+      count: us.entries.length,
+      income: us.aggregateIncomeUSD,
+      label: `${f.source}, ${f.asOf}`,
+    };
+  }, [v3store, sel.geo]);
+
+  const tileOpts = useMemo(
+    () => ({ mode: v3sel.bandMode, topList, population: ADULT_POPULATION[sel.geo] }),
+    [v3sel.bandMode, topList, sel.geo]
+  );
+
   const sections = useMemo(() => {
     if (!view) return [];
     return TILE_SECTIONS.map((section) => ({
       ...section,
       computed: section.tiles.map((def) => ({
-        tile: computeTile(def, view, povertyValue, prevView, povertyValue),
-        compare: compareView ? computeTile(def, compareView, povertyValue) : null,
+        tile: computeTile(def, view, povertyValue, prevView, povertyValue, tileOpts),
+        compare: compareView ? computeTile(def, compareView, povertyValue, null, undefined, tileOpts) : null,
       })),
     }));
-  }, [view, povertyValue, prevView, compareView]);
+  }, [view, povertyValue, prevView, compareView, tileOpts]);
+
+  const outlierTiles = useMemo(() => {
+    if (!view) return [];
+    return OUTLIER_SECTION.tiles.map((def) => ({
+      tile: computeTile(def, view, povertyValue, prevView, povertyValue, tileOpts),
+      compare: compareView ? computeTile(def, compareView, povertyValue, null, undefined, tileOpts) : null,
+    }));
+  }, [view, povertyValue, prevView, compareView, tileOpts]);
 
   const v2Country = GEO_TO_V2[sel.geo];
   const basis: MoneyBasis = useMemo(
@@ -205,6 +260,18 @@ export default function Dashboard() {
       .filter((r): r is CountryCompareRow => r !== null);
   }, [store, v2store, clampedYear, v2sel, pppBundle]);
 
+  const crossCountry = useMemo(
+    () => computeCrossCountry(store, v2store, v3store, clampedYear, v2sel, pppBundle?.rates ?? {}),
+    [store, v2store, v3store, clampedYear, v2sel, pppBundle]
+  );
+  const fmtPPP = useCallback(
+    (v: number | null) =>
+      v === null || !Number.isFinite(v)
+        ? '\u2014'
+        : new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(v),
+    []
+  );
+
   const regions = useMemo(
     () => regionOptions(v2Country, v2store?.rppState ?? null, v2store?.rppMetro ?? null, v2store?.laender ?? null),
     [v2Country, v2store]
@@ -240,6 +307,8 @@ export default function Dashboard() {
       setCompare={setCompare}
       v2={v2sel}
       setV2={setV2}
+      v3={v3sel}
+      setV3={setV3}
       v2Country={v2Country}
       regions={regions}
       regionsSupported={regionSupported(v2Country)}
@@ -248,6 +317,7 @@ export default function Dashboard() {
         setSelState(DEFAULT_SELECTION);
         setCompareState(DEFAULT_COMPARE);
         setV2State(V2_DEFAULTS);
+        setV3State(V3_DEFAULTS);
       }}
     />
   );
@@ -322,6 +392,13 @@ export default function Dashboard() {
               Expenditure tier {v2result.dataTier}
             </Badge>
           )}
+          <Badge
+            variant="outline"
+            className="font-medium text-muted-foreground"
+            data-testid="badge-reading-mode"
+          >
+            {v3sel.bandMode === 'band' ? 'Disjoint bands' : 'Thresholds'}
+          </Badge>
           {view && view.trim.fraction > 0 && (
             <Badge className="tnum bg-chart-4/15 font-medium text-chart-4 hover:bg-chart-4/15" data-testid="badge-trim">
               Trimmed top {(view.trim.fraction * 100).toFixed(view.trim.fraction < 0.001 ? 4 : 2)}%
@@ -369,6 +446,19 @@ export default function Dashboard() {
       {/* Main scroll region */}
       <main className="scroll-region bg-background px-4 py-5 md:px-5">
         {isLoading && <LoadingState />}
+
+        {!isLoading && v3store && v3store.missing.length > 0 && (
+          <Alert className="mb-4 max-w-3xl border-chart-4/50" data-testid="alert-v3-pending">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Some data pending — placeholder values in the v3 sections</AlertTitle>
+            <AlertDescription className="text-xs">
+              {v3store.missing.length} v3 file{v3store.missing.length === 1 ? '' : 's'} did not load
+              ({v3store.missing.join(', ')}). The outlier list, the cross-country tax basis and the non-monetary
+              benefits table fall back to indicative placeholder levels until the pipeline publishes them. Everything
+              above section 7 is unaffected.
+            </AlertDescription>
+          </Alert>
+        )}
 
         {!isLoading && v2result?.placeholder && (
           <Alert className="mb-4 max-w-3xl border-destructive/40" data-testid="alert-placeholder">
@@ -541,6 +631,27 @@ export default function Dashboard() {
               </Alert>
             )}
 
+            {/* v3 §7 — outliers */}
+            {v3sel.showOutliers && v3store && (
+              <OutlierSection
+                tiles={outlierTiles}
+                forbes={v3store.forbes}
+                geo={sel.geo}
+                model={model}
+                compareLabel={compareLabel}
+                compareGeo={compare.mode === 'geo' ? compare.geo : sel.geo}
+                trimActive={view.trim.fraction > 0}
+              />
+            )}
+
+            {/* v3 §8 — cross-country discretionary by tier */}
+            {crossCountry.rows.length > 0 && (
+              <CrossCountrySection result={crossCountry} selected={v2Country} fmtPPP={fmtPPP} />
+            )}
+
+            {/* v3 §9 — non-monetary benefits */}
+            {v3store && <BenefitsSection bundle={v3store.benefits} selected={v2Country} />}
+
             {/* ancillary */}
             <section aria-labelledby="h-ancillary">
               <div className="mb-2.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -678,31 +789,53 @@ export default function Dashboard() {
                       households in USD; WID is per equal-split adult in local currency. Levels are not interchangeable
                       across sources — compare shapes and ratios.
                     </li>
+                    <li>
+                      <span className="font-medium text-foreground">Disjoint bands.</span> By default a percentile tile
+                      reports the mean income of the people between its own percentile and the next tile up, not the
+                      income you must reach to be at or above it. The bands partition the population exactly, so no one
+                      is counted twice and the top 1% tile is not dragged upward by billionaires. Switch to{' '}
+                      <em>Thresholds</em> in the sidebar for the classic at-or-above reading; a tile falls back to the
+                      threshold on its own when the two band edges have no usable Lorenz anchors.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Top-10 subtraction.</span> In band mode the highest
+                      band nets out a named top-10 list — the ten individuals and their estimated income are removed from
+                      both the numerator and the population share, so the band describes the people just below them.
+                      Estimated income is published wealth × 4% portfolio yield, not reported income, and it is applied
+                      only to USD-denominated distributions because no market FX series ships with the bundle.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Cross-country discretionary (section 8).</span>{' '}
+                      Gross income at each percentile comes from WID pre-tax national income; tax is an OECD effective
+                      rate at that earnings level rather than DINA post-tax income, because DINA hands collective
+                      consumption back to households and that is not money anyone can spend. The necessity floor is read
+                      off the country's expenditure survey at the same percentile and, above the survey's top published
+                      group, extended along the log-log slope of the last two anchors with the elasticity clamped at 0.5.
+                      The savings target is then applied exactly as it is in section 6.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Non-monetary benefits (section 9).</span> Leave,
+                      childcare, health, tuition, unemployment and transit entitlements are reported as published levels
+                      and are never netted into any monetary tile. Colour ranks within a row only, and inverts on rows
+                      where less is better. Categorical entitlements are scored on a five-point generosity scale.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Data tiers.</span> <strong>A</strong> — a recent
+                      annual survey, used as published. <strong>B</strong> — interpolated or uprated from a multi-year or
+                      slightly stale survey. <strong>C</strong> — modeled from register data or borrowed from a donor
+                      country because the national survey was discontinued. Every tile and table row carries the tier of
+                      the weakest input behind it.
+                    </li>
                   </ul>
-                  <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
-                    {(['census', 'bea', 'cbo', 'wid'] as const).map((s) => (
-                      <a
-                        key={s}
-                        href={SOURCES[s].url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-primary hover:underline"
-                      >
-                        {SOURCES[s].short} <ExternalLink className="h-3 w-3" />
-                      </a>
-                    ))}
-                    <a
-                      href="https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-primary hover:underline"
-                    >
-                      HHS <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </div>
+                  <p className="mt-3 text-[11px] text-muted-foreground/80">
+                    Full citations with URLs for every series are in the data sources section at the bottom of this page.
+                  </p>
                 </Card>
               </div>
             </section>
+
+            {/* v3 §10 — data sources and citations */}
+            <SourcesSection />
           </div>
         )}
       </main>

@@ -1,0 +1,564 @@
+{
+  "source": "Forbes Real-Time Billionaires",
+  "source_url": "https://www.forbes.com/real-time-billionaires/",
+  "snapshot_date": "2026-08-03",
+  "yield_assumption": 0.04,
+  "notes": "Wealth from Forbes Real-Time Billionaires (US list fetched directly; DE/UK/NO/SE/FI/CH/JP compiled from Forbes' own country-specific coverage and lists that mirror Forbes Real-Time Billionaires data, since Forbes' site country filter is client-side rendered and not directly fetchable). Estimated annual income = wealth * 4%. NOT IRS-reported income; realized income can differ dramatically year-to-year (e.g. Musk 2021 realized $23B). Wealth figures fluctuate daily with market prices -- treat as a snapshot, not a live feed. Finland has only 7 Forbes-listed billionaires (smallest economy of the 8), so its list has 7 entries rather than 10.",
+  "countries": {
+    "US": [
+      {
+        "rank": 1,
+        "name": "Elon Musk",
+        "wealth_usd": 690100000000.0,
+        "est_annual_income_usd": 27604000000.0,
+        "source_of_wealth": "Tesla, SpaceX"
+      },
+      {
+        "rank": 2,
+        "name": "Larry Page",
+        "wealth_usd": 292100000000.0,
+        "est_annual_income_usd": 11684000000.0,
+        "source_of_wealth": "Google"
+      },
+      {
+        "rank": 3,
+        "name": "Jeff Bezos",
+        "wealth_usd": 278100000000.0,
+        "est_annual_income_usd": 11124000000.0,
+        "source_of_wealth": "Amazon"
+      },
+      {
+        "rank": 4,
+        "name": "Sergey Brin",
+        "wealth_usd": 269400000000.0,
+        "est_annual_income_usd": 10776000000.0,
+        "source_of_wealth": "Google"
+      },
+      {
+        "rank": 5,
+        "name": "Michael Dell",
+        "wealth_usd": 229200000000.0,
+        "est_annual_income_usd": 9168000000.0,
+        "source_of_wealth": "Dell Technologies"
+      },
+      {
+        "rank": 6,
+        "name": "Mark Zuckerberg",
+        "wealth_usd": 191300000000.0,
+        "est_annual_income_usd": 7652000000.0,
+        "source_of_wealth": "Facebook"
+      },
+      {
+        "rank": 7,
+        "name": "Jensen Huang",
+        "wealth_usd": 173600000000.0,
+        "est_annual_income_usd": 6944000000.0,
+        "source_of_wealth": "Semiconductors (Nvidia)"
+      },
+      {
+        "rank": 8,
+        "name": "Larry Ellison",
+        "wealth_usd": 167500000000.0,
+        "est_annual_income_usd": 6700000000.0,
+        "source_of_wealth": "Oracle"
+      },
+      {
+        "rank": 9,
+        "name": "Warren Buffett",
+        "wealth_usd": 145100000000.0,
+        "est_annual_income_usd": 5804000000.0,
+        "source_of_wealth": "Berkshire Hathaway"
+      },
+      {
+        "rank": 10,
+        "name": "Steve Ballmer",
+        "wealth_usd": 144500000000.0,
+        "est_annual_income_usd": 5780000000.0,
+        "source_of_wealth": "Microsoft"
+      }
+    ],
+    "DE": [
+      {
+        "rank": 1,
+        "name": "Dieter Schwarz",
+        "wealth_usd": 64900000000.0,
+        "est_annual_income_usd": 2596000000.0,
+        "source_of_wealth": "Retail (Lidl, Kaufland)"
+      },
+      {
+        "rank": 2,
+        "name": "Klaus-Michael Kuehne",
+        "wealth_usd": 41900000000.0,
+        "est_annual_income_usd": 1676000000.0,
+        "source_of_wealth": "Shipping (Kuehne + Nagel)"
+      },
+      {
+        "rank": 3,
+        "name": "Andreas von Bechtolsheim & family",
+        "wealth_usd": 34200000000.0,
+        "est_annual_income_usd": 1368000000.0,
+        "source_of_wealth": "Google, Arista (tech investor)"
+      },
+      {
+        "rank": 4,
+        "name": "Reinhold Wuerth & family",
+        "wealth_usd": 28000000000.0,
+        "est_annual_income_usd": 1120000000.0,
+        "source_of_wealth": "Fasteners (Wuerth Group)"
+      },
+      {
+        "rank": 5,
+        "name": "Susanne Klatten",
+        "wealth_usd": 24700000000.0,
+        "est_annual_income_usd": 988000000.0,
+        "source_of_wealth": "BMW, pharmaceuticals (Altana)"
+      },
+      {
+        "rank": 6,
+        "name": "Stefan Quandt",
+        "wealth_usd": 24000000000.0,
+        "est_annual_income_usd": 960000000.0,
+        "source_of_wealth": "BMW"
+      },
+      {
+        "rank": 7,
+        "name": "Georg Schaeffler",
+        "wealth_usd": 17400000000.0,
+        "est_annual_income_usd": 696000000.0,
+        "source_of_wealth": "Auto parts (Schaeffler AG)"
+      },
+      {
+        "rank": 8,
+        "name": "Beate Heister",
+        "wealth_usd": 16800000000.0,
+        "est_annual_income_usd": 672000000.0,
+        "source_of_wealth": "Supermarkets (Aldi Sued)"
+      },
+      {
+        "rank": 9,
+        "name": "Karl Albrecht Jr. & family",
+        "wealth_usd": 16800000000.0,
+        "est_annual_income_usd": 672000000.0,
+        "source_of_wealth": "Supermarkets (Aldi Sued)"
+      },
+      {
+        "rank": 10,
+        "name": "Ludwig Merckle",
+        "wealth_usd": 16800000000.0,
+        "est_annual_income_usd": 672000000.0,
+        "source_of_wealth": "Pharmaceuticals"
+      }
+    ],
+    "UK": [
+      {
+        "rank": 1,
+        "name": "Michael Platt",
+        "wealth_usd": 20900000000.0,
+        "est_annual_income_usd": 836000000.0,
+        "source_of_wealth": "BlueCrest Capital Management"
+      },
+      {
+        "rank": 2,
+        "name": "Nik Storonsky",
+        "wealth_usd": 18800000000.0,
+        "est_annual_income_usd": 752000000.0,
+        "source_of_wealth": "Revolut"
+      },
+      {
+        "rank": 3,
+        "name": "Jim Ratcliffe",
+        "wealth_usd": 18400000000.0,
+        "est_annual_income_usd": 736000000.0,
+        "source_of_wealth": "Ineos"
+      },
+      {
+        "rank": 4,
+        "name": "James Dyson",
+        "wealth_usd": 15000000000.0,
+        "est_annual_income_usd": 600000000.0,
+        "source_of_wealth": "Dyson"
+      },
+      {
+        "rank": 5,
+        "name": "Simon Reuben",
+        "wealth_usd": 13300000000.0,
+        "est_annual_income_usd": 532000000.0,
+        "source_of_wealth": "Reuben Brothers"
+      },
+      {
+        "rank": 6,
+        "name": "David Reuben",
+        "wealth_usd": 13300000000.0,
+        "est_annual_income_usd": 532000000.0,
+        "source_of_wealth": "Reuben Brothers"
+      },
+      {
+        "rank": 7,
+        "name": "Alexander Gerko",
+        "wealth_usd": 12000000000.0,
+        "est_annual_income_usd": 480000000.0,
+        "source_of_wealth": "XTX Markets"
+      },
+      {
+        "rank": 8,
+        "name": "Christopher Hohn",
+        "wealth_usd": 11800000000.0,
+        "est_annual_income_usd": 472000000.0,
+        "source_of_wealth": "The Children's Investment Fund"
+      },
+      {
+        "rank": 9,
+        "name": "Anthony Bamford & family",
+        "wealth_usd": 10000000000.0,
+        "est_annual_income_usd": 400000000.0,
+        "source_of_wealth": "JCB"
+      },
+      {
+        "rank": 10,
+        "name": "Denise Coates",
+        "wealth_usd": 8100000000.0,
+        "est_annual_income_usd": 324000000.0,
+        "source_of_wealth": "bet365"
+      }
+    ],
+    "NO": [
+      {
+        "rank": 1,
+        "name": "Torstein Hagen",
+        "wealth_usd": 18400000000.0,
+        "est_annual_income_usd": 736000000.0,
+        "source_of_wealth": "Viking Cruises"
+      },
+      {
+        "rank": 2,
+        "name": "Odd Reitan & family",
+        "wealth_usd": 9100000000.0,
+        "est_annual_income_usd": 364000000.0,
+        "source_of_wealth": "Reitan Group (retail)"
+      },
+      {
+        "rank": 3,
+        "name": "Ole Andreas (Andreas) Halvorsen",
+        "wealth_usd": 8000000000.0,
+        "est_annual_income_usd": 320000000.0,
+        "source_of_wealth": "Viking Global Investors"
+      },
+      {
+        "rank": 4,
+        "name": "Kjell Inge Roekke",
+        "wealth_usd": 7700000000.0,
+        "est_annual_income_usd": 308000000.0,
+        "source_of_wealth": "Aker ASA (shipping, seafood, energy)"
+      },
+      {
+        "rank": 5,
+        "name": "Gustav Magnar Witzoe",
+        "wealth_usd": 4500000000.0,
+        "est_annual_income_usd": 180000000.0,
+        "source_of_wealth": "SalMar (fish farming)"
+      },
+      {
+        "rank": 6,
+        "name": "Ivar Tollefsen",
+        "wealth_usd": 4200000000.0,
+        "est_annual_income_usd": 168000000.0,
+        "source_of_wealth": "Real estate (Tollefsen Enterprises)"
+      },
+      {
+        "rank": 7,
+        "name": "Caroline Hagen Kjos",
+        "wealth_usd": 3300000000.0,
+        "est_annual_income_usd": 132000000.0,
+        "source_of_wealth": "Canica (conglomerate)"
+      },
+      {
+        "rank": 8,
+        "name": "Stein Erik Hagen",
+        "wealth_usd": 2800000000.0,
+        "est_annual_income_usd": 112000000.0,
+        "source_of_wealth": "Rimi / consumer goods"
+      },
+      {
+        "rank": 9,
+        "name": "Katharina Andresen",
+        "wealth_usd": 2500000000.0,
+        "est_annual_income_usd": 100000000.0,
+        "source_of_wealth": "Ferd (investments)"
+      },
+      {
+        "rank": 10,
+        "name": "Alexandra Andresen",
+        "wealth_usd": 2500000000.0,
+        "est_annual_income_usd": 100000000.0,
+        "source_of_wealth": "Ferd (investments)"
+      }
+    ],
+    "SE": [
+      {
+        "rank": 1,
+        "name": "Stefan Persson",
+        "wealth_usd": 21100000000.0,
+        "est_annual_income_usd": 844000000.0,
+        "source_of_wealth": "H&M"
+      },
+      {
+        "rank": 2,
+        "name": "Antonia Ax:son Johnson & family",
+        "wealth_usd": 13400000000.0,
+        "est_annual_income_usd": 536000000.0,
+        "source_of_wealth": "Diversified (Axel Johnson Group)"
+      },
+      {
+        "rank": 3,
+        "name": "Finn Rausing",
+        "wealth_usd": 11600000000.0,
+        "est_annual_income_usd": 464000000.0,
+        "source_of_wealth": "Packaging (Tetra Laval)"
+      },
+      {
+        "rank": 4,
+        "name": "Joern Rausing",
+        "wealth_usd": 11600000000.0,
+        "est_annual_income_usd": 464000000.0,
+        "source_of_wealth": "Packaging (Tetra Laval)"
+      },
+      {
+        "rank": 5,
+        "name": "Kirsten Rausing",
+        "wealth_usd": 11600000000.0,
+        "est_annual_income_usd": 464000000.0,
+        "source_of_wealth": "Packaging (Tetra Laval)"
+      },
+      {
+        "rank": 6,
+        "name": "Martin Lorentzon",
+        "wealth_usd": 10800000000.0,
+        "est_annual_income_usd": 432000000.0,
+        "source_of_wealth": "Spotify"
+      },
+      {
+        "rank": 7,
+        "name": "Carl Bennet",
+        "wealth_usd": 10000000000.0,
+        "est_annual_income_usd": 400000000.0,
+        "source_of_wealth": "Investments (Lifco, Getinge)"
+      },
+      {
+        "rank": 8,
+        "name": "Daniel Ek",
+        "wealth_usd": 9600000000.0,
+        "est_annual_income_usd": 384000000.0,
+        "source_of_wealth": "Spotify"
+      },
+      {
+        "rank": 9,
+        "name": "Fredrik Lundberg",
+        "wealth_usd": 9400000000.0,
+        "est_annual_income_usd": 376000000.0,
+        "source_of_wealth": "Real estate, investments"
+      },
+      {
+        "rank": 10,
+        "name": "Frederik Paulsen",
+        "wealth_usd": 7600000000.0,
+        "est_annual_income_usd": 304000000.0,
+        "source_of_wealth": "Health care (Ferring)"
+      }
+    ],
+    "FI": [
+      {
+        "rank": 1,
+        "name": "Antti Herlin",
+        "wealth_usd": 4000000000.0,
+        "est_annual_income_usd": 160000000.0,
+        "source_of_wealth": "Elevators, escalators (KONE)"
+      },
+      {
+        "rank": 2,
+        "name": "Mika Anttonen",
+        "wealth_usd": 2300000000.0,
+        "est_annual_income_usd": 92000000.0,
+        "source_of_wealth": "Oil & gas"
+      },
+      {
+        "rank": 3,
+        "name": "Heikki Kyoestilae",
+        "wealth_usd": 2200000000.0,
+        "est_annual_income_usd": 88000000.0,
+        "source_of_wealth": "Dental products"
+      },
+      {
+        "rank": 4,
+        "name": "Heikki Herlin",
+        "wealth_usd": 2100000000.0,
+        "est_annual_income_usd": 84000000.0,
+        "source_of_wealth": "Elevators, escalators (KONE)"
+      },
+      {
+        "rank": 5,
+        "name": "Ilkka Herlin",
+        "wealth_usd": 2000000000.0,
+        "est_annual_income_usd": 80000000.0,
+        "source_of_wealth": "Elevators, escalators (KONE)"
+      },
+      {
+        "rank": 6,
+        "name": "Ilona Herlin",
+        "wealth_usd": 1900000000.0,
+        "est_annual_income_usd": 76000000.0,
+        "source_of_wealth": "Elevators, escalators (KONE)"
+      },
+      {
+        "rank": 7,
+        "name": "Antti Aarnio-Wihuri",
+        "wealth_usd": 1500000000.0,
+        "est_annual_income_usd": 60000000.0,
+        "source_of_wealth": "Diversified"
+      }
+    ],
+    "CH": [
+      {
+        "rank": 1,
+        "name": "Gianluigi Aponte",
+        "wealth_usd": 44500000000.0,
+        "est_annual_income_usd": 1780000000.0,
+        "source_of_wealth": "Shipping (MSC)"
+      },
+      {
+        "rank": 2,
+        "name": "Rafaela Aponte-Diamant",
+        "wealth_usd": 44500000000.0,
+        "est_annual_income_usd": 1780000000.0,
+        "source_of_wealth": "Shipping (MSC)"
+      },
+      {
+        "rank": 3,
+        "name": "Ernesto Bertarelli & family",
+        "wealth_usd": 12000000000.0,
+        "est_annual_income_usd": 480000000.0,
+        "source_of_wealth": "Biotech, investments (ex-Serono)"
+      },
+      {
+        "rank": 4,
+        "name": "Ivan Glasenberg",
+        "wealth_usd": 13000000000.0,
+        "est_annual_income_usd": 520000000.0,
+        "source_of_wealth": "Commodities (ex-Glencore)"
+      },
+      {
+        "rank": 5,
+        "name": "Thomas Schmidheiny",
+        "wealth_usd": 11700000000.0,
+        "est_annual_income_usd": 468000000.0,
+        "source_of_wealth": "Cement (Holcim heir)"
+      },
+      {
+        "rank": 6,
+        "name": "Magdalena Martullo-Blocher",
+        "wealth_usd": 9500000000.0,
+        "est_annual_income_usd": 380000000.0,
+        "source_of_wealth": "Chemicals (Ems-Chemie)"
+      },
+      {
+        "rank": 7,
+        "name": "Rahel Blocher",
+        "wealth_usd": 8000000000.0,
+        "est_annual_income_usd": 320000000.0,
+        "source_of_wealth": "Chemicals (Ems-Chemie)"
+      },
+      {
+        "rank": 8,
+        "name": "Guillaume Pousaz",
+        "wealth_usd": 8000000000.0,
+        "est_annual_income_usd": 320000000.0,
+        "source_of_wealth": "Fintech (Checkout.com)"
+      },
+      {
+        "rank": 9,
+        "name": "Andre Hoffmann",
+        "wealth_usd": 8400000000.0,
+        "est_annual_income_usd": 336000000.0,
+        "source_of_wealth": "Health care (Roche heir)"
+      },
+      {
+        "rank": 10,
+        "name": "Vera Michalski-Hoffmann",
+        "wealth_usd": 7500000000.0,
+        "est_annual_income_usd": 300000000.0,
+        "source_of_wealth": "Health care (Roche heir)"
+      }
+    ],
+    "JP": [
+      {
+        "rank": 1,
+        "name": "Tadashi Yanai & family",
+        "wealth_usd": 65000000000.0,
+        "est_annual_income_usd": 2600000000.0,
+        "source_of_wealth": "Fashion & retail (Fast Retailing / Uniqlo)"
+      },
+      {
+        "rank": 2,
+        "name": "Masayoshi Son",
+        "wealth_usd": 80000000000.0,
+        "est_annual_income_usd": 3200000000.0,
+        "source_of_wealth": "Finance & investments (SoftBank)"
+      },
+      {
+        "rank": 3,
+        "name": "Takemitsu Takizaki",
+        "wealth_usd": 23600000000.0,
+        "est_annual_income_usd": 944000000.0,
+        "source_of_wealth": "Manufacturing (Keyence)"
+      },
+      {
+        "rank": 4,
+        "name": "Nobutada Saji & family",
+        "wealth_usd": 9300000000.0,
+        "est_annual_income_usd": 372000000.0,
+        "source_of_wealth": "Food & beverage (Suntory)"
+      },
+      {
+        "rank": 5,
+        "name": "Sekiya family",
+        "wealth_usd": 9100000000.0,
+        "est_annual_income_usd": 364000000.0,
+        "source_of_wealth": "Technology (Disco)"
+      },
+      {
+        "rank": 6,
+        "name": "Yasumitsu Shigeta",
+        "wealth_usd": 6000000000.0,
+        "est_annual_income_usd": 240000000.0,
+        "source_of_wealth": "Telecom & tech (Hikari Tsushin)"
+      },
+      {
+        "rank": 7,
+        "name": "Takao Yasuda",
+        "wealth_usd": 4700000000.0,
+        "est_annual_income_usd": 188000000.0,
+        "source_of_wealth": "Fashion & retail (Pan Pacific International)"
+      },
+      {
+        "rank": 8,
+        "name": "Hideyuki Busujima & family",
+        "wealth_usd": 4600000000.0,
+        "est_annual_income_usd": 184000000.0,
+        "source_of_wealth": "Gambling & casinos"
+      },
+      {
+        "rank": 9,
+        "name": "Toichi Takenaka",
+        "wealth_usd": 4000000000.0,
+        "est_annual_income_usd": 160000000.0,
+        "source_of_wealth": "Construction (Takenaka Corporation)"
+      },
+      {
+        "rank": 10,
+        "name": "Akira Mori & family",
+        "wealth_usd": 3950000000.0,
+        "est_annual_income_usd": 158000000.0,
+        "source_of_wealth": "Real estate (Mori Trust)"
+      }
+    ]
+  }
+}
