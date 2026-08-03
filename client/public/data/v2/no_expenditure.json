@@ -1,0 +1,104 @@
+{
+  "source": "SSB table 12682",
+  "country": "NO",
+  "year": 2024,
+  "unit": "NOK",
+  "price_basis": "nominal_2024",
+  "data_tier": "C",
+  "breakdown": "by_decile",
+  "categories": [],
+  "rows": [
+    {
+      "group": "d1",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 213000.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d2",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 328000.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d3",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 400000.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d4",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 462000.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d5",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 519000.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d6",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 578000.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d7",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 640000.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d8",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 715000.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d9",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 823000.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d10",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 1188800.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    }
+  ],
+  "source_url": "https://www.ssb.no/en/statbank/table/12682",
+  "notes": "INCOME-SIDE ONLY. Norway discontinued the Forbruksundersokelsen household consumption survey after 2012, so no post-2012 category-level expenditure data is published. Values are average income after taxes per consumption unit (SSB's equivalized person unit) by decile in NOK, 2024. avg_income_before_tax and expenditure_by_category are null by design. For discretionary/necessity tiles, fall back to modeling Norway's expenditure structure from Finland (peer Nordic country). Tier C."
+}

@@ -1,0 +1,104 @@
+{
+  "source": "SCB HE0110F/TabVX10InkStrukt",
+  "country": "SE",
+  "year": 2024,
+  "unit": "SEK",
+  "price_basis": "nominal_2024",
+  "data_tier": "C",
+  "breakdown": "by_decile",
+  "categories": [],
+  "rows": [
+    {
+      "group": "d1",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 123700.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d2",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 197900.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d3",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 228700.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d4",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 261500.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d5",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 298200.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d6",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 337600.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d7",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 383000,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d8",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 440500.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d9",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 525600.0,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    },
+    {
+      "group": "d10",
+      "avg_income_before_tax": null,
+      "avg_income_after_tax": 1037599.9999999999,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": null,
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null
+    }
+  ],
+  "source_url": "https://www.statistikdatabasen.scb.se/pxweb/en/ssd/START__HE__HE0110__HE0110F/TabVX10InkStrukt/",
+  "notes": "INCOME-SIDE ONLY. Sweden discontinued the HUT household budget survey after 2009, so no post-2009 category-level expenditure data is published. Values are the average equivalised disposable income for households by decile in SEK, 2024. avg_income_before_tax and expenditure_by_category are null by design. For discretionary/necessity tiles, fall back to modeling Sweden's expenditure structure from Finland (peer Nordic country). Tier C."
+}

@@ -1,0 +1,207 @@
+{
+  "source": "Federal Reserve Board, Survey of Consumer Finances (SCF) 2022, Summary Extract Public Data (SCFP2022)",
+  "country": "US",
+  "year": 2022,
+  "unit": "USD",
+  "price_basis": "nominal_2022",
+  "data_tier": "A",
+  "breakdown": "by_decile",
+  "categories": [
+    "voluntary_savings",
+    "other"
+  ],
+  "rows": [
+    {
+      "group": "d1",
+      "avg_income_before_tax": 13066,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 13.53,
+      "student_loan_mean_balance_all_families": 2867,
+      "student_loan_median_balance_conditional": 10000,
+      "student_loan_mean_balance_conditional": 21184,
+      "income_range_min": 0,
+      "income_range_max": 20321,
+      "n_families_weighted": 2619141
+    },
+    {
+      "group": "d2",
+      "avg_income_before_tax": 25231,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 16.54,
+      "student_loan_mean_balance_all_families": 5654,
+      "student_loan_median_balance_conditional": 17000,
+      "student_loan_mean_balance_conditional": 34181,
+      "income_range_min": 20321,
+      "income_range_max": 31346,
+      "n_families_weighted": 2626347
+    },
+    {
+      "group": "d3",
+      "avg_income_before_tax": 37001,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 19.35,
+      "student_loan_mean_balance_all_families": 5914,
+      "student_loan_median_balance_conditional": 20000,
+      "student_loan_mean_balance_conditional": 30559,
+      "income_range_min": 31346,
+      "income_range_max": 42804,
+      "n_families_weighted": 2627619
+    },
+    {
+      "group": "d4",
+      "avg_income_before_tax": 48499,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 18.14,
+      "student_loan_mean_balance_all_families": 6728,
+      "student_loan_median_balance_conditional": 22000,
+      "student_loan_mean_balance_conditional": 37087,
+      "income_range_min": 43020,
+      "income_range_max": 54046,
+      "n_families_weighted": 2627964
+    },
+    {
+      "group": "d5",
+      "avg_income_before_tax": 62220,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 19.56,
+      "student_loan_mean_balance_all_families": 8228,
+      "student_loan_median_balance_conditional": 20360,
+      "student_loan_mean_balance_conditional": 42059,
+      "income_range_min": 54046,
+      "income_range_max": 69827,
+      "n_families_weighted": 2623788
+    },
+    {
+      "group": "d6",
+      "avg_income_before_tax": 78930,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 29.76,
+      "student_loan_mean_balance_all_families": 11251,
+      "student_loan_median_balance_conditional": 24000,
+      "student_loan_mean_balance_conditional": 37807,
+      "income_range_min": 69827,
+      "income_range_max": 89716,
+      "n_families_weighted": 2627824
+    },
+    {
+      "group": "d7",
+      "avg_income_before_tax": 101568,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 27.8,
+      "student_loan_mean_balance_all_families": 12075,
+      "student_loan_median_balance_conditional": 27000,
+      "student_loan_mean_balance_conditional": 43437,
+      "income_range_min": 89716,
+      "income_range_max": 113654,
+      "n_families_weighted": 2624073
+    },
+    {
+      "group": "d8",
+      "avg_income_before_tax": 129697,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 26.65,
+      "student_loan_mean_balance_all_families": 15011,
+      "student_loan_median_balance_conditional": 30000,
+      "student_loan_mean_balance_conditional": 56328,
+      "income_range_min": 113712,
+      "income_range_max": 149814,
+      "n_families_weighted": 2627404
+    },
+    {
+      "group": "d9",
+      "avg_income_before_tax": 188709,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 27.36,
+      "student_loan_mean_balance_all_families": 19164,
+      "student_loan_median_balance_conditional": 35000,
+      "student_loan_mean_balance_conditional": 70031,
+      "income_range_min": 150031,
+      "income_range_max": 242773,
+      "n_families_weighted": 2629976
+    },
+    {
+      "group": "d10",
+      "avg_income_before_tax": 705032,
+      "avg_income_after_tax": null,
+      "avg_expenditure_total": null,
+      "expenditure_by_category": {
+        "voluntary_savings": null,
+        "other": null
+      },
+      "housing_owner_share": null,
+      "housing_owner_imputed_rent_estimate": null,
+      "student_loan_pct_holding": 18.12,
+      "student_loan_mean_balance_all_families": 14774,
+      "student_loan_median_balance_conditional": 50000,
+      "student_loan_mean_balance_conditional": 81553,
+      "income_range_min": 243205,
+      "income_range_max": 447819607,
+      "n_families_weighted": 2627144
+    }
+  ],
+  "source_url": "https://www.federalreserve.gov/econres/scfindex.htm",
+  "notes": "TIER A / REAL PRIMARY DATA: This dataset was computed directly from the Federal Reserve's official Survey of Consumer Finances 2022 Summary Extract Public Dataset (SCFP2022.csv), downloaded from https://www.federalreserve.gov/econres/files/scfp2022excel.zip (linked from the official SCF index page https://www.federalreserve.gov/econres/scfindex.htm). The Fed's own published Bulletin article ('Changes in U.S. Family Finances from 2019 to 2022', https://www.federalreserve.gov/publications/october-2023-changes-in-us-family-finances-from-2019-to-2022.htm) and Table 13 of the companion Bulletin Tables workbook (https://www.federalreserve.gov/econres/files/scf2022_tables_public_real_historical.xlsx) report student-debt statistics only as (a) all-family aggregates, and (b) an 'Installment loans' category by income percentile that COMBINES education loans with vehicle loans and other installment loans -- there is no official Fed table isolating education-loan-only statistics by income decile or percentile. To satisfy the v2 spec's requirement for education/student-loan burden BY DECILE, we tabulated the isolated education-installment-loan variable (EDN_INST) directly from the SCF microdata, split into income deciles (variable INCOME), using the SCF's standard multiple-imputation procedure: each of the 4,595 sampled families has 5 implicates in the summary extract (distinguished by the last digit of Y1); we averaged INCOME and EDN_INST across each family's 5 implicates before applying sampling weights (WGT), which is the standard approach for point estimates using the summary extract (see SCF codebook, https://www.federalreserve.gov/econres/files/codebk2022.txt). Deciles were formed on the (implicate-averaged) weighted distribution of total pre-tax family INCOME (2,626 weighted population = 26.26 million families total / 10 deciles ~2.63M families per decile). VALIDATION: our replicated all-family aggregates closely match the Fed's own published Table 4 figures: computed overall pct holding = 21.69% vs Fed's published 21.8%; computed conditional median balance = $25,000 vs Fed's published $24,500; computed conditional mean balance = $46,898 vs Fed's published $46,600 (the tiny discrepancies are attributable to Fed's 'has education loan' indicator variable EDN_INST vs an alternate flag it may also incorporate, and to standard summary-extract vs full-public-file rounding); our computed top-40%-of-income student-debt share = 60.2% (Fed narrative: 'more than half'); bottom-20% share = 8.4% (Fed narrative: 'never more than 14 percent'). This gives high confidence the decile tabulation is a faithful primary-source computation, not a fabrication. SCHEMA NOTE: This dataset only reports student-loan-specific fields; the general v2 schema fields (avg_income_after_tax, avg_expenditure_total, full expenditure_by_category, housing_owner_share/imputed rent) are NOT available from the SCF and are set to null here -- income/expenditure/housing figures for the US should be sourced from the BLS CES dataset (us_ces_2024_by_decile.json) instead; this file is meant to be joined to that one by decile group on the frontend to add the 'voluntary_savings' offset (student loan payment burden) to the discretionary-income calculation. 'student_loan_mean_balance_all_families' = mean EDN_INST balance across ALL families in the decile (holders and non-holders), useful as an expected per-capita monthly debt-service proxy; 'student_loan_median/mean_balance_conditional' = balance CONDITIONAL on holding any education loan (matches the Fed's Bulletin Table 4 'conditional' convention). No monthly PAYMENT amount is directly available in the summary extract (EDN_INST is an outstanding BALANCE, not a payment); the v2 frontend should apply a standard amortization assumption (e.g. 10-year federal standard repayment, ~6% avg rate) to convert balance to an estimated monthly payment if needed. CURRENCY/YEAR: SCF summary extract dollar values are in nominal 2022 dollars as collected (not adjusted to 2024); this differs from the BLS CES dataset which is in 2024 nominal dollars -- a ~forward CPI adjustment (2022->2024, roughly +6-7% cumulative per BLS CPI-U) may be desirable at display time if strict unit consistency across files is required; we did not apply this adjustment here to keep the file as raw primary-source data. The Fed also publishes an interactive SCF Chartbook (https://www.federalreserve.gov/econres/scf/dataviz/scf/chart/) which supports 'percentile of income' classification for debt variables but is a JS-rendered tool without a documented public data-download API, so it was not used as the extraction source; the raw microdata extract is the authoritative primary source in any case."
+}

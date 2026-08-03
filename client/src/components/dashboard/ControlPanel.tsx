@@ -25,6 +25,11 @@ import {
   sourceSupports,
 } from '@/lib/incomeModel';
 import { POVERTY_REGIONS, PovertyConfig } from '@/lib/tiles';
+import { V2Country } from '@/lib/ppp';
+import { EquivalenceScale, HH_TYPES, HH_TYPE_ORDER, HouseholdTypeId } from '@/lib/householdType';
+import { HousingMode, STRICTNESS_LEVELS, Strictness } from '@/lib/necessity';
+import { SAVINGS_MARKS } from '@/lib/discretionary';
+import { RegionOption } from '@/lib/regional';
 
 export interface Selection {
   def: IncomeDef;
@@ -44,6 +49,12 @@ export interface CompareState {
 
 interface Props {
   sel: Selection;
+  v2: V2Selection;
+  setV2: (patch: Partial<V2Selection>) => void;
+  v2Country: V2Country | null;
+  regions: RegionOption[];
+  regionsSupported: boolean;
+  v2Placeholder: boolean;
   setSel: (patch: Partial<Selection>) => void;
   resolved: SourceId | null;
   compare: CompareState;
@@ -80,7 +91,20 @@ function DisabledNote({ children }: { children: React.ReactNode }) {
   return <p className="mt-1.5 text-[11px] leading-snug text-muted-foreground/80">{children}</p>;
 }
 
-export function ControlPanel({ sel, setSel, resolved, compare, setCompare, onReset }: Props) {
+export function ControlPanel({
+  sel,
+  setSel,
+  resolved,
+  compare,
+  setCompare,
+  onReset,
+  v2,
+  setV2,
+  v2Country,
+  regions,
+  regionsSupported,
+  v2Placeholder,
+}: Props) {
   const active = resolved ? SOURCES[resolved] : null;
   const yearMin = active?.minYear ?? 1979;
   const yearMax = active?.maxYear ?? 2024;
@@ -433,37 +457,273 @@ export function ControlPanel({ sel, setSel, resolved, compare, setCompare, onRes
 
       <Separator />
 
-      <section>
-        <FieldLabel info="Planned for v2. Needs BLS Consumer Expenditure Survey shares by decile plus effective tax rates by percentile before it can show honest numbers.">
-          Discretionary layers
-        </FieldLabel>
-        <div className="space-y-2.5">
-          {[
-            { id: 'necessities', label: 'Deduct necessities', detail: 'Housing, food at home, out-of-pocket healthcare, commuting' },
-            { id: 'savings', label: 'Deduct voluntary savings', detail: '401(k), IRA, HSA contributions' },
-          ].map((t) => (
-            <Tooltip key={t.id}>
-              <TooltipTrigger asChild>
-                <div className="flex items-start justify-between gap-3 rounded-md border border-border/60 bg-muted/30 px-3 py-2 opacity-70">
-                  <div>
-                    <div className="text-xs font-medium">{t.label}</div>
-                    <div className="text-[11px] text-muted-foreground leading-snug mt-0.5">{t.detail}</div>
-                  </div>
-                  <Switch checked={false} disabled aria-label={t.label} data-testid={`switch-${t.id}`} />
-                </div>
-              </TooltipTrigger>
-              <TooltipContent side="right" className="max-w-56 text-xs">
-                Coming soon — needs BLS Consumer Expenditure Survey integration.
-              </TooltipContent>
-            </Tooltip>
-          ))}
-        </div>
-      </section>
+      <V2Controls v2={v2} setV2={setV2} country={v2Country} regions={regions} regionsSupported={regionsSupported} placeholder={v2Placeholder} />
 
       <Button variant="outline" size="sm" className="mt-1 gap-2" onClick={onReset} data-testid="button-reset">
         <RotateCcw className="h-3.5 w-3.5" />
         Reset controls
       </Button>
     </div>
+  );
+}
+
+/* ------------------------------------------------------------- v2 controls */
+
+export interface V2Selection {
+  /** Convert every money figure to USD at OECD PPP for private consumption. */
+  ppp: boolean;
+  housingMode: HousingMode;
+  strictness: Strictness;
+  equivalenceScale: EquivalenceScale;
+  householdType: HouseholdTypeId;
+  /** Voluntary savings target, percent of post-necessity income. */
+  savingsPct: number;
+  /** Region id from `regionOptions()`, or 'national'. */
+  region: string;
+}
+
+export const V2_DEFAULTS: V2Selection = {
+  ppp: true,
+  housingMode: 'rental_equivalent',
+  strictness: 'bls_basic',
+  equivalenceScale: 'sqrt',
+  householdType: 'all',
+  savingsPct: 15,
+  region: 'national',
+};
+
+const SCALES: { id: EquivalenceScale; label: string; info: string }[] = [
+  { id: 'per_capita', label: 'Per capita', info: 'Divide by household size. No economies of scale — overstates the burden of large households.' },
+  { id: 'sqrt', label: 'Square root', info: 'Divide by the square root of household size. The OECD default and the v2 baseline.' },
+  { id: 'oecd_modified', label: 'OECD-modified', info: 'First adult 1.0, each additional adult 0.5, each child 0.3. Used for EU-SILC poverty statistics.' },
+];
+
+function V2Controls({
+  v2,
+  setV2,
+  country,
+  regions,
+  regionsSupported,
+  placeholder,
+}: {
+  v2: V2Selection;
+  setV2: (patch: Partial<V2Selection>) => void;
+  country: V2Country | null;
+  regions: RegionOption[];
+  regionsSupported: boolean;
+  placeholder: boolean;
+}) {
+  const strictness = STRICTNESS_LEVELS.find((s) => s.id === v2.strictness);
+  const scale = SCALES.find((s) => s.id === v2.equivalenceScale);
+  const hh = HH_TYPES[v2.householdType];
+  const grouped: { group: string; items: RegionOption[] }[] = [];
+  for (const r of regions) {
+    const last = grouped[grouped.length - 1];
+    if (last && last.group === r.group) last.items.push(r);
+    else grouped.push({ group: r.group, items: [r] });
+  }
+
+  return (
+    <>
+      <section data-testid="section-v2-controls">
+        <FieldLabel info="The v2 discretionary layer subtracts a necessity floor built from household expenditure surveys, then a voluntary savings target, from post-tax income at the selected percentile.">
+          Discretionary layer
+        </FieldLabel>
+        {!country && (
+          <DisabledNote>
+            No expenditure survey is loaded for this country, so the necessity floor and discretionary tiles are hidden.
+            Switch to the United States, Germany, the United Kingdom or Japan.
+          </DisabledNote>
+        )}
+        {country && placeholder && (
+          <DisabledNote>
+            {country} is running on placeholder expenditure numbers — every derived tile is badged Placeholder.
+          </DisabledNote>
+        )}
+
+        <div className="mt-3 flex items-start justify-between gap-3 rounded-md border border-border/60 bg-muted/30 px-3 py-2">
+          <div className="min-w-0">
+            <div className="text-xs font-medium">PPP-adjusted (USD)</div>
+            <div className="mt-0.5 text-[11px] leading-snug text-muted-foreground">
+              OECD purchasing power parities for private consumption, 2023 base
+            </div>
+          </div>
+          <Switch
+            checked={v2.ppp}
+            onCheckedChange={(c) => setV2({ ppp: c })}
+            aria-label="PPP-adjusted USD"
+            data-testid="switch-ppp"
+          />
+        </div>
+      </section>
+
+      <Separator />
+
+      <section>
+        <FieldLabel info={strictness?.blurb}>Necessity strictness</FieldLabel>
+        <ToggleGroup
+          type="single"
+          value={v2.strictness}
+          onValueChange={(val) => val && setV2({ strictness: val as Strictness })}
+          className="grid grid-cols-3 gap-1"
+        >
+          {STRICTNESS_LEVELS.map((s) => (
+            <ToggleGroupItem key={s.id} value={s.id} className="h-8 px-1 text-[11px]" data-testid={`button-strictness-${s.id}`}>
+              {s.label}
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
+        <DisabledNote>{strictness?.blurb}</DisabledNote>
+      </section>
+
+      <Separator />
+
+      <section>
+        <FieldLabel info="Cash outlays count shelter as the survey reports it — mortgage principal and interest for owners. Rental equivalent replaces owner outlays with imputed rent, which is what the national accounts do and what makes owners and renters comparable.">
+          Housing basis
+        </FieldLabel>
+        <ToggleGroup
+          type="single"
+          value={v2.housingMode}
+          onValueChange={(val) => val && setV2({ housingMode: val as HousingMode })}
+          className="grid grid-cols-2 gap-1"
+        >
+          <ToggleGroupItem value="cash" className="h-8 text-xs" data-testid="button-housing-cash">
+            Cash outlays
+          </ToggleGroupItem>
+          <ToggleGroupItem value="rental_equivalent" className="h-8 text-xs" data-testid="button-housing-rental">
+            Rental equiv.
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </section>
+
+      <Separator />
+
+      <section>
+        <FieldLabel info="Income comes per equal-split adult; expenditure comes per household. The equivalence scale bridges the two.">
+          Equivalence scale
+        </FieldLabel>
+        <Select value={v2.equivalenceScale} onValueChange={(val) => setV2({ equivalenceScale: val as EquivalenceScale })}>
+          <SelectTrigger className="h-9 text-sm" data-testid="select-equivalence">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {SCALES.map((s) => (
+              <SelectItem key={s.id} value={s.id} className="text-sm">
+                {s.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <DisabledNote>{scale?.info}</DisabledNote>
+      </section>
+
+      <Separator />
+
+      <section>
+        <FieldLabel info="Household composition drives childcare, healthcare and food. Where the survey publishes a matching household-type table the adjustment is measured; otherwise it is modeled from a square-root size ratio.">
+          Household type
+        </FieldLabel>
+        <Select value={v2.householdType} onValueChange={(val) => setV2({ householdType: val as HouseholdTypeId })}>
+          <SelectTrigger className="h-9 text-sm" data-testid="select-household-type">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {HH_TYPE_ORDER.map((id) => (
+              <SelectItem key={id} value={id} className="text-sm">
+                {HH_TYPES[id].label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <DisabledNote>
+          {hh.size.toFixed(hh.size % 1 === 0 ? 0 : 1)} people · {hh.childrenInCare > 0 ? `${hh.childrenInCare} in paid care` : 'no paid childcare'} ·{' '}
+          {hh.working ? 'working' : 'retired'}
+        </DisabledNote>
+      </section>
+
+      <Separator />
+
+      <section>
+        <FieldLabel info="Applied to income remaining after the necessity floor. Mandatory pension contributions are already excluded from DINA post-tax income and are never subtracted twice.">
+          Voluntary savings target
+        </FieldLabel>
+        <div className="mb-1.5 flex items-baseline justify-between">
+          <span className="text-xs text-muted-foreground">Percent of post-necessity income</span>
+          <span className="tnum text-sm font-semibold" data-testid="text-savings-pct">
+            {v2.savingsPct}%
+          </span>
+        </div>
+        <Slider
+          value={[v2.savingsPct]}
+          min={0}
+          max={25}
+          step={1}
+          onValueChange={([val]) => setV2({ savingsPct: val })}
+          aria-label="Voluntary savings target"
+          data-testid="slider-savings"
+        />
+        <div className="mt-2 flex gap-1">
+          {SAVINGS_MARKS.map((m) => (
+            <Tooltip key={m.value}>
+              <TooltipTrigger asChild>
+                <button
+                  type="button"
+                  onClick={() => setV2({ savingsPct: m.value })}
+                  className={
+                    'flex-1 rounded border px-1 py-0.5 text-[10px] font-medium transition-colors ' +
+                    (v2.savingsPct === m.value
+                      ? 'border-primary/60 bg-primary/10 text-primary'
+                      : 'border-border/60 text-muted-foreground hover:text-foreground')
+                  }
+                  data-testid={`button-savings-${m.value}`}
+                >
+                  {m.label}
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" className="max-w-56 text-xs">
+                {m.blurb}
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </div>
+      </section>
+
+      <Separator />
+
+      <section>
+        <FieldLabel info="US: BEA Regional Price Parities by state and metro, applied component-wise (housing rents, goods, utilities, other services). Germany: BBSR regional price index by Bundesland, applied uniformly. No other country publishes comparable sub-national price data.">
+          Region
+        </FieldLabel>
+        <Select value={v2.region} onValueChange={(val) => setV2({ region: val })} disabled={!regionsSupported}>
+          <SelectTrigger className="h-9 text-sm" data-testid="select-region">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent className="max-h-72">
+            {grouped.map((g) => (
+              <div key={g.group}>
+                {g.group !== 'National' && (
+                  <div className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{g.group}</div>
+                )}
+                {g.items.map((r) => (
+                  <SelectItem key={r.id} value={r.id} className="text-sm">
+                    {r.label}
+                  </SelectItem>
+                ))}
+              </div>
+            ))}
+          </SelectContent>
+        </Select>
+        {!regionsSupported && (
+          <DisabledNote>
+            Sub-national price adjustment is available for the United States and Germany only.
+            {country === 'DE' ? '' : ''}
+          </DisabledNote>
+        )}
+        {regionsSupported && v2.region !== 'national' && (
+          <DisabledNote>Necessity components are rescaled by the regional price level; income is not re-estimated.</DisabledNote>
+        )}
+      </section>
+    </>
   );
 }

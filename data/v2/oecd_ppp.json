@@ -1,0 +1,113 @@
+{
+  "source": "OECD Annual National Accounts - Purchasing Power Parities and exchange rates (Table 4)",
+  "country": "multiple",
+  "year": 2023,
+  "unit": "local_currency_per_usd",
+  "price_basis": "nominal_2023",
+  "data_tier": "A",
+  "breakdown": "by_country",
+  "categories": [
+    "ppp_private_consumption",
+    "ppp_actual_individual_consumption"
+  ],
+  "rows": [
+    {
+      "country": "US",
+      "country_iso3": "USA",
+      "ppp_private_consumption_2020": 1.0,
+      "ppp_actual_individual_consumption_2020": 1.0,
+      "ppp_private_consumption_2021": 1.0,
+      "ppp_actual_individual_consumption_2021": 1.0,
+      "ppp_private_consumption_2022": 1.0,
+      "ppp_actual_individual_consumption_2022": 1.0,
+      "ppp_private_consumption_2023": 1.0,
+      "ppp_actual_individual_consumption_2023": 1.0
+    },
+    {
+      "country": "CH",
+      "country_iso3": "CHE",
+      "ppp_private_consumption_2020": 1.288534,
+      "ppp_actual_individual_consumption_2020": 1.268709,
+      "ppp_private_consumption_2021": 1.236572,
+      "ppp_actual_individual_consumption_2021": 1.217696,
+      "ppp_private_consumption_2022": 1.169176,
+      "ppp_actual_individual_consumption_2022": 1.152567,
+      "ppp_private_consumption_2023": 1.134096,
+      "ppp_actual_individual_consumption_2023": 1.11455
+    },
+    {
+      "country": "DE",
+      "country_iso3": "DEU",
+      "ppp_private_consumption_2020": 0.750322,
+      "ppp_actual_individual_consumption_2020": 0.702282,
+      "ppp_private_consumption_2021": 0.74145,
+      "ppp_actual_individual_consumption_2021": 0.696334,
+      "ppp_private_consumption_2022": 0.726939,
+      "ppp_actual_individual_consumption_2022": 0.682739,
+      "ppp_private_consumption_2023": 0.734958,
+      "ppp_actual_individual_consumption_2023": 0.682881
+    },
+    {
+      "country": "FI",
+      "country_iso3": "FIN",
+      "ppp_private_consumption_2020": 0.886933,
+      "ppp_actual_individual_consumption_2020": 0.834879,
+      "ppp_private_consumption_2021": 0.868068,
+      "ppp_actual_individual_consumption_2021": 0.823187,
+      "ppp_private_consumption_2022": 0.840104,
+      "ppp_actual_individual_consumption_2022": 0.796861,
+      "ppp_private_consumption_2023": 0.834316,
+      "ppp_actual_individual_consumption_2023": 0.795193
+    },
+    {
+      "country": "JP",
+      "country_iso3": "JPN",
+      "ppp_private_consumption_2020": 112.988905,
+      "ppp_actual_individual_consumption_2020": 100.861646,
+      "ppp_private_consumption_2021": 110.652245,
+      "ppp_actual_individual_consumption_2021": 98.501779,
+      "ppp_private_consumption_2022": 104.968393,
+      "ppp_actual_individual_consumption_2022": 94.33396,
+      "ppp_private_consumption_2023": 104.839608,
+      "ppp_actual_individual_consumption_2023": 94.029375
+    },
+    {
+      "country": "NO",
+      "country_iso3": "NOR",
+      "ppp_private_consumption_2020": 10.217776,
+      "ppp_actual_individual_consumption_2020": 10.180493,
+      "ppp_private_consumption_2021": 9.955269,
+      "ppp_actual_individual_consumption_2021": 9.975113,
+      "ppp_private_consumption_2022": 9.608638,
+      "ppp_actual_individual_consumption_2022": 9.620911,
+      "ppp_private_consumption_2023": 9.57582,
+      "ppp_actual_individual_consumption_2023": 9.616702
+    },
+    {
+      "country": "SE",
+      "country_iso3": "SWE",
+      "ppp_private_consumption_2020": 9.186234,
+      "ppp_actual_individual_consumption_2020": 9.129505,
+      "ppp_private_consumption_2021": 8.923387,
+      "ppp_actual_individual_consumption_2021": 8.813912,
+      "ppp_private_consumption_2022": 8.659825,
+      "ppp_actual_individual_consumption_2022": 8.547603,
+      "ppp_private_consumption_2023": 8.741426,
+      "ppp_actual_individual_consumption_2023": 8.678151
+    },
+    {
+      "country": "UK",
+      "country_iso3": "GBR",
+      "ppp_private_consumption_2020": 0.751277,
+      "ppp_actual_individual_consumption_2020": 0.708913,
+      "ppp_private_consumption_2021": 0.724212,
+      "ppp_actual_individual_consumption_2021": 0.699187,
+      "ppp_private_consumption_2022": 0.730631,
+      "ppp_actual_individual_consumption_2022": 0.701452,
+      "ppp_private_consumption_2023": 0.747573,
+      "ppp_actual_individual_consumption_2023": 0.715699
+    }
+  ],
+  "source_url": "https://sdmx.oecd.org/public/rest/data/OECD.SDD.NAD,DSD_NAMAIN10@DF_TABLE4,1.0/A.USA+DEU+GBR+NOR+SWE+FIN+CHE+JPN...........?startPeriod=2020&endPeriod=2024&dimensionAtObservation=AllDimensions&format=csvfilewithlabels",
+  "notes": "PRIMARY SOURCE: OECD SDMX API, dataflow OECD.SDD.NAD:DSD_NAMAIN10@DF_TABLE4 ('Annual Purchasing Power Parities and exchange rates', formerly OECD.Stat SNA_TABLE4), fetched directly via curl (no API key required; full URL in source_url). This supersedes the older DSD_PPP@DF_PPP dataflow (OECD.SDD.TPS), which only carries data through 2021 under the deprecated COICOP-1999-aligned PPP classification; per OECD's own documentation, 2022-onward PPPs use the current COICOP-2018-aligned classification and are published exclusively through the Table 4 / Data Explorer route used here. LATEST AVAILABLE VINTAGE IS 2023, NOT 2024: as of this data pull, OECD had not yet published a 2024 'first estimate' for PPP (per OECD's own release calendar, first 2024 GDP-PPP estimates are due in a subsequent update; full detailed-category updates including household consumption follow later). 2023 is itself flagged 'preliminary' by OECD (2022 is 'quasi-final', up to 2021 is 'final') and is subject to future revision. All four available years (2020-2023) are included per country as suffixed fields for trend context, matching the task's 'ideally also 2023 vintage' request -- 2023 IS the requested latest/current vintage here, not a fallback. TWO PPP SERIES ARE PROVIDED per OECD Table 4: 'ppp_private_consumption' = OECD transaction code PPP_P31S14, 'Purchasing Power Parities for household final consumption expenditure' -- this is the series the task calls for ('OECD PPP for private consumption'). 'ppp_actual_individual_consumption' = OECD transaction code PPP_P41, 'Purchasing Power Parities for actual individual consumption' (AIC) -- included as a secondary/alternative series since AIC PPPs are what many cross-country living-standards comparisons (e.g. OECD Better Life Index, Eurostat) actually use, as AIC nets out cross-country differences in how government-provided in-kind services (health, education) are organized, which household-only consumption PPPs do not. The v2 frontend should default to ppp_private_consumption per the task spec but ppp_actual_individual_consumption is available if a more government-neutral comparison is desired. UNITS: both series are in 'national currency per US dollar' (XDC_USD in OECD's own unit code) -- e.g. Japan's ppp_private_consumption_2023 of 104.84 means 104.84 yen has the same purchasing power domestically as 1 US dollar has in the US, which is NOT the same as the market exchange rate. US=1.0 BASELINE: the United States row has ppp_*_2020 through ppp_*_2023 all equal to 1.0 for both series by construction (OECD Table 4 PPPs are expressed in national-currency-per-USD terms with the US as the numeraire), directly satisfying the task's 'US=1.0 baseline' requirement without any additional normalization needed. COUNTRY CODE MAPPING: task's 'UK' <- OECD/ISO GBR (United Kingdom); 'Norway' <- NOR; 'Sweden' <- SWE; 'Finland' <- FIN; 'Switzerland' <- CHE; 'Japan' <- JPN; 'DE' <- DEU (Germany); 'US' <- USA. This file intentionally keeps values in LOCAL CURRENCY PER USD (not USD-converted amounts) per the task's 'For each country's non-USD currency data, keep it in local currency' instruction -- the frontend applies PPP conversion at display time using these raw exchange-rate-like factors."
+}

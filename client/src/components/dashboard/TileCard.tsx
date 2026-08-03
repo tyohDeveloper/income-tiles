@@ -194,3 +194,119 @@ export function StatTile({
     </Card>
   );
 }
+
+/* ---------------------------------------------------------------- v2 tiles */
+
+import { ComputedV2Tile, v2ProvenanceLabel } from '@/lib/tiles';
+import { V2Provenance } from '@/lib/expenditure';
+
+const V2_PROVENANCE_DETAIL: Record<V2Provenance, string> = {
+  published:
+    'Taken from the published expenditure survey group that matches this income position, with no modeling of individual categories.',
+  interpolated:
+    'The survey publishes deciles, quintiles or income brackets — this figure is interpolated linearly in rank space between the two published groups either side of the selected percentile.',
+  modeled:
+    'At least one category is not published for this group and had to be modeled (childcare, work-transport split, or a household-composition adjustment). Open the necessity breakdown for the exact list.',
+  placeholder:
+    'Placeholder numbers scaled from published BLS Consumer Expenditure Survey aggregates — the real survey file for this country is not loaded. Do not read the level as a measurement.',
+};
+
+export function V2TileCard({
+  tile,
+  fmt,
+  fmtPercent,
+  extraDetail,
+}: {
+  tile: ComputedV2Tile;
+  fmt: (v: number | null) => string;
+  fmtPercent: (v: number | null) => string;
+  extraDetail?: string;
+}) {
+  const { def } = tile;
+  const negative = tile.value !== null && tile.value < 0;
+  return (
+    <Card
+      className={cn(
+        'group relative flex flex-col gap-2 border-card-border p-3.5 transition-shadow duration-150',
+        'hover:shadow-[0_0_0_1px_hsl(var(--primary)/0.35),0_8px_24px_-12px_hsl(var(--primary)/0.35)]',
+        def.emphasis && 'bg-gradient-to-b from-primary/[0.07] to-transparent'
+      )}
+      data-testid={`card-tile-${def.id}`}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <div className="flex items-center gap-1">
+            <span className="text-xs font-semibold tracking-tight truncate">{def.label}</span>
+            {def.info && (
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className="shrink-0 text-muted-foreground/60 hover:text-foreground transition-colors"
+                    aria-label={`About ${def.label}`}
+                    data-testid={`button-info-${def.id}`}
+                  >
+                    <Info className="h-3 w-3" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent align="start" className="w-72 text-xs leading-relaxed">
+                  {def.info}
+                </PopoverContent>
+              </Popover>
+            )}
+          </div>
+          <div className="mt-0.5 line-clamp-2 min-h-[1.9rem] text-[11px] leading-snug text-muted-foreground">
+            {def.caption}
+          </div>
+        </div>
+        <Popover>
+          <PopoverTrigger asChild>
+            <button
+              type="button"
+              className={cn(
+                'shrink-0 rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider transition-colors',
+                tile.provenance === 'published'
+                  ? 'bg-primary/12 text-primary'
+                  : tile.provenance === 'interpolated'
+                    ? 'bg-muted text-muted-foreground'
+                    : tile.provenance === 'modeled'
+                      ? 'bg-chart-4/15 text-chart-4'
+                      : 'bg-destructive/12 text-destructive'
+              )}
+              data-testid={`badge-provenance-${def.id}`}
+            >
+              {v2ProvenanceLabel(tile.provenance)}
+            </button>
+          </PopoverTrigger>
+          <PopoverContent align="end" className="w-72 space-y-2 text-xs leading-relaxed">
+            <p>{V2_PROVENANCE_DETAIL[tile.provenance]}</p>
+            {extraDetail && <p className="text-muted-foreground">{extraDetail}</p>}
+          </PopoverContent>
+        </Popover>
+      </div>
+
+      <div>
+        <div
+          className={cn('tnum text-xl font-semibold leading-none tracking-tight', negative && 'text-destructive')}
+          data-testid={`text-value-${def.id}`}
+        >
+          {def.format === 'percent' ? fmtPercent(tile.value) : fmt(tile.value)}
+        </div>
+        {tile.note && <div className="mt-1 text-[10px] leading-snug text-chart-4">{tile.note}</div>}
+      </div>
+
+      {tile.secondary.length > 0 && (
+        <dl className="grid grid-cols-2 gap-x-3 gap-y-1 border-t border-border/60 pt-2 text-[11px]">
+          {tile.secondary.map((s) => (
+            <div key={s.label} className="min-w-0">
+              <dt className="truncate text-muted-foreground">{s.label}</dt>
+              <dd className="tnum font-medium" data-testid={`text-secondary-${def.id}-${s.label.toLowerCase().replace(/\s+/g, '-')}`}>
+                {s.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )}
+    </Card>
+  );
+}

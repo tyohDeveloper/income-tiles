@@ -2,6 +2,9 @@ import { useMemo, useState } from 'react';
 import {
   Area,
   AreaChart,
+  Bar,
+  BarChart,
+  Cell,
   CartesianGrid,
   Line,
   LineChart,
@@ -310,6 +313,195 @@ export function ShareBars({ view, label }: { view: DerivedView; label: string })
       <p className="mt-3 text-[11px] text-muted-foreground">
         First column: population slice. Last column: its share of total income.
       </p>
+    </ChartFrame>
+  );
+}
+
+/* ------------------------------------------------------------- v2 charts */
+
+import { DiscretionaryBreakdown, WaterfallStep, waterfallSteps } from '@/lib/discretionary';
+import { NecessityComponent } from '@/lib/necessity';
+
+const TONE: Record<WaterfallStep['tone'], string> = {
+  gross: 'hsl(var(--chart-2))',
+  tax: 'hsl(var(--chart-3))',
+  necessity: 'hsl(var(--chart-4))',
+  savings: 'hsl(var(--primary))',
+};
+
+/**
+ * Gross → post-tax → post-necessity → post-savings, drawn as a floating-bar waterfall.
+ * Each bar sits on an invisible base so the drop between steps is readable directly.
+ */
+export function DiscretionaryWaterfall({
+  gross,
+  discretionary,
+  components,
+  fmt,
+  basisLabel,
+}: {
+  gross: number;
+  discretionary: DiscretionaryBreakdown;
+  components: NecessityComponent[];
+  fmt: (v: number | null) => string;
+  basisLabel: string;
+}) {
+  const steps = useMemo(() => waterfallSteps(gross, discretionary), [gross, discretionary]);
+  const data = steps.map((s) => {
+    const top = Math.max(s.value, 0);
+    return { name: s.label, base: 0, span: top, value: s.value, delta: s.delta, tone: s.tone };
+  });
+  const included = components.filter((c) => c.included && c.amount > 0.5);
+  const floorTotal = included.reduce((a, c) => a + c.amount, 0);
+
+  return (
+    <ChartFrame
+      title="Where the money goes"
+      subtitle={`Pre-tax income at the selected percentile, less tax, less the necessity floor, less the voluntary savings target. ${basisLabel}.`}
+      testId="chart-waterfall"
+    >
+      <div className="h-56">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={data} margin={{ top: 8, right: 8, bottom: 4, left: 8 }}>
+            <CartesianGrid vertical={false} stroke="hsl(var(--border))" strokeDasharray="2 4" />
+            <XAxis dataKey="name" {...AXIS} axisLine={false} interval={0} />
+            <YAxis {...AXIS} axisLine={false} width={54} tickFormatter={(v) => fmt(Number(v))} />
+            <RTooltip
+              contentStyle={{
+                background: 'hsl(var(--popover))',
+                border: '1px solid hsl(var(--border))',
+                borderRadius: 8,
+                fontSize: 11,
+              }}
+              formatter={(_v, _n, item) => {
+                const p = item?.payload as (typeof data)[number] | undefined;
+                if (!p) return ['—', ''];
+                return [`${fmt(p.value)}${p.delta ? ` (${p.delta > 0 ? '+' : '−'}${fmt(Math.abs(p.delta))})` : ''}`, p.name];
+              }}
+            />
+            <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeWidth={1} />
+            <Bar dataKey="span" radius={[3, 3, 0, 0]} maxBarSize={64}>
+              {data.map((d) => (
+                <Cell key={d.name} fill={TONE[d.tone]} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      {discretionary.belowFloor && (
+        <p className="mt-2 text-[11px] font-medium text-destructive" data-testid="text-below-floor">
+          Below necessity floor — committed spending exceeds post-tax income at this percentile.
+        </p>
+      )}
+      <div className="mt-3 border-t border-border/60 pt-3">
+        <div className="mb-1.5 text-[11px] font-medium uppercase tracking-[0.09em] text-muted-foreground">
+          Necessity floor composition
+        </div>
+        <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-muted">
+          {included.map((c, i) => (
+            <div
+              key={c.key as string}
+              className="h-full"
+              style={{
+                width: `${(c.amount / (floorTotal || 1)) * 100}%`,
+                background: `hsl(var(--chart-${(i % 5) + 1}))`,
+              }}
+              title={`${c.label} ${fmt(c.amount)}`}
+            />
+          ))}
+        </div>
+        <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-muted-foreground">
+          {included.map((c, i) => (
+            <span key={c.key as string} className="inline-flex items-center gap-1">
+              <span className="h-2 w-2 rounded-sm" style={{ background: `hsl(var(--chart-${(i % 5) + 1}))` }} />
+              {c.label}
+              <span className="tnum text-foreground">{fmt(c.amount)}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    </ChartFrame>
+  );
+}
+
+export interface CountryCompareRow {
+  country: string;
+  label: string;
+  post_tax: number | null;
+  necessity: number | null;
+  discretionary: number | null;
+  after_savings: number | null;
+  placeholder: boolean;
+}
+
+/** Four bars per country: post-tax, necessity floor, discretionary, after savings. */
+export function CountryDiscretionaryCompare({
+  rows,
+  fmt,
+  basisLabel,
+}: {
+  rows: CountryCompareRow[];
+  fmt: (v: number | null) => string;
+  basisLabel: string;
+}) {
+  const series: { key: keyof CountryCompareRow; label: string; color: string }[] = [
+    { key: 'post_tax', label: 'Post-tax', color: 'hsl(var(--chart-2))' },
+    { key: 'necessity', label: 'Necessity floor', color: 'hsl(var(--chart-4))' },
+    { key: 'discretionary', label: 'Discretionary', color: 'hsl(var(--chart-1))' },
+    { key: 'after_savings', label: 'After savings', color: 'hsl(var(--chart-5))' },
+  ];
+  const max = Math.max(
+    1,
+    ...rows.flatMap((r) => series.map((s) => Math.abs((r[s.key] as number | null) ?? 0)))
+  );
+  return (
+    <ChartFrame
+      title="Discretionary income across countries"
+      subtitle={`Same percentile, same strictness, same household type in every country. ${basisLabel}.`}
+      testId="chart-country-compare"
+    >
+      <div className="space-y-3">
+        {rows.length === 0 && (
+          <p className="text-[11px] text-muted-foreground">
+            Add countries with a loaded expenditure survey to compare — United States, Germany, United Kingdom, Japan.
+          </p>
+        )}
+        {rows.map((r) => (
+          <div key={r.country} data-testid={`row-compare-${r.country}`}>
+            <div className="mb-1 flex items-baseline justify-between gap-2">
+              <span className="text-xs font-medium">
+                {r.label}
+                {r.placeholder && (
+                  <span className="ml-1.5 rounded bg-destructive/12 px-1 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-destructive">
+                    Placeholder
+                  </span>
+                )}
+              </span>
+              <span className="tnum text-[11px] text-muted-foreground">
+                {fmt(r.discretionary)} discretionary
+              </span>
+            </div>
+            <div className="space-y-1">
+              {series.map((s) => {
+                const v = (r[s.key] as number | null) ?? null;
+                const w = v === null ? 0 : (Math.abs(v) / max) * 100;
+                return (
+                  <div key={s.key as string} className="flex items-center gap-2">
+                    <span className="w-24 shrink-0 text-[10px] text-muted-foreground">{s.label}</span>
+                    <div className="h-2.5 flex-1 overflow-hidden rounded-sm bg-muted">
+                      <div
+                        className="h-full rounded-sm"
+                        style={{ width: `${w}%`, background: v !== null && v < 0 ? 'hsl(var(--destructive))' : s.color }}
+                      />
+                    </div>
+                    <span className="tnum w-20 shrink-0 text-right text-[10px]">{fmt(v)}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
     </ChartFrame>
   );
 }
