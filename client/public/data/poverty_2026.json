@@ -1,0 +1,61 @@
+{
+  "source": "HHS",
+  "income_definition": "poverty_guideline",
+  "unit": "household",
+  "geography": "US",
+  "notes": "HHS Federal Poverty Guidelines for 2026, published by the Department of Health and Human Services (ASPE) under authority of 42 U.S.C. 9902(2). These are administrative simplifications of the Census Bureau poverty thresholds, used to determine financial eligibility for federal programs (e.g., Head Start, SNAP, LIHEAP, CHIP, National School Lunch Program). Unlike Census poverty thresholds, guidelines are the same for a given household size regardless of age composition. The January 2026 guidelines are based on 2024 Census poverty thresholds adjusted for CPI-U price changes between 2024 and 2025. Due to the October 2025 federal government shutdown, BLS did not publish CPI-U for that month, so the 2026 calculation compares the average CPI-U for the 11 available months of 2025 (excluding October) against the average CPI-U for all 12 months of 2024. Guidelines are not defined for Puerto Rico, U.S. Virgin Islands, American Samoa, Guam, Marshall Islands, Micronesia, Northern Mariana Islands, or Palau.",
+  "source_url": "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines",
+  "guidelines": {
+    "48_contiguous_states_and_dc": {
+      "geography": "US-48DC",
+      "currency": "USD",
+      "year": 2026,
+      "by_household_size": {
+        "1": 15960,
+        "2": 21640,
+        "3": 27320,
+        "4": 33000,
+        "5": 38680,
+        "6": 44360,
+        "7": 50040,
+        "8": 55720
+      },
+      "additional_person_increment": 5680,
+      "note": "For households with more than 8 persons, add $5,680 for each additional person."
+    },
+    "alaska": {
+      "geography": "US-AK",
+      "currency": "USD",
+      "year": 2026,
+      "by_household_size": {
+        "1": 19950,
+        "2": 27050,
+        "3": 34150,
+        "4": 41250,
+        "5": 48350,
+        "6": 55450,
+        "7": 62550,
+        "8": 69650
+      },
+      "additional_person_increment": 7100,
+      "note": "For households with more than 8 persons, add $7,100 for each additional person."
+    },
+    "hawaii": {
+      "geography": "US-HI",
+      "currency": "USD",
+      "year": 2026,
+      "by_household_size": {
+        "1": 18360,
+        "2": 24890,
+        "3": 31420,
+        "4": 37950,
+        "5": 44480,
+        "6": 51010,
+        "7": 57540,
+        "8": 64070
+      },
+      "additional_person_increment": 6530,
+      "note": "For households with more than 8 persons, add $6,530 for each additional person."
+    }
+  }
+}

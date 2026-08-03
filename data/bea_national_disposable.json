@@ -1,0 +1,885 @@
+{
+  "source": "BEA",
+  "income_definition": "disposable",
+  "unit": "household",
+  "geography": "US",
+  "years": [
+    {
+      "year": 2000,
+      "mean": 68247.44,
+      "median": 49256.37,
+      "mean_real_2017usd": 92448.65,
+      "median_real_2017usd": 66723.16,
+      "gini": 0.416,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.02,
+        "10-20%": 0.038,
+        "20-30%": 0.047,
+        "30-40%": 0.057,
+        "40-50%": 0.068,
+        "50-60%": 0.081,
+        "60-70%": 0.095,
+        "70-80%": 0.113,
+        "80-90%": 0.143,
+        "90-100%": 0.337,
+        "bottom_5%": 0.007
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.244,
+        "top1_share": 0.128,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.18,
+        "p80_p20": 2.83,
+        "p90_p10": 4.98,
+        "p90_p50": 2.28
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2001,
+      "mean": 70945.16,
+      "median": 51671.14,
+      "mean_real_2017usd": 94214.18,
+      "median_real_2017usd": 68618.55,
+      "gini": 0.413,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.02,
+        "10-20%": 0.038,
+        "20-30%": 0.048,
+        "30-40%": 0.058,
+        "40-50%": 0.069,
+        "50-60%": 0.081,
+        "60-70%": 0.096,
+        "70-80%": 0.114,
+        "80-90%": 0.145,
+        "90-100%": 0.331,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.237,
+        "top1_share": 0.122,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.19,
+        "p80_p20": 2.83,
+        "p90_p10": 5.02,
+        "p90_p50": 2.3
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2002,
+      "mean": 72771.64,
+      "median": 53278.0,
+      "mean_real_2017usd": 95386.93,
+      "median_real_2017usd": 69835.23,
+      "gini": 0.412,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.038,
+        "20-30%": 0.047,
+        "30-40%": 0.058,
+        "40-50%": 0.069,
+        "50-60%": 0.083,
+        "60-70%": 0.096,
+        "70-80%": 0.116,
+        "80-90%": 0.146,
+        "90-100%": 0.329,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.233,
+        "top1_share": 0.118,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.22,
+        "p80_p20": 2.88,
+        "p90_p10": 5.14,
+        "p90_p50": 2.32
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2003,
+      "mean": 75698.48,
+      "median": 54392.1,
+      "mean_real_2017usd": 97181.4,
+      "median_real_2017usd": 69828.36,
+      "gini": 0.42,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.018,
+        "10-20%": 0.037,
+        "20-30%": 0.046,
+        "30-40%": 0.056,
+        "40-50%": 0.068,
+        "50-60%": 0.081,
+        "60-70%": 0.096,
+        "70-80%": 0.116,
+        "80-90%": 0.148,
+        "90-100%": 0.333,
+        "bottom_5%": 0.005
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.239,
+        "top1_share": 0.122,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.23,
+        "p80_p20": 2.96,
+        "p90_p10": 5.26,
+        "p90_p50": 2.36
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2004,
+      "mean": 79114.82,
+      "median": 56568.37,
+      "mean_real_2017usd": 99107.84,
+      "median_real_2017usd": 70863.71,
+      "gini": 0.424,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.018,
+        "10-20%": 0.037,
+        "20-30%": 0.046,
+        "30-40%": 0.056,
+        "40-50%": 0.067,
+        "50-60%": 0.08,
+        "60-70%": 0.095,
+        "70-80%": 0.115,
+        "80-90%": 0.146,
+        "90-100%": 0.34,
+        "bottom_5%": 0.005
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.246,
+        "top1_share": 0.131,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.22,
+        "p80_p20": 2.89,
+        "p90_p10": 5.18,
+        "p90_p50": 2.34
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2005,
+      "mean": 81599.0,
+      "median": 58089.08,
+      "mean_real_2017usd": 99357.1,
+      "median_real_2017usd": 70730.8,
+      "gini": 0.424,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.018,
+        "10-20%": 0.037,
+        "20-30%": 0.046,
+        "30-40%": 0.056,
+        "40-50%": 0.067,
+        "50-60%": 0.08,
+        "60-70%": 0.094,
+        "70-80%": 0.114,
+        "80-90%": 0.145,
+        "90-100%": 0.342,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.248,
+        "top1_share": 0.132,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.22,
+        "p80_p20": 2.87,
+        "p90_p10": 5.2,
+        "p90_p50": 2.34
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2006,
+      "mean": 85724.61,
+      "median": 60090.35,
+      "mean_real_2017usd": 101521.33,
+      "median_real_2017usd": 71163.37,
+      "gini": 0.426,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.038,
+        "20-30%": 0.047,
+        "30-40%": 0.056,
+        "40-50%": 0.066,
+        "50-60%": 0.078,
+        "60-70%": 0.092,
+        "70-80%": 0.112,
+        "80-90%": 0.142,
+        "90-100%": 0.349,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.258,
+        "top1_share": 0.143,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.14,
+        "p80_p20": 2.77,
+        "p90_p10": 4.95,
+        "p90_p50": 2.32
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2007,
+      "mean": 89393.03,
+      "median": 63034.67,
+      "mean_real_2017usd": 103216.87,
+      "median_real_2017usd": 72782.41,
+      "gini": 0.425,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.038,
+        "20-30%": 0.047,
+        "30-40%": 0.056,
+        "40-50%": 0.067,
+        "50-60%": 0.078,
+        "60-70%": 0.093,
+        "70-80%": 0.112,
+        "80-90%": 0.141,
+        "90-100%": 0.35,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.257,
+        "top1_share": 0.138,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.14,
+        "p80_p20": 2.76,
+        "p90_p10": 4.97,
+        "p90_p50": 2.32
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2008,
+      "mean": 93173.88,
+      "median": 66151.94,
+      "mean_real_2017usd": 104490.16,
+      "median_real_2017usd": 74186.32,
+      "gini": 0.422,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.038,
+        "20-30%": 0.047,
+        "30-40%": 0.056,
+        "40-50%": 0.067,
+        "50-60%": 0.079,
+        "60-70%": 0.094,
+        "70-80%": 0.113,
+        "80-90%": 0.143,
+        "90-100%": 0.343,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.249,
+        "top1_share": 0.128,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.14,
+        "p80_p20": 2.79,
+        "p90_p10": 4.98,
+        "p90_p50": 2.32
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2009,
+      "mean": 92849.11,
+      "median": 66960.0,
+      "mean_real_2017usd": 104417.53,
+      "median_real_2017usd": 75302.8,
+      "gini": 0.416,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.039,
+        "20-30%": 0.049,
+        "30-40%": 0.058,
+        "40-50%": 0.067,
+        "50-60%": 0.079,
+        "60-70%": 0.095,
+        "70-80%": 0.115,
+        "80-90%": 0.145,
+        "90-100%": 0.334,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.239,
+        "top1_share": 0.121,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.2,
+        "p80_p20": 2.79,
+        "p90_p10": 5.13,
+        "p90_p50": 2.33
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2010,
+      "mean": 95372.35,
+      "median": 68908.91,
+      "mean_real_2017usd": 105367.51,
+      "median_real_2017usd": 76130.66,
+      "gini": 0.416,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.039,
+        "20-30%": 0.049,
+        "30-40%": 0.058,
+        "40-50%": 0.068,
+        "50-60%": 0.079,
+        "60-70%": 0.094,
+        "70-80%": 0.112,
+        "80-90%": 0.141,
+        "90-100%": 0.34,
+        "bottom_5%": 0.005
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.247,
+        "top1_share": 0.131,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.19,
+        "p80_p20": 2.72,
+        "p90_p10": 4.94,
+        "p90_p50": 2.25
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2011,
+      "mean": 97914.57,
+      "median": 69293.4,
+      "mean_real_2017usd": 105506.84,
+      "median_real_2017usd": 74666.39,
+      "gini": 0.424,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.039,
+        "20-30%": 0.048,
+        "30-40%": 0.057,
+        "40-50%": 0.066,
+        "50-60%": 0.078,
+        "60-70%": 0.093,
+        "70-80%": 0.112,
+        "80-90%": 0.141,
+        "90-100%": 0.348,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.256,
+        "top1_share": 0.134,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.17,
+        "p80_p20": 2.75,
+        "p90_p10": 4.99,
+        "p90_p50": 2.3
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2012,
+      "mean": 101325.67,
+      "median": 70625.03,
+      "mean_real_2017usd": 107184.37,
+      "median_real_2017usd": 74708.6,
+      "gini": 0.431,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.018,
+        "10-20%": 0.038,
+        "20-30%": 0.047,
+        "30-40%": 0.056,
+        "40-50%": 0.066,
+        "50-60%": 0.077,
+        "60-70%": 0.092,
+        "70-80%": 0.111,
+        "80-90%": 0.139,
+        "90-100%": 0.356,
+        "bottom_5%": 0.005
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.263,
+        "top1_share": 0.145,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.19,
+        "p80_p20": 2.76,
+        "p90_p10": 5.05,
+        "p90_p50": 2.31
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2013,
+      "mean": 100781.37,
+      "median": 72489.2,
+      "mean_real_2017usd": 105220.63,
+      "median_real_2017usd": 75682.23,
+      "gini": 0.416,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.038,
+        "20-30%": 0.048,
+        "30-40%": 0.057,
+        "40-50%": 0.068,
+        "50-60%": 0.079,
+        "60-70%": 0.094,
+        "70-80%": 0.112,
+        "80-90%": 0.141,
+        "90-100%": 0.343,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.249,
+        "top1_share": 0.133,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.19,
+        "p80_p20": 2.73,
+        "p90_p10": 4.97,
+        "p90_p50": 2.27
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2014,
+      "mean": 104332.05,
+      "median": 73589.28,
+      "mean_real_2017usd": 107424.81,
+      "median_real_2017usd": 75770.72,
+      "gini": 0.423,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.018,
+        "10-20%": 0.038,
+        "20-30%": 0.048,
+        "30-40%": 0.057,
+        "40-50%": 0.066,
+        "50-60%": 0.078,
+        "60-70%": 0.093,
+        "70-80%": 0.112,
+        "80-90%": 0.142,
+        "90-100%": 0.349,
+        "bottom_5%": 0.005
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.254,
+        "top1_share": 0.137,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.18,
+        "p80_p20": 2.75,
+        "p90_p10": 5.04,
+        "p90_p50": 2.31
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2015,
+      "mean": 107558.31,
+      "median": 76480.15,
+      "mean_real_2017usd": 110544.1,
+      "median_real_2017usd": 78603.22,
+      "gini": 0.416,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.039,
+        "20-30%": 0.048,
+        "30-40%": 0.057,
+        "40-50%": 0.067,
+        "50-60%": 0.079,
+        "60-70%": 0.093,
+        "70-80%": 0.113,
+        "80-90%": 0.14,
+        "90-100%": 0.345,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.251,
+        "top1_share": 0.133,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.12,
+        "p80_p20": 2.69,
+        "p90_p10": 4.83,
+        "p90_p50": 2.28
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2016,
+      "mean": 110350.9,
+      "median": 78492.76,
+      "mean_real_2017usd": 112277.59,
+      "median_real_2017usd": 79863.22,
+      "gini": 0.412,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.02,
+        "10-20%": 0.039,
+        "20-30%": 0.049,
+        "30-40%": 0.057,
+        "40-50%": 0.067,
+        "50-60%": 0.079,
+        "60-70%": 0.093,
+        "70-80%": 0.112,
+        "80-90%": 0.141,
+        "90-100%": 0.344,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.248,
+        "top1_share": 0.13,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.08,
+        "p80_p20": 2.64,
+        "p90_p10": 4.76,
+        "p90_p50": 2.29
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2017,
+      "mean": 114541.65,
+      "median": 80661.92,
+      "mean_real_2017usd": 114541.65,
+      "median_real_2017usd": 80661.92,
+      "gini": 0.421,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.038,
+        "20-30%": 0.048,
+        "30-40%": 0.056,
+        "40-50%": 0.066,
+        "50-60%": 0.078,
+        "60-70%": 0.093,
+        "70-80%": 0.111,
+        "80-90%": 0.14,
+        "90-100%": 0.349,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.253,
+        "top1_share": 0.133,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.07,
+        "p80_p20": 2.67,
+        "p90_p10": 4.79,
+        "p90_p50": 2.31
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2018,
+      "mean": 120101.81,
+      "median": 84602.29,
+      "mean_real_2017usd": 117692.65,
+      "median_real_2017usd": 82905.22,
+      "gini": 0.423,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.019,
+        "10-20%": 0.038,
+        "20-30%": 0.047,
+        "30-40%": 0.057,
+        "40-50%": 0.066,
+        "50-60%": 0.078,
+        "60-70%": 0.092,
+        "70-80%": 0.11,
+        "80-90%": 0.14,
+        "90-100%": 0.352,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.257,
+        "top1_share": 0.134,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.09,
+        "p80_p20": 2.68,
+        "p90_p10": 4.77,
+        "p90_p50": 2.29
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2019,
+      "mean": 125829.81,
+      "median": 88203.17,
+      "mean_real_2017usd": 121564.12,
+      "median_real_2017usd": 85213.05,
+      "gini": 0.418,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.02,
+        "10-20%": 0.038,
+        "20-30%": 0.047,
+        "30-40%": 0.056,
+        "40-50%": 0.067,
+        "50-60%": 0.078,
+        "60-70%": 0.091,
+        "70-80%": 0.11,
+        "80-90%": 0.138,
+        "90-100%": 0.355,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.259,
+        "top1_share": 0.135,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.07,
+        "p80_p20": 2.64,
+        "p90_p10": 4.7,
+        "p90_p50": 2.27
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2020,
+      "mean": 133727.04,
+      "median": 97956.9,
+      "mean_real_2017usd": 127765.5,
+      "median_real_2017usd": 93589.99,
+      "gini": 0.392,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.022,
+        "10-20%": 0.039,
+        "20-30%": 0.049,
+        "30-40%": 0.06,
+        "40-50%": 0.07,
+        "50-60%": 0.081,
+        "60-70%": 0.095,
+        "70-80%": 0.113,
+        "80-90%": 0.14,
+        "90-100%": 0.331,
+        "bottom_5%": 0.007
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.238,
+        "top1_share": 0.123,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 1.97,
+        "p80_p20": 2.51,
+        "p90_p10": 4.29,
+        "p90_p50": 2.17
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2021,
+      "mean": 143206.36,
+      "median": 105165.49,
+      "mean_real_2017usd": 131415.74,
+      "median_real_2017usd": 96506.89,
+      "gini": 0.394,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.022,
+        "10-20%": 0.039,
+        "20-30%": 0.05,
+        "30-40%": 0.06,
+        "40-50%": 0.07,
+        "50-60%": 0.081,
+        "60-70%": 0.096,
+        "70-80%": 0.111,
+        "80-90%": 0.136,
+        "90-100%": 0.336,
+        "bottom_5%": 0.007
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.249,
+        "top1_share": 0.131,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 1.91,
+        "p80_p20": 2.4,
+        "p90_p10": 3.96,
+        "p90_p50": 2.07
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2022,
+      "mean": 143630.46,
+      "median": 102194.62,
+      "mean_real_2017usd": 123712.71,
+      "median_real_2017usd": 88022.93,
+      "gini": 0.411,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.02,
+        "10-20%": 0.038,
+        "20-30%": 0.048,
+        "30-40%": 0.058,
+        "40-50%": 0.068,
+        "50-60%": 0.079,
+        "60-70%": 0.091,
+        "70-80%": 0.109,
+        "80-90%": 0.137,
+        "90-100%": 0.353,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.262,
+        "top1_share": 0.138,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.01,
+        "p80_p20": 2.49,
+        "p90_p10": 4.43,
+        "p90_p50": 2.2
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2023,
+      "mean": 156726.13,
+      "median": 109734.51,
+      "mean_real_2017usd": 130051.3,
+      "median_real_2017usd": 91057.67,
+      "gini": 0.423,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.02,
+        "10-20%": 0.039,
+        "20-30%": 0.048,
+        "30-40%": 0.057,
+        "40-50%": 0.066,
+        "50-60%": 0.077,
+        "60-70%": 0.09,
+        "70-80%": 0.106,
+        "80-90%": 0.138,
+        "90-100%": 0.358,
+        "bottom_5%": 0.006
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": 0.266,
+        "top1_share": 0.139,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 2.01,
+        "p80_p20": 2.54,
+        "p90_p10": 4.53,
+        "p90_p50": 2.26
+      },
+      "sd_log_income": null
+    },
+    {
+      "year": 2024,
+      "mean": 162396.43,
+      "median": 113316.02,
+      "mean_real_2017usd": 131318.57,
+      "median_real_2017usd": 91630.7,
+      "gini": 0.418,
+      "percentiles": null,
+      "decile_income_shares": {
+        "0-10%": 0.021,
+        "10-20%": 0.038,
+        "20-30%": 0.047,
+        "30-40%": 0.057,
+        "40-50%": 0.066,
+        "50-60%": 0.077,
+        "60-70%": 0.09,
+        "70-80%": 0.107,
+        "80-90%": 0.137,
+        "90-100%": 0.36,
+        "bottom_5%": 0.007
+      },
+      "top_shares": {
+        "top10_share": null,
+        "top5_share": null,
+        "top1_share": null,
+        "top0_1_share": null
+      },
+      "inequality_ratios": {
+        "p50_p10": 1.99,
+        "p80_p20": 2.55,
+        "p90_p10": 4.44,
+        "p90_p50": 2.23
+      },
+      "sd_log_income": null
+    }
+  ],
+  "source_url": "https://www.bea.gov/data/special-topics/distribution-of-personal-income",
+  "notes": "BEA Distribution of Personal Income (DPI) national summary file, income concept: 'Disposable personal income', ranking basis: 'Equivalized Disposable Personal Income'. Figures cover 2000-2024 (2024 is provisional; BEA also publishes an experimental 2025 nowcast not included in this summary file's decile-share table but referenced in the BEA published quintile-share table, see notes in README). BEA reports income SHARES by decile/quintile (fraction of total income received by each group) and summary statistics (mean, median, Gini, percentile ratios, top 1%/5% shares) rather than dollar-value percentile thresholds; therefore the 'percentiles' field is null and a 'decile_income_shares' field is provided instead. Mean and median are 'equivalized' (adjusted for household size) personal/disposable personal income per NIPA Table 2.9 methodology, reported in both nominal USD and constant 2017 USD. Values for Mean/Median converted from BEA's reported dollar figures; decile shares and top 1%/5% shares are fractions of total (e.g., 0.160 = 16.0%)."
+}

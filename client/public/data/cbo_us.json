@@ -1,0 +1,4297 @@
+{
+  "source": "CBO",
+  "geography": "US",
+  "unit": "household",
+  "datasets": [
+    {
+      "source": "CBO",
+      "income_definition": "market",
+      "unit": "household",
+      "geography": "US",
+      "years": [
+        {
+          "year": 1979,
+          "mean": 68000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 11100,
+            "q2": 34200,
+            "q3": 58300,
+            "q4": 81800,
+            "q5": 158700,
+            "p81_90": 107900,
+            "p91_95": 134200,
+            "p96_99": 194800,
+            "top1": 618100
+          },
+          "top_group_averages": {
+            "top10_avg": 157365.0,
+            "top5_avg": 279460.0,
+            "top1_avg": 618100
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1980,
+          "mean": 65500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 10500,
+            "q2": 31900,
+            "q3": 55700,
+            "q4": 78900,
+            "q5": 153900,
+            "p81_90": 105000,
+            "p91_95": 131000,
+            "p96_99": 187700,
+            "top1": 592600
+          },
+          "top_group_averages": {
+            "top10_avg": 152420.0,
+            "top5_avg": 268680.0,
+            "top1_avg": 592600
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1981,
+          "mean": 65500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 10500,
+            "q2": 31600,
+            "q3": 54900,
+            "q4": 79300,
+            "q5": 153000,
+            "p81_90": 104500,
+            "p91_95": 130600,
+            "p96_99": 185500,
+            "top1": 589500
+          },
+          "top_group_averages": {
+            "top10_avg": 151475.0,
+            "top5_avg": 266300.0,
+            "top1_avg": 589500
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1982,
+          "mean": 65100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 10500,
+            "q2": 29900,
+            "q3": 53300,
+            "q4": 77500,
+            "q5": 153200,
+            "p81_90": 103500,
+            "p91_95": 129100,
+            "p96_99": 185100,
+            "top1": 620300
+          },
+          "top_group_averages": {
+            "top10_avg": 152060.0,
+            "top5_avg": 272140.0,
+            "top1_avg": 620300
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1983,
+          "mean": 65700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 10300,
+            "q2": 28900,
+            "q3": 52000,
+            "q4": 76900,
+            "q5": 158800,
+            "p81_90": 104500,
+            "p91_95": 132300,
+            "p96_99": 191300,
+            "top1": 681100
+          },
+          "top_group_averages": {
+            "top10_avg": 157640.0,
+            "top5_avg": 289260.0,
+            "top1_avg": 681100
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1984,
+          "mean": 70000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 11400,
+            "q2": 31800,
+            "q3": 55800,
+            "q4": 81200,
+            "q5": 172800,
+            "p81_90": 112100,
+            "p91_95": 143400,
+            "p96_99": 207700,
+            "top1": 753500
+          },
+          "top_group_averages": {
+            "top10_avg": 171115.0,
+            "top5_avg": 316860.0,
+            "top1_avg": 753500
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1985,
+          "mean": 71100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 11100,
+            "q2": 31900,
+            "q3": 55700,
+            "q4": 81300,
+            "q5": 175000,
+            "p81_90": 111200,
+            "p91_95": 143100,
+            "p96_99": 209400,
+            "top1": 805100
+          },
+          "top_group_averages": {
+            "top10_avg": 173510.0,
+            "top5_avg": 328540.0,
+            "top1_avg": 805100
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1986,
+          "mean": 76100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 11200,
+            "q2": 31800,
+            "q3": 56400,
+            "q4": 84000,
+            "q5": 197300,
+            "p81_90": 117400,
+            "p91_95": 150000,
+            "p96_99": 229300,
+            "top1": 1056500
+          },
+          "top_group_averages": {
+            "top10_avg": 194885.0,
+            "top5_avg": 394740.0,
+            "top1_avg": 1056500
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1987,
+          "mean": 73500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 10500,
+            "q2": 30700,
+            "q3": 56000,
+            "q4": 85100,
+            "q5": 186900,
+            "p81_90": 119400,
+            "p91_95": 153400,
+            "p96_99": 227000,
+            "top1": 848100
+          },
+          "top_group_averages": {
+            "top10_avg": 185855.0,
+            "top5_avg": 351220.0,
+            "top1_avg": 848100
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1988,
+          "mean": 76900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 10700,
+            "q2": 31500,
+            "q3": 57200,
+            "q4": 85800,
+            "q5": 200200,
+            "p81_90": 121000,
+            "p91_95": 155300,
+            "p96_99": 235400,
+            "top1": 1062900
+          },
+          "top_group_averages": {
+            "top10_avg": 199550.0,
+            "top5_avg": 400900.0,
+            "top1_avg": 1062900
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1989,
+          "mean": 77300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 11500,
+            "q2": 31800,
+            "q3": 57600,
+            "q4": 86800,
+            "q5": 199000,
+            "p81_90": 122000,
+            "p91_95": 158300,
+            "p96_99": 239300,
+            "top1": 990100
+          },
+          "top_group_averages": {
+            "top10_avg": 197940.0,
+            "top5_avg": 389460.0,
+            "top1_avg": 990100
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1990,
+          "mean": 76700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 12000,
+            "q2": 33000,
+            "q3": 57600,
+            "q4": 85500,
+            "q5": 193800,
+            "p81_90": 120400,
+            "p91_95": 154100,
+            "p96_99": 232600,
+            "top1": 956300
+          },
+          "top_group_averages": {
+            "top10_avg": 193060.0,
+            "top5_avg": 377340.0,
+            "top1_avg": 956300
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1991,
+          "mean": 74300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 12200,
+            "q2": 31500,
+            "q3": 55800,
+            "q4": 84400,
+            "q5": 186700,
+            "p81_90": 117600,
+            "p91_95": 153200,
+            "p96_99": 228300,
+            "top1": 859600
+          },
+          "top_group_averages": {
+            "top10_avg": 185740.0,
+            "top5_avg": 354560.0,
+            "top1_avg": 859600
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1992,
+          "mean": 76100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 12400,
+            "q2": 30400,
+            "q3": 55700,
+            "q4": 84700,
+            "q5": 194600,
+            "p81_90": 118900,
+            "p91_95": 155200,
+            "p96_99": 236200,
+            "top1": 972500
+          },
+          "top_group_averages": {
+            "top10_avg": 194115.0,
+            "top5_avg": 383460.0,
+            "top1_avg": 972500
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1993,
+          "mean": 76200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 12700,
+            "q2": 30100,
+            "q3": 55600,
+            "q4": 85400,
+            "q5": 194500,
+            "p81_90": 120100,
+            "p91_95": 156600,
+            "p96_99": 237900,
+            "top1": 932900
+          },
+          "top_group_averages": {
+            "top10_avg": 193425.0,
+            "top5_avg": 376900.0,
+            "top1_avg": 932900
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1994,
+          "mean": 77200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 12600,
+            "q2": 30400,
+            "q3": 56000,
+            "q4": 86900,
+            "q5": 198800,
+            "p81_90": 122700,
+            "p91_95": 159600,
+            "p96_99": 242500,
+            "top1": 961800
+          },
+          "top_group_averages": {
+            "top10_avg": 197840.0,
+            "top5_avg": 386360.0,
+            "top1_avg": 961800
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1995,
+          "mean": 80600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 13700,
+            "q2": 32500,
+            "q3": 58000,
+            "q4": 88600,
+            "q5": 208500,
+            "p81_90": 126000,
+            "p91_95": 163700,
+            "p96_99": 256400,
+            "top1": 1068000
+          },
+          "top_group_averages": {
+            "top10_avg": 208605.0,
+            "top5_avg": 418720.0,
+            "top1_avg": 1068000
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1996,
+          "mean": 83900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 13900,
+            "q2": 32800,
+            "q3": 58700,
+            "q4": 90500,
+            "q5": 220100,
+            "p81_90": 128000,
+            "p91_95": 169400,
+            "p96_99": 266800,
+            "top1": 1186200
+          },
+          "top_group_averages": {
+            "top10_avg": 219020.0,
+            "top5_avg": 450680.0,
+            "top1_avg": 1186200
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1997,
+          "mean": 88100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 14700,
+            "q2": 34200,
+            "q3": 60100,
+            "q4": 92900,
+            "q5": 234100,
+            "p81_90": 131100,
+            "p91_95": 176200,
+            "p96_99": 284100,
+            "top1": 1366400
+          },
+          "top_group_averages": {
+            "top10_avg": 234740.0,
+            "top5_avg": 500560.0,
+            "top1_avg": 1366400
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1998,
+          "mean": 93300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15900,
+            "q2": 36300,
+            "q3": 61900,
+            "q4": 97800,
+            "q5": 250700,
+            "p81_90": 137200,
+            "p91_95": 183700,
+            "p96_99": 301300,
+            "top1": 1556900
+          },
+          "top_group_averages": {
+            "top10_avg": 252630.0,
+            "top5_avg": 552420.0,
+            "top1_avg": 1556900
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 1999,
+          "mean": 98500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16500,
+            "q2": 38300,
+            "q3": 63600,
+            "q4": 101600,
+            "q5": 267500,
+            "p81_90": 142700,
+            "p91_95": 192300,
+            "p96_99": 316400,
+            "top1": 1700000
+          },
+          "top_group_averages": {
+            "top10_avg": 267705.0,
+            "top5_avg": 593120.0,
+            "top1_avg": 1700000
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2000,
+          "mean": 100700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15500,
+            "q2": 37600,
+            "q3": 63800,
+            "q4": 103300,
+            "q5": 280900,
+            "p81_90": 145700,
+            "p91_95": 198600,
+            "p96_99": 324900,
+            "top1": 1874300
+          },
+          "top_group_averages": {
+            "top10_avg": 281195.0,
+            "top5_avg": 634780.0,
+            "top1_avg": 1874300
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2001,
+          "mean": 94700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 14900,
+            "q2": 37600,
+            "q3": 64600,
+            "q4": 99800,
+            "q5": 255700,
+            "p81_90": 144200,
+            "p91_95": 192400,
+            "p96_99": 307600,
+            "top1": 1492000
+          },
+          "top_group_averages": {
+            "top10_avg": 256320.0,
+            "top5_avg": 544480.0,
+            "top1_avg": 1492000
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2002,
+          "mean": 90300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 14900,
+            "q2": 35600,
+            "q3": 62400,
+            "q4": 97300,
+            "q5": 242700,
+            "p81_90": 141300,
+            "p91_95": 189500,
+            "p96_99": 295200,
+            "top1": 1318000
+          },
+          "top_group_averages": {
+            "top10_avg": 242965.0,
+            "top5_avg": 499760.0,
+            "top1_avg": 1318000
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2003,
+          "mean": 91600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 14600,
+            "q2": 34700,
+            "q3": 61900,
+            "q4": 98400,
+            "q5": 250900,
+            "p81_90": 143500,
+            "p91_95": 192600,
+            "p96_99": 305000,
+            "top1": 1404800
+          },
+          "top_group_averages": {
+            "top10_avg": 251140.0,
+            "top5_avg": 524960.0,
+            "top1_avg": 1404800
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2004,
+          "mean": 97300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 14900,
+            "q2": 35400,
+            "q3": 65000,
+            "q4": 101500,
+            "q5": 273700,
+            "p81_90": 148800,
+            "p91_95": 199800,
+            "p96_99": 324000,
+            "top1": 1676500
+          },
+          "top_group_averages": {
+            "top10_avg": 272975.0,
+            "top5_avg": 594500.0,
+            "top1_avg": 1676500
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2005,
+          "mean": 102800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15400,
+            "q2": 36600,
+            "q3": 65600,
+            "q4": 103500,
+            "q5": 296700,
+            "p81_90": 151600,
+            "p91_95": 207100,
+            "p96_99": 349000,
+            "top1": 2024500
+          },
+          "top_group_averages": {
+            "top10_avg": 298600.0,
+            "top5_avg": 684100.0,
+            "top1_avg": 2024500
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2006,
+          "mean": 106600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16700,
+            "q2": 37400,
+            "q3": 65900,
+            "q4": 104900,
+            "q5": 308500,
+            "p81_90": 154300,
+            "p91_95": 211700,
+            "p96_99": 359400,
+            "top1": 2189600
+          },
+          "top_group_averages": {
+            "top10_avg": 311435.0,
+            "top5_avg": 725440.0,
+            "top1_avg": 2189600
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2007,
+          "mean": 110100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 17500,
+            "q2": 40700,
+            "q3": 68400,
+            "q4": 107400,
+            "q5": 320200,
+            "p81_90": 157100,
+            "p91_95": 216900,
+            "p96_99": 370800,
+            "top1": 2307900
+          },
+          "top_group_averages": {
+            "top10_avg": 322330.0,
+            "top5_avg": 758220.0,
+            "top1_avg": 2307900
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2008,
+          "mean": 101100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 17100,
+            "q2": 37600,
+            "q3": 65300,
+            "q4": 104100,
+            "q5": 289600,
+            "p81_90": 153600,
+            "p91_95": 209900,
+            "p96_99": 343300,
+            "top1": 1883000
+          },
+          "top_group_averages": {
+            "top10_avg": 292085.0,
+            "top5_avg": 651240.0,
+            "top1_avg": 1883000
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2009,
+          "mean": 93200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16300,
+            "q2": 34600,
+            "q3": 61600,
+            "q4": 98800,
+            "q5": 261000,
+            "p81_90": 148600,
+            "p91_95": 202900,
+            "p96_99": 322000,
+            "top1": 1471000
+          },
+          "top_group_averages": {
+            "top10_avg": 262975.0,
+            "top5_avg": 551800.0,
+            "top1_avg": 1471000
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2010,
+          "mean": 94800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15900,
+            "q2": 34000,
+            "q3": 60200,
+            "q4": 98800,
+            "q5": 272700,
+            "p81_90": 148100,
+            "p91_95": 204700,
+            "p96_99": 330600,
+            "top1": 1690300
+          },
+          "top_group_averages": {
+            "top10_avg": 275860.0,
+            "top5_avg": 602540.0,
+            "top1_avg": 1690300
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2011,
+          "mean": 95100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16100,
+            "q2": 34100,
+            "q3": 60200,
+            "q4": 99300,
+            "q5": 276100,
+            "p81_90": 150300,
+            "p91_95": 207500,
+            "p96_99": 339100,
+            "top1": 1690200
+          },
+          "top_group_averages": {
+            "top10_avg": 279355.0,
+            "top5_avg": 609320.0,
+            "top1_avg": 1690200
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2012,
+          "mean": 100000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15500,
+            "q2": 33500,
+            "q3": 60500,
+            "q4": 99500,
+            "q5": 298700,
+            "p81_90": 151100,
+            "p91_95": 210700,
+            "p96_99": 354900,
+            "top1": 2088300
+          },
+          "top_group_averages": {
+            "top10_avg": 303620.0,
+            "top5_avg": 701580.0,
+            "top1_avg": 2088300
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2013,
+          "mean": 98700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16300,
+            "q2": 34900,
+            "q3": 61700,
+            "q4": 102200,
+            "q5": 287400,
+            "p81_90": 154100,
+            "p91_95": 216500,
+            "p96_99": 357800,
+            "top1": 1758200
+          },
+          "top_group_averages": {
+            "top10_avg": 290645.0,
+            "top5_avg": 637880.0,
+            "top1_avg": 1758200
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2014,
+          "mean": 102700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15700,
+            "q2": 35000,
+            "q3": 63700,
+            "q4": 104200,
+            "q5": 304300,
+            "p81_90": 157900,
+            "p91_95": 220500,
+            "p96_99": 372500,
+            "top1": 1979200
+          },
+          "top_group_averages": {
+            "top10_avg": 307535.0,
+            "top5_avg": 693840.0,
+            "top1_avg": 1979200
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2015,
+          "mean": 105900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16600,
+            "q2": 36900,
+            "q3": 65700,
+            "q4": 107700,
+            "q5": 315000,
+            "p81_90": 163800,
+            "p91_95": 228100,
+            "p96_99": 387700,
+            "top1": 2065100
+          },
+          "top_group_averages": {
+            "top10_avg": 319720.0,
+            "top5_avg": 723180.0,
+            "top1_avg": 2065100
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2016,
+          "mean": 104800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16400,
+            "q2": 37300,
+            "q3": 66200,
+            "q4": 107900,
+            "q5": 311100,
+            "p81_90": 164700,
+            "p91_95": 230900,
+            "p96_99": 387600,
+            "top1": 1965100
+          },
+          "top_group_averages": {
+            "top10_avg": 315850.0,
+            "top5_avg": 703100.0,
+            "top1_avg": 1965100
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2017,
+          "mean": 108500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16500,
+            "q2": 37600,
+            "q3": 67300,
+            "q4": 110500,
+            "q5": 324700,
+            "p81_90": 168200,
+            "p91_95": 237600,
+            "p96_99": 401500,
+            "top1": 2116100
+          },
+          "top_group_averages": {
+            "top10_avg": 329605.0,
+            "top5_avg": 744420.0,
+            "top1_avg": 2116100
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2018,
+          "mean": 110900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16800,
+            "q2": 39100,
+            "q3": 68400,
+            "q4": 111800,
+            "q5": 331600,
+            "p81_90": 171800,
+            "p91_95": 243100,
+            "p96_99": 411100,
+            "top1": 2122600
+          },
+          "top_group_averages": {
+            "top10_avg": 335025.0,
+            "top5_avg": 753400.0,
+            "top1_avg": 2122600
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2019,
+          "mean": 113700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 18500,
+            "q2": 42200,
+            "q3": 71300,
+            "q4": 115200,
+            "q5": 337400,
+            "p81_90": 176700,
+            "p91_95": 250900,
+            "p96_99": 423900,
+            "top1": 2082800
+          },
+          "top_group_averages": {
+            "top10_avg": 339995.0,
+            "top5_avg": 755680.0,
+            "top1_avg": 2082800
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2020,
+          "mean": 114000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15200,
+            "q2": 38700,
+            "q3": 69000,
+            "q4": 115300,
+            "q5": 358700,
+            "p81_90": 180400,
+            "p91_95": 259300,
+            "p96_99": 442400,
+            "top1": 2376900
+          },
+          "top_group_averages": {
+            "top10_avg": 362350.0,
+            "top5_avg": 829300.0,
+            "top1_avg": 2376900
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        },
+        {
+          "year": 2021,
+          "mean": 125500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15400,
+            "q2": 39500,
+            "q3": 70400,
+            "q4": 116600,
+            "q5": 403400,
+            "p81_90": 182600,
+            "p91_95": 266600,
+            "p96_99": 479200,
+            "top1": 3110500
+          },
+          "top_group_averages": {
+            "top10_avg": 409315.0,
+            "top5_avg": 1005460.0,
+            "top1_avg": 3110500
+          },
+          "top_shares": null,
+          "sd_log_income": null
+        }
+      ],
+      "source_url": "https://www.cbo.gov/system/files/2024-09/60341-supplemental-data.xlsx",
+      "notes": "IMPORTANT VINTAGE CAVEAT: This is the CBO 2021-vintage report (publication 60341, 'The Distribution of Household Income, 2021'), covering 1979-2021, NOT the requested 2022-vintage report (publication 61911, 'The Distribution of Household Income, 2022', covering 1979-2022, published Jan 2026). The 61911 report's supplemental-data/data-underlying-figures/researcher-data files could not be located at any guessed or discovered URL after 25+ attempts (all returned genuine HTTP 404 via fetch_url) despite the CBO publication page and the CBO 'Publications With Supplemental Data Files' index (https://www.cbo.gov/data/publications-with-data-files) both confirming such files exist; CBO likely serves them via a JS-rendered link that this tool environment's fetch_url could not resolve to a raw asset URL, and cbo.gov/system/files/* is blocked to direct curl/wget by Datadome bot protection. The 2022 report HTML full-text page (https://www.cbo.gov/publication/62300) was also checked and contains only chart images/narrative, no embedded numeric tables. All dollar figures are in 2021 dollars (not adjusted to 2022 or current dollars). Values were extracted via fetch_url's LLM-assisted xlsx reading (sheet-by-sheet) since direct curl downloads of cbo.gov/system/files/* xlsx assets are blocked; every value below should be treated as transcribed from that extraction and spot-checked against the source if used for critical purposes."
+    },
+    {
+      "source": "CBO",
+      "income_definition": "pretax_national",
+      "unit": "household",
+      "geography": "US",
+      "years": [
+        {
+          "year": 1979,
+          "mean": 73100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 17100,
+            "q2": 41200,
+            "q3": 63100,
+            "q4": 85700,
+            "q5": 162500,
+            "p81_90": 111400,
+            "p91_95": 137700,
+            "p96_99": 199300,
+            "top1": 624300
+          },
+          "top_group_averages": {
+            "top10_avg": 161200.0,
+            "top5_avg": 284300.0,
+            "top1_avg": 624300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 5,
+            "q2": 11.2,
+            "q3": 16,
+            "q4": 22.4,
+            "q5": 45.6
+          }
+        },
+        {
+          "year": 1980,
+          "mean": 71000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16500,
+            "q2": 39400,
+            "q3": 61000,
+            "q4": 83300,
+            "q5": 158200,
+            "p81_90": 109000,
+            "p91_95": 135000,
+            "p96_99": 192600,
+            "top1": 598800
+          },
+          "top_group_averages": {
+            "top10_avg": 156710.0,
+            "top5_avg": 273840.0,
+            "top1_avg": 598800
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4.9,
+            "q2": 11,
+            "q3": 16,
+            "q4": 22.4,
+            "q5": 46
+          }
+        },
+        {
+          "year": 1981,
+          "mean": 71200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16300,
+            "q2": 39200,
+            "q3": 60600,
+            "q4": 84200,
+            "q5": 157600,
+            "p81_90": 108800,
+            "p91_95": 135200,
+            "p96_99": 190700,
+            "top1": 596200
+          },
+          "top_group_averages": {
+            "top10_avg": 156150.0,
+            "top5_avg": 271800.0,
+            "top1_avg": 596200
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4.7,
+            "q2": 10.9,
+            "q3": 16.1,
+            "q4": 22.5,
+            "q5": 46.2
+          }
+        },
+        {
+          "year": 1982,
+          "mean": 71300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15700,
+            "q2": 38300,
+            "q3": 59700,
+            "q4": 83400,
+            "q5": 158700,
+            "p81_90": 108600,
+            "p91_95": 134200,
+            "p96_99": 191300,
+            "top1": 628100
+          },
+          "top_group_averages": {
+            "top10_avg": 157515.0,
+            "top5_avg": 278660.0,
+            "top1_avg": 628100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4.4,
+            "q2": 10.7,
+            "q3": 15.9,
+            "q4": 22.5,
+            "q5": 47
+          }
+        },
+        {
+          "year": 1983,
+          "mean": 72000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15000,
+            "q2": 37300,
+            "q3": 58900,
+            "q4": 83000,
+            "q5": 164500,
+            "p81_90": 109900,
+            "p91_95": 137800,
+            "p96_99": 197300,
+            "top1": 688800
+          },
+          "top_group_averages": {
+            "top10_avg": 163300.0,
+            "top5_avg": 295600.0,
+            "top1_avg": 688800
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 10.2,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4.1,
+            "q2": 10.4,
+            "q3": 15.7,
+            "q4": 22.5,
+            "q5": 47.9
+          }
+        },
+        {
+          "year": 1984,
+          "mean": 76100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16200,
+            "q2": 39800,
+            "q3": 62400,
+            "q4": 87300,
+            "q5": 178400,
+            "p81_90": 116900,
+            "p91_95": 148900,
+            "p96_99": 213800,
+            "top1": 763600
+          },
+          "top_group_averages": {
+            "top10_avg": 176615.0,
+            "top5_avg": 323760.0,
+            "top1_avg": 763600
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 10.7,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4.3,
+            "q2": 10.4,
+            "q3": 15.6,
+            "q4": 22.4,
+            "q5": 47.9
+          }
+        },
+        {
+          "year": 1985,
+          "mean": 77300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16100,
+            "q2": 39700,
+            "q3": 62500,
+            "q4": 87600,
+            "q5": 180600,
+            "p81_90": 116000,
+            "p91_95": 148100,
+            "p96_99": 216100,
+            "top1": 815300
+          },
+          "top_group_averages": {
+            "top10_avg": 179010.0,
+            "top5_avg": 335940.0,
+            "top1_avg": 815300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4.1,
+            "q2": 10.2,
+            "q3": 15.4,
+            "q4": 22.1,
+            "q5": 48.7
+          }
+        },
+        {
+          "year": 1986,
+          "mean": 82600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15900,
+            "q2": 40200,
+            "q3": 63800,
+            "q4": 90600,
+            "q5": 202700,
+            "p81_90": 121900,
+            "p91_95": 155100,
+            "p96_99": 236000,
+            "top1": 1067200
+          },
+          "top_group_averages": {
+            "top10_avg": 200285.0,
+            "top5_avg": 402240.0,
+            "top1_avg": 1067200
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.8,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.9,
+            "q2": 9.7,
+            "q3": 14.9,
+            "q4": 21.4,
+            "q5": 50.7
+          }
+        },
+        {
+          "year": 1987,
+          "mean": 79900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15300,
+            "q2": 39200,
+            "q3": 63300,
+            "q4": 91100,
+            "q5": 191900,
+            "p81_90": 123600,
+            "p91_95": 158100,
+            "p96_99": 233500,
+            "top1": 857000
+          },
+          "top_group_averages": {
+            "top10_avg": 190875.0,
+            "top5_avg": 358200.0,
+            "top1_avg": 857000
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.7,
+            "q2": 10,
+            "q3": 15.6,
+            "q4": 22.4,
+            "q5": 49.1
+          }
+        },
+        {
+          "year": 1988,
+          "mean": 83300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 15900,
+            "q2": 39900,
+            "q3": 64300,
+            "q4": 91700,
+            "q5": 205400,
+            "p81_90": 125200,
+            "p91_95": 160600,
+            "p96_99": 242000,
+            "top1": 1071700
+          },
+          "top_group_averages": {
+            "top10_avg": 204735.0,
+            "top5_avg": 407940.0,
+            "top1_avg": 1071700
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.2,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.7,
+            "q2": 9.8,
+            "q3": 15.1,
+            "q4": 21.8,
+            "q5": 50.4
+          }
+        },
+        {
+          "year": 1989,
+          "mean": 83800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 16600,
+            "q2": 40300,
+            "q3": 65000,
+            "q4": 92800,
+            "q5": 204600,
+            "p81_90": 126900,
+            "p91_95": 163700,
+            "p96_99": 246200,
+            "top1": 998500
+          },
+          "top_group_averages": {
+            "top10_avg": 203540.0,
+            "top5_avg": 396660.0,
+            "top1_avg": 998500
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.8,
+            "q2": 9.9,
+            "q3": 15.2,
+            "q4": 21.9,
+            "q5": 50
+          }
+        },
+        {
+          "year": 1990,
+          "mean": 83400,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 17100,
+            "q2": 41600,
+            "q3": 65400,
+            "q4": 91900,
+            "q5": 199700,
+            "p81_90": 125400,
+            "p91_95": 160000,
+            "p96_99": 239600,
+            "top1": 965300
+          },
+          "top_group_averages": {
+            "top10_avg": 198885.0,
+            "top5_avg": 384740.0,
+            "top1_avg": 965300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.9,
+            "q2": 10.1,
+            "q3": 15.2,
+            "q4": 22,
+            "q5": 49.6
+          }
+        },
+        {
+          "year": 1991,
+          "mean": 81500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 17200,
+            "q2": 40600,
+            "q3": 64200,
+            "q4": 91300,
+            "q5": 192900,
+            "p81_90": 123300,
+            "p91_95": 159100,
+            "p96_99": 235200,
+            "top1": 868500
+          },
+          "top_group_averages": {
+            "top10_avg": 191890.0,
+            "top5_avg": 361860.0,
+            "top1_avg": 868500
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4,
+            "q2": 10.1,
+            "q3": 15.6,
+            "q4": 22.1,
+            "q5": 49.1
+          }
+        },
+        {
+          "year": 1992,
+          "mean": 83700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 17300,
+            "q2": 40200,
+            "q3": 64500,
+            "q4": 92100,
+            "q5": 201200,
+            "p81_90": 125000,
+            "p91_95": 161700,
+            "p96_99": 243600,
+            "top1": 981600
+          },
+          "top_group_averages": {
+            "top10_avg": 200725.0,
+            "top5_avg": 391200.0,
+            "top1_avg": 981600
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.8,
+            "q2": 9.9,
+            "q3": 15.3,
+            "q4": 21.8,
+            "q5": 50.1
+          }
+        },
+        {
+          "year": 1993,
+          "mean": 84000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 17300,
+            "q2": 40300,
+            "q3": 64800,
+            "q4": 92900,
+            "q5": 201400,
+            "p81_90": 126500,
+            "p91_95": 163600,
+            "p96_99": 245400,
+            "top1": 942400
+          },
+          "top_group_averages": {
+            "top10_avg": 200350.0,
+            "top5_avg": 384800.0,
+            "top1_avg": 942400
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11.8,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.8,
+            "q2": 10,
+            "q3": 15.3,
+            "q4": 21.9,
+            "q5": 49.9
+          }
+        },
+        {
+          "year": 1994,
+          "mean": 84900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 17300,
+            "q2": 40800,
+            "q3": 65000,
+            "q4": 94100,
+            "q5": 205500,
+            "p81_90": 128800,
+            "p91_95": 166000,
+            "p96_99": 250700,
+            "top1": 970900
+          },
+          "top_group_averages": {
+            "top10_avg": 204585.0,
+            "top5_avg": 394740.0,
+            "top1_avg": 970900
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11.8,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.7,
+            "q2": 10,
+            "q3": 15.4,
+            "q4": 22,
+            "q5": 49.8
+          }
+        },
+        {
+          "year": 1995,
+          "mean": 88500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 18600,
+            "q2": 42900,
+            "q3": 67200,
+            "q4": 96100,
+            "q5": 215800,
+            "p81_90": 132900,
+            "p91_95": 170700,
+            "p96_99": 264400,
+            "top1": 1077800
+          },
+          "top_group_averages": {
+            "top10_avg": 215895.0,
+            "top5_avg": 427080.0,
+            "top1_avg": 1077800
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4,
+            "q2": 9.9,
+            "q3": 15.1,
+            "q4": 21.6,
+            "q5": 50.2
+          }
+        },
+        {
+          "year": 1996,
+          "mean": 91900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 18500,
+            "q2": 42900,
+            "q3": 68200,
+            "q4": 98200,
+            "q5": 227900,
+            "p81_90": 135300,
+            "p91_95": 177200,
+            "p96_99": 275100,
+            "top1": 1196000
+          },
+          "top_group_averages": {
+            "top10_avg": 226770.0,
+            "top5_avg": 459280.0,
+            "top1_avg": 1196000
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.8,
+            "q2": 9.6,
+            "q3": 14.8,
+            "q4": 21.2,
+            "q5": 51.4
+          }
+        },
+        {
+          "year": 1997,
+          "mean": 96200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 19600,
+            "q2": 44400,
+            "q3": 69500,
+            "q4": 100700,
+            "q5": 242200,
+            "p81_90": 138700,
+            "p91_95": 183900,
+            "p96_99": 293300,
+            "top1": 1376400
+          },
+          "top_group_averages": {
+            "top10_avg": 242805.0,
+            "top5_avg": 509920.0,
+            "top1_avg": 1376400
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 14.7,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.9,
+            "q2": 9.3,
+            "q3": 14.4,
+            "q4": 20.6,
+            "q5": 52.5
+          }
+        },
+        {
+          "year": 1998,
+          "mean": 101400,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 21000,
+            "q2": 46500,
+            "q3": 71700,
+            "q4": 105100,
+            "q5": 258500,
+            "p81_90": 144500,
+            "p91_95": 191400,
+            "p96_99": 309900,
+            "top1": 1567200
+          },
+          "top_group_averages": {
+            "top10_avg": 260440.0,
+            "top5_avg": 561360.0,
+            "top1_avg": 1567200
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 15.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4,
+            "q2": 9.2,
+            "q3": 14.2,
+            "q4": 20.3,
+            "q5": 52.9
+          }
+        },
+        {
+          "year": 1999,
+          "mean": 106500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 21900,
+            "q2": 48300,
+            "q3": 73700,
+            "q4": 108500,
+            "q5": 275100,
+            "p81_90": 150000,
+            "p91_95": 199600,
+            "p96_99": 324600,
+            "top1": 1709600
+          },
+          "top_group_averages": {
+            "top10_avg": 275300.0,
+            "top5_avg": 601600.0,
+            "top1_avg": 1709600
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 16.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4,
+            "q2": 9,
+            "q3": 14,
+            "q4": 20,
+            "q5": 53.7
+          }
+        },
+        {
+          "year": 2000,
+          "mean": 108700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 21100,
+            "q2": 47600,
+            "q3": 73600,
+            "q4": 110100,
+            "q5": 288700,
+            "p81_90": 153000,
+            "p91_95": 206000,
+            "p96_99": 334000,
+            "top1": 1884200
+          },
+          "top_group_averages": {
+            "top10_avg": 289010.0,
+            "top5_avg": 644040.0,
+            "top1_avg": 1884200
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 17.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.8,
+            "q2": 8.7,
+            "q3": 13.6,
+            "q4": 19.7,
+            "q5": 54.8
+          }
+        },
+        {
+          "year": 2001,
+          "mean": 103100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20600,
+            "q2": 47800,
+            "q3": 74600,
+            "q4": 108400,
+            "q5": 263200,
+            "p81_90": 151500,
+            "p91_95": 199600,
+            "p96_99": 315600,
+            "top1": 1501400
+          },
+          "top_group_averages": {
+            "top10_avg": 263840.0,
+            "top5_avg": 552760.0,
+            "top1_avg": 1501400
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 14.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.9,
+            "q2": 9.1,
+            "q3": 14.3,
+            "q4": 21,
+            "q5": 52.4
+          }
+        },
+        {
+          "year": 2002,
+          "mean": 99100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20400,
+            "q2": 46400,
+            "q3": 73200,
+            "q4": 106600,
+            "q5": 250500,
+            "p81_90": 149100,
+            "p91_95": 196700,
+            "p96_99": 303100,
+            "top1": 1327900
+          },
+          "top_group_averages": {
+            "top10_avg": 250740.0,
+            "top5_avg": 508060.0,
+            "top1_avg": 1327900
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4,
+            "q2": 9.4,
+            "q3": 14.6,
+            "q4": 21.3,
+            "q5": 51.5
+          }
+        },
+        {
+          "year": 2003,
+          "mean": 100600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20100,
+            "q2": 45900,
+            "q3": 73000,
+            "q4": 107800,
+            "q5": 258700,
+            "p81_90": 151100,
+            "p91_95": 200100,
+            "p96_99": 313200,
+            "top1": 1414800
+          },
+          "top_group_averages": {
+            "top10_avg": 258955.0,
+            "top5_avg": 533520.0,
+            "top1_avg": 1414800
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 14.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.9,
+            "q2": 9.2,
+            "q3": 14.4,
+            "q4": 21.1,
+            "q5": 52.2
+          }
+        },
+        {
+          "year": 2004,
+          "mean": 106200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20300,
+            "q2": 46500,
+            "q3": 75400,
+            "q4": 111000,
+            "q5": 281600,
+            "p81_90": 156600,
+            "p91_95": 207400,
+            "p96_99": 332200,
+            "top1": 1687000
+          },
+          "top_group_averages": {
+            "top10_avg": 280940.0,
+            "top5_avg": 603160.0,
+            "top1_avg": 1687000
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 16.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.8,
+            "q2": 8.9,
+            "q3": 13.9,
+            "q4": 20.6,
+            "q5": 53.5
+          }
+        },
+        {
+          "year": 2005,
+          "mean": 111900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20900,
+            "q2": 47600,
+            "q3": 76400,
+            "q4": 113100,
+            "q5": 305400,
+            "p81_90": 159900,
+            "p91_95": 215700,
+            "p96_99": 358000,
+            "top1": 2035500
+          },
+          "top_group_averages": {
+            "top10_avg": 307250.0,
+            "top5_avg": 693500.0,
+            "top1_avg": 2035500
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 17.9,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.7,
+            "q2": 8.5,
+            "q3": 13.5,
+            "q4": 19.9,
+            "q5": 55.1
+          }
+        },
+        {
+          "year": 2006,
+          "mean": 116200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 21800,
+            "q2": 48600,
+            "q3": 77200,
+            "q4": 115400,
+            "q5": 317900,
+            "p81_90": 163500,
+            "p91_95": 221000,
+            "p96_99": 369100,
+            "top1": 2201300
+          },
+          "top_group_averages": {
+            "top10_avg": 320885.0,
+            "top5_avg": 735540.0,
+            "top1_avg": 2201300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 18.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.6,
+            "q2": 8.4,
+            "q3": 13.3,
+            "q4": 19.6,
+            "q5": 55.7
+          }
+        },
+        {
+          "year": 2007,
+          "mean": 119700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 23000,
+            "q2": 51300,
+            "q3": 79900,
+            "q4": 118200,
+            "q5": 330100,
+            "p81_90": 166600,
+            "p91_95": 226700,
+            "p96_99": 381300,
+            "top1": 2319700
+          },
+          "top_group_averages": {
+            "top10_avg": 332220.0,
+            "top5_avg": 768980.0,
+            "top1_avg": 2319700
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 19.2,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.9,
+            "q2": 8.5,
+            "q3": 13.3,
+            "q4": 19.3,
+            "q5": 55.9
+          }
+        },
+        {
+          "year": 2008,
+          "mean": 111300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 22800,
+            "q2": 49100,
+            "q3": 77600,
+            "q4": 115400,
+            "q5": 299400,
+            "p81_90": 163600,
+            "p91_95": 219200,
+            "p96_99": 352800,
+            "top1": 1894000
+          },
+          "top_group_averages": {
+            "top10_avg": 301860.0,
+            "top5_avg": 661040.0,
+            "top1_avg": 1894000
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 16.4,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4,
+            "q2": 8.9,
+            "q3": 13.9,
+            "q4": 20.4,
+            "q5": 54
+          }
+        },
+        {
+          "year": 2009,
+          "mean": 104900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 22000,
+            "q2": 47700,
+            "q3": 76200,
+            "q4": 113000,
+            "q5": 272100,
+            "p81_90": 160100,
+            "p91_95": 213800,
+            "p96_99": 332200,
+            "top1": 1482500
+          },
+          "top_group_averages": {
+            "top10_avg": 274065.0,
+            "top5_avg": 562260.0,
+            "top1_avg": 1482500
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.7,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4,
+            "q2": 9.3,
+            "q3": 14.6,
+            "q4": 21.5,
+            "q5": 52.3
+          }
+        },
+        {
+          "year": 2010,
+          "mean": 106600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 21400,
+            "q2": 47000,
+            "q3": 75100,
+            "q4": 112600,
+            "q5": 284100,
+            "p81_90": 159800,
+            "p91_95": 216000,
+            "p96_99": 341300,
+            "top1": 1702100
+          },
+          "top_group_averages": {
+            "top10_avg": 287265.0,
+            "top5_avg": 613460.0,
+            "top1_avg": 1702100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 15.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.8,
+            "q2": 9,
+            "q3": 14.2,
+            "q4": 20.9,
+            "q5": 53.5
+          }
+        },
+        {
+          "year": 2011,
+          "mean": 106500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 21600,
+            "q2": 46800,
+            "q3": 74700,
+            "q4": 112600,
+            "q5": 287200,
+            "p81_90": 161800,
+            "p91_95": 218000,
+            "p96_99": 349600,
+            "top1": 1701700
+          },
+          "top_group_averages": {
+            "top10_avg": 290405.0,
+            "top5_avg": 620020.0,
+            "top1_avg": 1701700
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 15.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.9,
+            "q2": 9,
+            "q3": 14,
+            "q4": 20.9,
+            "q5": 53.5
+          }
+        },
+        {
+          "year": 2012,
+          "mean": 111700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20900,
+            "q2": 46500,
+            "q3": 74800,
+            "q4": 113200,
+            "q5": 310300,
+            "p81_90": 163000,
+            "p91_95": 222100,
+            "p96_99": 365800,
+            "top1": 2101200
+          },
+          "top_group_averages": {
+            "top10_avg": 315245.0,
+            "top5_avg": 712880.0,
+            "top1_avg": 2101200
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 17.8,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.6,
+            "q2": 8.4,
+            "q3": 13.5,
+            "q4": 20.1,
+            "q5": 55.6
+          }
+        },
+        {
+          "year": 2013,
+          "mean": 110300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 21500,
+            "q2": 47500,
+            "q3": 76000,
+            "q4": 116000,
+            "q5": 299400,
+            "p81_90": 166200,
+            "p91_95": 228200,
+            "p96_99": 369600,
+            "top1": 1770700
+          },
+          "top_group_averages": {
+            "top10_avg": 302605.0,
+            "top5_avg": 649820.0,
+            "top1_avg": 1770700
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 15.4,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.8,
+            "q2": 8.7,
+            "q3": 13.9,
+            "q4": 20.7,
+            "q5": 54.2
+          }
+        },
+        {
+          "year": 2014,
+          "mean": 114200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20900,
+            "q2": 47500,
+            "q3": 77500,
+            "q4": 117800,
+            "q5": 316400,
+            "p81_90": 170100,
+            "p91_95": 232500,
+            "p96_99": 384700,
+            "top1": 1992000
+          },
+          "top_group_averages": {
+            "top10_avg": 319715.0,
+            "top5_avg": 706160.0,
+            "top1_avg": 1992000
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 16.7,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.6,
+            "q2": 8.5,
+            "q3": 13.5,
+            "q4": 20.3,
+            "q5": 55.4
+          }
+        },
+        {
+          "year": 2015,
+          "mean": 117900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 22200,
+            "q2": 49800,
+            "q3": 80200,
+            "q4": 121700,
+            "q5": 327700,
+            "p81_90": 176500,
+            "p91_95": 240600,
+            "p96_99": 400200,
+            "top1": 2078600
+          },
+          "top_group_averages": {
+            "top10_avg": 332370.0,
+            "top5_avg": 735880.0,
+            "top1_avg": 2078600
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 16.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.7,
+            "q2": 8.6,
+            "q3": 13.6,
+            "q4": 20.3,
+            "q5": 55.1
+          }
+        },
+        {
+          "year": 2016,
+          "mean": 116900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 22400,
+            "q2": 50400,
+            "q3": 80800,
+            "q4": 122200,
+            "q5": 323700,
+            "p81_90": 177500,
+            "p91_95": 243100,
+            "p96_99": 400200,
+            "top1": 1978300
+          },
+          "top_group_averages": {
+            "top10_avg": 328480.0,
+            "top5_avg": 715820.0,
+            "top1_avg": 1978300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 15.8,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.9,
+            "q2": 8.8,
+            "q3": 13.7,
+            "q4": 20.5,
+            "q5": 54.5
+          }
+        },
+        {
+          "year": 2017,
+          "mean": 120700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 22700,
+            "q2": 51100,
+            "q3": 82100,
+            "q4": 124400,
+            "q5": 337500,
+            "p81_90": 181000,
+            "p91_95": 249900,
+            "p96_99": 414300,
+            "top1": 2130300
+          },
+          "top_group_averages": {
+            "top10_avg": 342350.0,
+            "top5_avg": 757500.0,
+            "top1_avg": 2130300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 16.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.7,
+            "q2": 8.6,
+            "q3": 13.5,
+            "q4": 20.3,
+            "q5": 55.2
+          }
+        },
+        {
+          "year": 2018,
+          "mean": 123200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 23300,
+            "q2": 52300,
+            "q3": 83100,
+            "q4": 125900,
+            "q5": 344900,
+            "p81_90": 185100,
+            "p91_95": 256000,
+            "p96_99": 424400,
+            "top1": 2137400
+          },
+          "top_group_averages": {
+            "top10_avg": 348300.0,
+            "top5_avg": 767000.0,
+            "top1_avg": 2137400
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 16.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.8,
+            "q2": 8.5,
+            "q3": 13.4,
+            "q4": 20.3,
+            "q5": 55.3
+          }
+        },
+        {
+          "year": 2019,
+          "mean": 126600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 25200,
+            "q2": 55600,
+            "q3": 86600,
+            "q4": 130400,
+            "q5": 351500,
+            "p81_90": 191100,
+            "p91_95": 264400,
+            "p96_99": 437400,
+            "top1": 2097900
+          },
+          "top_group_averages": {
+            "top10_avg": 354025.0,
+            "top5_avg": 769500.0,
+            "top1_avg": 2097900
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 15.9,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 4,
+            "q2": 8.8,
+            "q3": 13.7,
+            "q4": 20.4,
+            "q5": 54.5
+          }
+        },
+        {
+          "year": 2020,
+          "mean": 128000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 22300,
+            "q2": 53500,
+            "q3": 86300,
+            "q4": 132000,
+            "q5": 373200,
+            "p81_90": 195700,
+            "p91_95": 273100,
+            "p96_99": 455900,
+            "top1": 2391100
+          },
+          "top_group_averages": {
+            "top10_avg": 376860.0,
+            "top5_avg": 842940.0,
+            "top1_avg": 2391100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 17.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.6,
+            "q2": 8.5,
+            "q3": 13.5,
+            "q4": 20.2,
+            "q5": 55.7
+          }
+        },
+        {
+          "year": 2021,
+          "mean": 139000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 22500,
+            "q2": 53600,
+            "q3": 86500,
+            "q4": 132500,
+            "q5": 418100,
+            "p81_90": 197700,
+            "p91_95": 280700,
+            "p96_99": 493500,
+            "top1": 3126400
+          },
+          "top_group_averages": {
+            "top10_avg": 424045.0,
+            "top5_avg": 1020080.0,
+            "top1_avg": 3126400
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 21.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 3.3,
+            "q2": 7.8,
+            "q3": 12.3,
+            "q4": 18.7,
+            "q5": 58.8
+          }
+        }
+      ],
+      "source_url": "https://www.cbo.gov/system/files/2024-09/60341-supplemental-data.xlsx",
+      "notes": "IMPORTANT VINTAGE CAVEAT: This is the CBO 2021-vintage report (publication 60341, 'The Distribution of Household Income, 2021'), covering 1979-2021, NOT the requested 2022-vintage report (publication 61911, 'The Distribution of Household Income, 2022', covering 1979-2022, published Jan 2026). The 61911 report's supplemental-data/data-underlying-figures/researcher-data files could not be located at any guessed or discovered URL after 25+ attempts (all returned genuine HTTP 404 via fetch_url) despite the CBO publication page and the CBO 'Publications With Supplemental Data Files' index (https://www.cbo.gov/data/publications-with-data-files) both confirming such files exist; CBO likely serves them via a JS-rendered link that this tool environment's fetch_url could not resolve to a raw asset URL, and cbo.gov/system/files/* is blocked to direct curl/wget by Datadome bot protection. The 2022 report HTML full-text page (https://www.cbo.gov/publication/62300) was also checked and contains only chart images/narrative, no embedded numeric tables. All dollar figures are in 2021 dollars (not adjusted to 2022 or current dollars). Values were extracted via fetch_url's LLM-assisted xlsx reading (sheet-by-sheet) since direct curl downloads of cbo.gov/system/files/* xlsx assets are blocked; every value below should be treated as transcribed from that extraction and spot-checked against the source if used for critical purposes. 'pretax_national' here corresponds to CBO's 'income before transfers and taxes' (market income + social insurance benefits), which is close to but not identical to WID's pretax national income concept."
+    },
+    {
+      "source": "CBO",
+      "income_definition": "posttax_national",
+      "unit": "household",
+      "geography": "US",
+      "years": [
+        {
+          "year": 1979,
+          "mean": 58300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 21100,
+            "q2": 36000,
+            "q3": 51500,
+            "q4": 67400,
+            "q5": 118600,
+            "p81_90": 85200,
+            "p91_95": 103100,
+            "p96_99": 145300,
+            "top1": 405600
+          },
+          "top_group_averages": {
+            "top10_avg": 117715.0,
+            "top5_avg": 197360.0,
+            "top1_avg": 405600
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 7.4,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.8,
+            "q2": 12.3,
+            "q3": 16.4,
+            "q4": 22.1,
+            "q5": 41.8
+          }
+        },
+        {
+          "year": 1980,
+          "mean": 56700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20900,
+            "q2": 34700,
+            "q3": 49800,
+            "q4": 65400,
+            "q5": 115700,
+            "p81_90": 83000,
+            "p91_95": 100600,
+            "p96_99": 140000,
+            "top1": 401000
+          },
+          "top_group_averages": {
+            "top10_avg": 114700.0,
+            "top5_avg": 192200.0,
+            "top1_avg": 401000
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 7.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.8,
+            "q2": 12.2,
+            "q3": 16.4,
+            "q4": 22,
+            "q5": 42.1
+          }
+        },
+        {
+          "year": 1981,
+          "mean": 56800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20800,
+            "q2": 34400,
+            "q3": 49300,
+            "q4": 65700,
+            "q5": 115800,
+            "p81_90": 82300,
+            "p91_95": 100400,
+            "p96_99": 139000,
+            "top1": 414700
+          },
+          "top_group_averages": {
+            "top10_avg": 114785.0,
+            "top5_avg": 194140.0,
+            "top1_avg": 414700
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 7.8,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.6,
+            "q2": 12,
+            "q3": 16.4,
+            "q4": 22,
+            "q5": 42.6
+          }
+        },
+        {
+          "year": 1982,
+          "mean": 58100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20500,
+            "q2": 34000,
+            "q3": 49300,
+            "q4": 66400,
+            "q5": 120500,
+            "p81_90": 84200,
+            "p91_95": 102500,
+            "p96_99": 144400,
+            "top1": 460100
+          },
+          "top_group_averages": {
+            "top10_avg": 119610.0,
+            "top5_avg": 207540.0,
+            "top1_avg": 460100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 8.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.1,
+            "q2": 11.7,
+            "q3": 16.1,
+            "q4": 22,
+            "q5": 43.8
+          }
+        },
+        {
+          "year": 1983,
+          "mean": 59000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20100,
+            "q2": 33200,
+            "q3": 48900,
+            "q4": 66500,
+            "q5": 125800,
+            "p81_90": 85800,
+            "p91_95": 106400,
+            "p96_99": 150900,
+            "top1": 504600
+          },
+          "top_group_averages": {
+            "top10_avg": 124910.0,
+            "top5_avg": 221640.0,
+            "top1_avg": 504600
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.7,
+            "q2": 11.3,
+            "q3": 16,
+            "q4": 22,
+            "q5": 44.7
+          }
+        },
+        {
+          "year": 1984,
+          "mean": 62000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20500,
+            "q2": 34900,
+            "q3": 51600,
+            "q4": 69800,
+            "q5": 136100,
+            "p81_90": 91000,
+            "p91_95": 114800,
+            "p96_99": 163600,
+            "top1": 557700
+          },
+          "top_group_averages": {
+            "top10_avg": 134805.0,
+            "top5_avg": 242420.0,
+            "top1_avg": 557700
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.8,
+            "q2": 11.3,
+            "q3": 15.8,
+            "q4": 22,
+            "q5": 44.9
+          }
+        },
+        {
+          "year": 1985,
+          "mean": 62900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20800,
+            "q2": 34800,
+            "q3": 51600,
+            "q4": 69900,
+            "q5": 137900,
+            "p81_90": 90200,
+            "p91_95": 113700,
+            "p96_99": 165300,
+            "top1": 603200
+          },
+          "top_group_averages": {
+            "top10_avg": 136745.0,
+            "top5_avg": 252880.0,
+            "top1_avg": 603200
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 10.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.6,
+            "q2": 11,
+            "q3": 15.7,
+            "q4": 21.7,
+            "q5": 45.8
+          }
+        },
+        {
+          "year": 1986,
+          "mean": 67000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20800,
+            "q2": 35400,
+            "q3": 52600,
+            "q4": 72200,
+            "q5": 155100,
+            "p81_90": 94500,
+            "p91_95": 118900,
+            "p96_99": 180600,
+            "top1": 804800
+          },
+          "top_group_averages": {
+            "top10_avg": 153335.0,
+            "top5_avg": 305440.0,
+            "top1_avg": 804800
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.8,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.2,
+            "q2": 10.5,
+            "q3": 15.2,
+            "q4": 21,
+            "q5": 47.8
+          }
+        },
+        {
+          "year": 1987,
+          "mean": 64300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 20700,
+            "q2": 34700,
+            "q3": 52500,
+            "q4": 72700,
+            "q5": 142900,
+            "p81_90": 95300,
+            "p91_95": 119500,
+            "p96_99": 173300,
+            "top1": 600100
+          },
+          "top_group_averages": {
+            "top10_avg": 142190.0,
+            "top5_avg": 258660.0,
+            "top1_avg": 600100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9.7,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.2,
+            "q2": 11,
+            "q3": 16,
+            "q4": 22.2,
+            "q5": 45.4
+          }
+        },
+        {
+          "year": 1988,
+          "mean": 66800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 21400,
+            "q2": 35100,
+            "q3": 53100,
+            "q4": 72900,
+            "q5": 153300,
+            "p81_90": 96200,
+            "p91_95": 121600,
+            "p96_99": 180600,
+            "top1": 765500
+          },
+          "top_group_averages": {
+            "top10_avg": 152895.0,
+            "top5_avg": 297580.0,
+            "top1_avg": 765500
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11.7,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.2,
+            "q2": 10.8,
+            "q3": 15.5,
+            "q4": 21.6,
+            "q5": 46.9
+          }
+        },
+        {
+          "year": 1989,
+          "mean": 67600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 22500,
+            "q2": 35700,
+            "q3": 53700,
+            "q4": 73800,
+            "q5": 153600,
+            "p81_90": 97800,
+            "p91_95": 124200,
+            "p96_99": 184300,
+            "top1": 720400
+          },
+          "top_group_averages": {
+            "top10_avg": 152830.0,
+            "top5_avg": 291520.0,
+            "top1_avg": 720400
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.3,
+            "q2": 10.9,
+            "q3": 15.6,
+            "q4": 21.6,
+            "q5": 46.6
+          }
+        },
+        {
+          "year": 1990,
+          "mean": 67500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 23400,
+            "q2": 36800,
+            "q3": 54100,
+            "q4": 73100,
+            "q5": 150100,
+            "p81_90": 96600,
+            "p91_95": 121600,
+            "p96_99": 179600,
+            "top1": 698100
+          },
+          "top_group_averages": {
+            "top10_avg": 149525.0,
+            "top5_avg": 283300.0,
+            "top1_avg": 698100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 10.7,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.7,
+            "q2": 11.1,
+            "q3": 15.6,
+            "q4": 21.6,
+            "q5": 46.1
+          }
+        },
+        {
+          "year": 1991,
+          "mean": 66200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 24300,
+            "q2": 36400,
+            "q3": 53500,
+            "q4": 72900,
+            "q5": 144600,
+            "p81_90": 95300,
+            "p91_95": 120700,
+            "p96_99": 175700,
+            "top1": 618100
+          },
+          "top_group_averages": {
+            "top10_avg": 143870.0,
+            "top5_avg": 264180.0,
+            "top1_avg": 618100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9.7,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7,
+            "q2": 11.2,
+            "q3": 16,
+            "q4": 21.7,
+            "q5": 45.3
+          }
+        },
+        {
+          "year": 1992,
+          "mean": 68200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 25300,
+            "q2": 36800,
+            "q3": 53900,
+            "q4": 73800,
+            "q5": 150400,
+            "p81_90": 96800,
+            "p91_95": 123100,
+            "p96_99": 181700,
+            "top1": 691400
+          },
+          "top_group_averages": {
+            "top10_avg": 150085.0,
+            "top5_avg": 283640.0,
+            "top1_avg": 691400
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 10.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.9,
+            "q2": 11.1,
+            "q3": 15.7,
+            "q4": 21.4,
+            "q5": 45.9
+          }
+        },
+        {
+          "year": 1993,
+          "mean": 68200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 26000,
+            "q2": 37100,
+            "q3": 54300,
+            "q4": 74400,
+            "q5": 148400,
+            "p81_90": 98100,
+            "p91_95": 124000,
+            "p96_99": 180900,
+            "top1": 630300
+          },
+          "top_group_averages": {
+            "top10_avg": 147745.0,
+            "top5_avg": 270780.0,
+            "top1_avg": 630300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9.7,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7,
+            "q2": 11.3,
+            "q3": 15.8,
+            "q4": 21.6,
+            "q5": 45.3
+          }
+        },
+        {
+          "year": 1994,
+          "mean": 68700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 26400,
+            "q2": 37700,
+            "q3": 54400,
+            "q4": 75200,
+            "q5": 150200,
+            "p81_90": 99300,
+            "p91_95": 125000,
+            "p96_99": 183800,
+            "top1": 637100
+          },
+          "top_group_averages": {
+            "top10_avg": 149515.0,
+            "top5_avg": 274460.0,
+            "top1_avg": 637100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 9.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.1,
+            "q2": 11.4,
+            "q3": 15.9,
+            "q4": 21.7,
+            "q5": 45
+          }
+        },
+        {
+          "year": 1995,
+          "mean": 71300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 27400,
+            "q2": 39600,
+            "q3": 56300,
+            "q4": 76600,
+            "q5": 156800,
+            "p81_90": 102200,
+            "p91_95": 128100,
+            "p96_99": 192700,
+            "top1": 702900
+          },
+          "top_group_averages": {
+            "top10_avg": 156810.0,
+            "top5_avg": 294740.0,
+            "top1_avg": 702900
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 10,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.3,
+            "q2": 11.3,
+            "q3": 15.7,
+            "q4": 21.4,
+            "q5": 45.3
+          }
+        },
+        {
+          "year": 1996,
+          "mean": 73700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 27300,
+            "q2": 39500,
+            "q3": 57200,
+            "q4": 78300,
+            "q5": 165100,
+            "p81_90": 104300,
+            "p91_95": 132900,
+            "p96_99": 199800,
+            "top1": 780400
+          },
+          "top_group_averages": {
+            "top10_avg": 164355.0,
+            "top5_avg": 315920.0,
+            "top1_avg": 780400
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.9,
+            "q2": 11,
+            "q3": 15.5,
+            "q4": 21.1,
+            "q5": 46.5
+          }
+        },
+        {
+          "year": 1997,
+          "mean": 76700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 27600,
+            "q2": 40800,
+            "q3": 58000,
+            "q4": 80300,
+            "q5": 175400,
+            "p81_90": 106500,
+            "p91_95": 137600,
+            "p96_99": 212800,
+            "top1": 911900
+          },
+          "top_group_averages": {
+            "top10_avg": 175805.0,
+            "top5_avg": 352620.0,
+            "top1_avg": 911900
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.2,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.8,
+            "q2": 10.7,
+            "q3": 15.1,
+            "q4": 20.6,
+            "q5": 47.6
+          }
+        },
+        {
+          "year": 1998,
+          "mean": 81200,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 29100,
+            "q2": 43100,
+            "q3": 60400,
+            "q4": 83800,
+            "q5": 188200,
+            "p81_90": 111000,
+            "p91_95": 143600,
+            "p96_99": 225300,
+            "top1": 1060100
+          },
+          "top_group_averages": {
+            "top10_avg": 189465.0,
+            "top5_avg": 392260.0,
+            "top1_avg": 1060100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.9,
+            "q2": 10.6,
+            "q3": 15,
+            "q4": 20.2,
+            "q5": 48.1
+          }
+        },
+        {
+          "year": 1999,
+          "mean": 84800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 29700,
+            "q2": 44700,
+            "q3": 62200,
+            "q4": 86400,
+            "q5": 199000,
+            "p81_90": 114900,
+            "p91_95": 148900,
+            "p96_99": 234300,
+            "top1": 1152800
+          },
+          "top_group_averages": {
+            "top10_avg": 199175.0,
+            "top5_avg": 418000.0,
+            "top1_avg": 1152800
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.9,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.8,
+            "q2": 10.4,
+            "q3": 14.8,
+            "q4": 20,
+            "q5": 48.8
+          }
+        },
+        {
+          "year": 2000,
+          "mean": 86500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 29000,
+            "q2": 44500,
+            "q3": 62300,
+            "q4": 87600,
+            "q5": 208900,
+            "p81_90": 117200,
+            "p91_95": 153800,
+            "p96_99": 241000,
+            "top1": 1277200
+          },
+          "top_group_averages": {
+            "top10_avg": 209110.0,
+            "top5_avg": 448240.0,
+            "top1_avg": 1277200
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 15,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.6,
+            "q2": 10.2,
+            "q3": 14.5,
+            "q4": 19.7,
+            "q5": 49.8
+          }
+        },
+        {
+          "year": 2001,
+          "mean": 84000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 29600,
+            "q2": 45400,
+            "q3": 64300,
+            "q4": 88200,
+            "q5": 193600,
+            "p81_90": 117800,
+            "p91_95": 150900,
+            "p96_99": 231700,
+            "top1": 1021500
+          },
+          "top_group_averages": {
+            "top10_avg": 194040.0,
+            "top5_avg": 389660.0,
+            "top1_avg": 1021500
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.2,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.9,
+            "q2": 10.6,
+            "q3": 15.1,
+            "q4": 21,
+            "q5": 47.3
+          }
+        },
+        {
+          "year": 2002,
+          "mean": 81900,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 30100,
+            "q2": 44900,
+            "q3": 63700,
+            "q4": 87600,
+            "q5": 186100,
+            "p81_90": 117200,
+            "p91_95": 150100,
+            "p96_99": 224500,
+            "top1": 905200
+          },
+          "top_group_averages": {
+            "top10_avg": 186285.0,
+            "top5_avg": 360640.0,
+            "top1_avg": 905200
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.2,
+            "q2": 11,
+            "q3": 15.3,
+            "q4": 21.2,
+            "q5": 46.3
+          }
+        },
+        {
+          "year": 2003,
+          "mean": 84300,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 30400,
+            "q2": 45200,
+            "q3": 64300,
+            "q4": 89500,
+            "q5": 195100,
+            "p81_90": 120300,
+            "p91_95": 155000,
+            "p96_99": 235200,
+            "top1": 986800
+          },
+          "top_group_averages": {
+            "top10_avg": 195280.0,
+            "top5_avg": 385520.0,
+            "top1_avg": 986800
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11.8,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7,
+            "q2": 10.8,
+            "q3": 15.2,
+            "q4": 20.9,
+            "q5": 47
+          }
+        },
+        {
+          "year": 2004,
+          "mean": 88500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 30800,
+            "q2": 46200,
+            "q3": 66300,
+            "q4": 92000,
+            "q5": 211600,
+            "p81_90": 124500,
+            "p91_95": 160300,
+            "p96_99": 248300,
+            "top1": 1182300
+          },
+          "top_group_averages": {
+            "top10_avg": 211100.0,
+            "top5_avg": 435100.0,
+            "top1_avg": 1182300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.8,
+            "q2": 10.7,
+            "q3": 14.7,
+            "q4": 20.5,
+            "q5": 48.3
+          }
+        },
+        {
+          "year": 2005,
+          "mean": 92500,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 31400,
+            "q2": 46900,
+            "q3": 67100,
+            "q4": 93400,
+            "q5": 228100,
+            "p81_90": 126800,
+            "p91_95": 166600,
+            "p96_99": 266000,
+            "top1": 1421900
+          },
+          "top_group_averages": {
+            "top10_avg": 229345.0,
+            "top5_avg": 497180.0,
+            "top1_avg": 1421900
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 15.1,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.7,
+            "q2": 10.2,
+            "q3": 14.3,
+            "q4": 19.9,
+            "q5": 49.7
+          }
+        },
+        {
+          "year": 2006,
+          "mean": 95700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 32200,
+            "q2": 47800,
+            "q3": 67600,
+            "q4": 95300,
+            "q5": 237400,
+            "p81_90": 129600,
+            "p91_95": 170500,
+            "p96_99": 273800,
+            "top1": 1545900
+          },
+          "top_group_averages": {
+            "top10_avg": 239480.0,
+            "top5_avg": 528220.0,
+            "top1_avg": 1545900
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 15.8,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.5,
+            "q2": 10,
+            "q3": 14.2,
+            "q4": 19.7,
+            "q5": 50.5
+          }
+        },
+        {
+          "year": 2007,
+          "mean": 99100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 33100,
+            "q2": 49900,
+            "q3": 70200,
+            "q4": 97900,
+            "q5": 249000,
+            "p81_90": 132400,
+            "p91_95": 175700,
+            "p96_99": 285100,
+            "top1": 1666000
+          },
+          "top_group_averages": {
+            "top10_avg": 250445.0,
+            "top5_avg": 561280.0,
+            "top1_avg": 1666000
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 16.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 6.7,
+            "q2": 10,
+            "q3": 14.1,
+            "q4": 19.3,
+            "q5": 50.9
+          }
+        },
+        {
+          "year": 2008,
+          "mean": 94800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 34400,
+            "q2": 50200,
+            "q3": 70300,
+            "q4": 97900,
+            "q5": 229000,
+            "p81_90": 132600,
+            "p91_95": 172000,
+            "p96_99": 266500,
+            "top1": 1363700
+          },
+          "top_group_averages": {
+            "top10_avg": 230785.0,
+            "top5_avg": 485940.0,
+            "top1_avg": 1363700
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.9,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.2,
+            "q2": 10.7,
+            "q3": 14.7,
+            "q4": 20.3,
+            "q5": 48.5
+          }
+        },
+        {
+          "year": 2009,
+          "mean": 90800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 35600,
+            "q2": 49900,
+            "q3": 69800,
+            "q4": 96800,
+            "q5": 209500,
+            "p81_90": 130700,
+            "p91_95": 168900,
+            "p96_99": 252600,
+            "top1": 1057300
+          },
+          "top_group_averages": {
+            "top10_avg": 210960.0,
+            "top5_avg": 413540.0,
+            "top1_avg": 1057300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 11.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.4,
+            "q2": 11.2,
+            "q3": 15.4,
+            "q4": 21.3,
+            "q5": 46.5
+          }
+        },
+        {
+          "year": 2010,
+          "mean": 91700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 35500,
+            "q2": 49200,
+            "q3": 68700,
+            "q4": 96100,
+            "q5": 216800,
+            "p81_90": 129600,
+            "p91_95": 169800,
+            "p96_99": 257500,
+            "top1": 1205600
+          },
+          "top_group_averages": {
+            "top10_avg": 219030.0,
+            "top5_avg": 447120.0,
+            "top1_avg": 1205600
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.4,
+            "q2": 10.9,
+            "q3": 15.1,
+            "q4": 20.7,
+            "q5": 47.5
+          }
+        },
+        {
+          "year": 2011,
+          "mean": 92100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 35700,
+            "q2": 49400,
+            "q3": 68600,
+            "q4": 96200,
+            "q5": 220400,
+            "p81_90": 132000,
+            "p91_95": 172300,
+            "p96_99": 265400,
+            "top1": 1209000
+          },
+          "top_group_averages": {
+            "top10_avg": 222605.0,
+            "top5_avg": 454120.0,
+            "top1_avg": 1209000
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.4,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.5,
+            "q2": 10.9,
+            "q3": 14.9,
+            "q4": 20.7,
+            "q5": 47.5
+          }
+        },
+        {
+          "year": 2012,
+          "mean": 95700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 35000,
+            "q2": 49400,
+            "q3": 68500,
+            "q4": 96500,
+            "q5": 236700,
+            "p81_90": 132500,
+            "p91_95": 174900,
+            "p96_99": 275800,
+            "top1": 1502700
+          },
+          "top_group_averages": {
+            "top10_avg": 240270.0,
+            "top5_avg": 521180.0,
+            "top1_avg": 1502700
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 14.9,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.1,
+            "q2": 10.5,
+            "q3": 14.4,
+            "q4": 20,
+            "q5": 49.5
+          }
+        },
+        {
+          "year": 2013,
+          "mean": 92600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 35700,
+            "q2": 49500,
+            "q3": 68500,
+            "q4": 97100,
+            "q5": 221400,
+            "p81_90": 132100,
+            "p91_95": 176200,
+            "p96_99": 273200,
+            "top1": 1176300
+          },
+          "top_group_averages": {
+            "top10_avg": 223555.0,
+            "top5_avg": 453820.0,
+            "top1_avg": 1176300
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.2,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.5,
+            "q2": 10.8,
+            "q3": 14.9,
+            "q4": 20.6,
+            "q5": 47.8
+          }
+        },
+        {
+          "year": 2014,
+          "mean": 95700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 36100,
+            "q2": 50000,
+            "q3": 70100,
+            "q4": 98500,
+            "q5": 232900,
+            "p81_90": 135100,
+            "p91_95": 178800,
+            "p96_99": 282700,
+            "top1": 1324100
+          },
+          "top_group_averages": {
+            "top10_avg": 234995.0,
+            "top5_avg": 490980.0,
+            "top1_avg": 1324100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.4,
+            "q2": 10.7,
+            "q3": 14.5,
+            "q4": 20.3,
+            "q5": 48.7
+          }
+        },
+        {
+          "year": 2015,
+          "mean": 99100,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 38100,
+            "q2": 52600,
+            "q3": 72800,
+            "q4": 101900,
+            "q5": 241400,
+            "p81_90": 140000,
+            "p91_95": 184900,
+            "p96_99": 294400,
+            "top1": 1387100
+          },
+          "top_group_averages": {
+            "top10_avg": 244460.0,
+            "top5_avg": 512940.0,
+            "top1_avg": 1387100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.2,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.6,
+            "q2": 10.8,
+            "q3": 14.6,
+            "q4": 20.2,
+            "q5": 48.3
+          }
+        },
+        {
+          "year": 2016,
+          "mean": 98800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 38400,
+            "q2": 53200,
+            "q3": 73500,
+            "q4": 102400,
+            "q5": 239500,
+            "p81_90": 141300,
+            "p91_95": 186900,
+            "p96_99": 294700,
+            "top1": 1326000
+          },
+          "top_group_averages": {
+            "top10_avg": 242615.0,
+            "top5_avg": 500960.0,
+            "top1_avg": 1326000
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 12.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.8,
+            "q2": 11,
+            "q3": 14.7,
+            "q4": 20.3,
+            "q5": 47.7
+          }
+        },
+        {
+          "year": 2017,
+          "mean": 102000,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 38600,
+            "q2": 53900,
+            "q3": 74800,
+            "q4": 104300,
+            "q5": 251100,
+            "p81_90": 144000,
+            "p91_95": 192500,
+            "p96_99": 306200,
+            "top1": 1461100
+          },
+          "top_group_averages": {
+            "top10_avg": 254420.0,
+            "top5_avg": 537180.0,
+            "top1_avg": 1461100
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.6,
+            "q2": 10.7,
+            "q3": 14.6,
+            "q4": 20.1,
+            "q5": 48.6
+          }
+        },
+        {
+          "year": 2018,
+          "mean": 105600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 39900,
+            "q2": 55600,
+            "q3": 76300,
+            "q4": 106700,
+            "q5": 261400,
+            "p81_90": 149200,
+            "p91_95": 200700,
+            "p96_99": 322300,
+            "top1": 1492200
+          },
+          "top_group_averages": {
+            "top10_avg": 263845.0,
+            "top5_avg": 556280.0,
+            "top1_avg": 1492200
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.5,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.6,
+            "q2": 10.5,
+            "q3": 14.4,
+            "q4": 20,
+            "q5": 49
+          }
+        },
+        {
+          "year": 2019,
+          "mean": 108600,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 41600,
+            "q2": 58400,
+            "q3": 79300,
+            "q4": 110700,
+            "q5": 267100,
+            "p81_90": 154400,
+            "p91_95": 207400,
+            "p96_99": 331600,
+            "top1": 1470400
+          },
+          "top_group_averages": {
+            "top10_avg": 268890.0,
+            "top5_avg": 559360.0,
+            "top1_avg": 1470400
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 7.7,
+            "q2": 10.7,
+            "q3": 14.6,
+            "q4": 20.2,
+            "q5": 48.3
+          }
+        },
+        {
+          "year": 2020,
+          "mean": 116700,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 47100,
+            "q2": 65400,
+            "q3": 87100,
+            "q4": 119200,
+            "q5": 286800,
+            "p81_90": 163900,
+            "p91_95": 217400,
+            "p96_99": 347300,
+            "top1": 1671900
+          },
+          "top_group_averages": {
+            "top10_avg": 289355.0,
+            "top5_avg": 612220.0,
+            "top1_avg": 1671900
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 13.3,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 8.2,
+            "q2": 11.4,
+            "q3": 14.9,
+            "q4": 20,
+            "q5": 47
+          }
+        },
+        {
+          "year": 2021,
+          "mean": 123800,
+          "median": null,
+          "gini": null,
+          "percentiles": null,
+          "quintile_averages": {
+            "q1": 48700,
+            "q2": 64500,
+            "q3": 86300,
+            "q4": 117700,
+            "q5": 316800,
+            "p81_90": 162800,
+            "p91_95": 221400,
+            "p96_99": 371500,
+            "top1": 2196900
+          },
+          "top_group_averages": {
+            "top10_avg": 320895.0,
+            "top5_avg": 736580.0,
+            "top1_avg": 2196900
+          },
+          "top_shares": {
+            "top10_share": null,
+            "top5_share": null,
+            "top1_share": 16.6,
+            "top0_1_share": null
+          },
+          "sd_log_income": null,
+          "quintile_shares_pct": {
+            "q1": 8,
+            "q2": 10.6,
+            "q3": 13.8,
+            "q4": 18.7,
+            "q5": 50.1
+          }
+        }
+      ],
+      "source_url": "https://www.cbo.gov/system/files/2024-09/60341-supplemental-data.xlsx",
+      "notes": "IMPORTANT VINTAGE CAVEAT: This is the CBO 2021-vintage report (publication 60341, 'The Distribution of Household Income, 2021'), covering 1979-2021, NOT the requested 2022-vintage report (publication 61911, 'The Distribution of Household Income, 2022', covering 1979-2022, published Jan 2026). The 61911 report's supplemental-data/data-underlying-figures/researcher-data files could not be located at any guessed or discovered URL after 25+ attempts (all returned genuine HTTP 404 via fetch_url) despite the CBO publication page and the CBO 'Publications With Supplemental Data Files' index (https://www.cbo.gov/data/publications-with-data-files) both confirming such files exist; CBO likely serves them via a JS-rendered link that this tool environment's fetch_url could not resolve to a raw asset URL, and cbo.gov/system/files/* is blocked to direct curl/wget by Datadome bot protection. The 2022 report HTML full-text page (https://www.cbo.gov/publication/62300) was also checked and contains only chart images/narrative, no embedded numeric tables. All dollar figures are in 2021 dollars (not adjusted to 2022 or current dollars). Values were extracted via fetch_url's LLM-assisted xlsx reading (sheet-by-sheet) since direct curl downloads of cbo.gov/system/files/* xlsx assets are blocked; every value below should be treated as transcribed from that extraction and spot-checked against the source if used for critical purposes. 'posttax_national' here corresponds to CBO's 'income after transfers and taxes' (income before transfers and taxes, plus means-tested transfers, minus federal taxes)."
+    }
+  ],
+  "source_url": "https://www.cbo.gov/publication/60341",
+  "requested_source_url_unreachable": "https://www.cbo.gov/publication/61911",
+  "notes": "See per-dataset 'notes' field for the critical vintage caveat: this file contains the 2021-vintage CBO Distribution of Household Income report (1979-2021), not the requested 2022-vintage report (1979-2022, publication 61911). Gini coefficients are not published in the CBO supplemental-data workbook (CBO shows Gini only as a chart in the report PDF, with no accompanying data table found); gini is null throughout. Dollar percentile thresholds (p10, p50, p90, etc.) are not published by CBO in this supplemental file either - CBO publishes quintile/percentile-band AVERAGES (not thresholds), stored here under a supplementary 'quintile_averages' field per year, plus 'quintile_shares_pct' and top1_share under 'top_shares' for the two national-income definitions. All dollar values in 2021 dollars."
+}
