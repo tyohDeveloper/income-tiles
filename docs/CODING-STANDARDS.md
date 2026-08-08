@@ -4,9 +4,12 @@
 
 > **Source of truth.** The canonical statement of these standards is the
 > **`programming` project knowledge wiki**, page
-> `concepts/coding-architecture-standards` (with the target-specific pages
-> `coding-standards-standalone-html5`, `coding-standards-hosted-postgres`, and
-> `coding-standards-native-wrappers` layering on top).
+> `concepts/coding-architecture-standards`, with these companion pages:
+> `coding-standards-data-layer`, `coding-standards-localization`,
+> `coding-standards-artifact-contract`, `repository-conventions`,
+> `architecture-review-lessons`, and the target pages
+> `coding-standards-standalone-html5`, `coding-standards-hosted-postgres`,
+> `coding-standards-native-wrappers`.
 >
 > This file is a **derived copy**, committed to every repository so that any
 > coding agent — Replit Agent, Claude, GPT, Gemini — reads the same rules from
@@ -532,7 +535,7 @@ contradicts the value it is attached to.
 ## 15. Localization and locale data
 
 Applies to any app shipping translated text or locale-sensitive number, date, or
-layout treatment. Full detail on the wiki page
+layout treatment. Full detail, including enforcement mapping, on the wiki page
 `concepts/coding-standards-localization`.
 
 **Rule 15.1 — One fallback locale, one chain.** The chain is
@@ -605,6 +608,8 @@ physical dimensions (`210 mm × 297 mm`), never scalar multiplication.
 Meta-rules from the model-council review that produced these standards. They
 generalize better than any individual limit.
 
+Full detail on the wiki page `concepts/architecture-review-lessons`.
+
 **16.1 — Enforcement that covers only the compliant layer is not enforcement.**
 The review's central finding: the size linter governed exactly the directory that
 already passed, while a 1,211-line view file holding arithmetic, parsing, and
@@ -649,7 +654,10 @@ reached its shape. New standards cite that history rather than deleting it.
 
 These layer on top of this document and live on their own wiki pages:
 
-- **Standalone HTML5** (`concepts/coding-standards-standalone-html5`) — single-file artifact, no network, no persisted user data, URL fragment as the only opt-in state. Carries the full polyglot markup contract (void self-closing, no boolean shorthand, CDATA wrapping, no comments in script/style), the five artifact-verification assertions, and the mandatory final minimization pass with its acceptance criteria and benchmark cadence.
+- **Standalone HTML5** (`concepts/coding-standards-standalone-html5`) — single-file artifact, no network, no persisted user data, URL fragment as the only opt-in state.
+- **Artifact contract** (`concepts/coding-standards-artifact-contract`) — the polyglot markup contract (void self-closing, no boolean shorthand, CDATA wrapping, no comments in script/style), the five artifact-verification assertions, and the mandatory minimization pass with acceptance criteria, minifier configuration, and benchmark cadence.
 - **Hosted Postgres** (`concepts/coding-standards-hosted-postgres`) — one migration per commit, never edit an applied migration, environment separation with distinct databases and secret sets.
 - **Native wrappers** (`concepts/coding-standards-native-wrappers`) — minimal native shell hosting a WebView over the bundled HTML build; platform storage guidance and signing.
-- **Localization** (`concepts/coding-standards-localization`) — the full elaboration of §15, including enforcement mapping and the source-citation rules.
+- **Localization** (`concepts/coding-standards-localization`) — the full elaboration of §15, including enforcement mapping and source-citation rules.
+- **Data layer** (`concepts/coding-standards-data-layer`) — the full elaboration of §5.
+- **Repository conventions** (`concepts/repository-conventions`) — the full elaboration of §12.
