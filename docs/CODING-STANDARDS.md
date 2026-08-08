@@ -323,6 +323,35 @@ resolved by key from DATA. No display string is hardcoded in a code file.
 
 ---
 
+### Data referencing code
+
+Some domain values cannot be expressed as a factor or a literal — they need a
+function. The pattern:
+
+**Rule 5.7 — Data names a function; a validated registry resolves it.** A data
+entry declares a named function; one code-side registry maps names to
+implementations. Schema validation at load rejects unknown names outright. Data
+never contains code, and code never contains the table of which entries use
+which function.
+
+**Rule 5.8 — Redundant representations are proven equal, not assumed equal.**
+Where an entry carries both a factor and a function, a test asserts the factor
+exactly equals the function evaluated at unity. Factor-consuming call sites use
+the factor directly, so silent drift produces wrong results with no error.
+
+**Rule 5.9 — Entries that break an assumption are marked, not just omitted.**
+Genuinely non-linear entries carry an explicit marker so a predicate can exclude
+them from every consumer that assumes linearity. The absence of a flag is not a
+sufficient signal.
+
+**Rule 5.10 — Ordering invariants are declared and independently tested.** Where
+array order is semantic (base entry first, then ascending magnitude), a test
+computes the expected order from the data itself rather than trusting the
+committed order, with a short explicit exemption list. New entries are inserted
+in sorted position, never appended.
+
+---
+
 ## 6. Counting and indexing
 
 **Rule 6.1 — Everything is 0-indexed.** All positional references — rows, keys
@@ -426,35 +455,6 @@ costs and against the checker or capability they enable.
 **Rule 9.7 — Document adoptions.** A PR adding a library records the measured
 gzip cost against the current baseline, the code it replaces or capability it
 enables, and which enforcement rule it participates in.
-
----
-
-## 5.7 Data referencing code
-
-Some domain values cannot be expressed as a factor or a literal — they need a
-function. The pattern:
-
-**Rule 5.7 — Data names a function; a validated registry resolves it.** A data
-entry declares a named function; one code-side registry maps names to
-implementations. Schema validation at load rejects unknown names outright. Data
-never contains code, and code never contains the table of which entries use
-which function.
-
-**Rule 5.8 — Redundant representations are proven equal, not assumed equal.**
-Where an entry carries both a factor and a function, a test asserts the factor
-exactly equals the function evaluated at unity. Factor-consuming call sites use
-the factor directly, so silent drift produces wrong results with no error.
-
-**Rule 5.9 — Entries that break an assumption are marked, not just omitted.**
-Genuinely non-linear entries carry an explicit marker so a predicate can exclude
-them from every consumer that assumes linearity. The absence of a flag is not a
-sufficient signal.
-
-**Rule 5.10 — Ordering invariants are declared and independently tested.** Where
-array order is semantic (base entry first, then ascending magnitude), a test
-computes the expected order from the data itself rather than trusting the
-committed order, with a short explicit exemption list. New entries are inserted
-in sorted position, never appended.
 
 ---
 
