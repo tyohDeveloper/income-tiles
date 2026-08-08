@@ -1,6 +1,6 @@
 # Coding & Architecture Standards
 
-**Status:** Normative. **Version:** 2.0 (portable edition). **Owner:** David Hoyt (@tyohDeveloper).
+**Status:** Normative. **Version:** 2.1 (portable edition). **Owner:** David Hoyt (@tyohDeveloper).
 
 > **Source of truth.** The canonical statement of these standards is the
 > **`programming` project knowledge wiki**, page
@@ -172,6 +172,10 @@ comment citing this section and giving a reason.
 A CONTROLLER file over its limit is either doing pure work (extract to PURE) or
 coordinating too many domains (split by domain). Import and export lines count
 toward the limit; comment-only lines do not.
+
+**Coverage.** These limits apply to the **entire application**, not to the
+subset that already complies. A checker scoped around the messy part of the
+codebase is decoration — see §16.1.
 
 **Rule 3.4 — The VIEW carve-out.** Inside a VIEW file, event handlers, effects,
 IIFEs, and named callbacks still obey Rule 3.1 (20 lines). A **declarative
@@ -351,9 +355,15 @@ permitted only for JSON, Markdown, and the built artifact.
 express a rule today, the rule is captured as a named lint-rule plan, a
 `TODO(coding-standards §N)` marker, or a targeted failing test.
 
-**Rule 7.6 — Baseline updates require review.** Committed size and gzip
-baselines are updated by an ordinary reviewed PR, never an automated bump. A
-5% gzip-regression headroom is the model.
+**Rule 7.6 — Baseline updates require review.** The artifact verifier enforces
+gzip ≤ `baseline × 1.05`. Committed size and gzip baselines are updated by an
+ordinary reviewed PR that records a note identifying what caused the shift,
+never by an automated bump.
+
+**Rule 7.8 — The checker and this document cite each other.** Lint and verifier
+failure messages name the section number they enforce, and each enforcing
+script's header links back to this file. A developer hitting a failure reaches
+the rationale in one hop.
 
 **Rule 7.7 — Linters are devDependencies only.** They are not imported by
 application code, are not in the bundler's dependency graph, and add zero bytes
@@ -413,6 +423,35 @@ costs and against the checker or capability they enable.
 **Rule 9.7 — Document adoptions.** A PR adding a library records the measured
 gzip cost against the current baseline, the code it replaces or capability it
 enables, and which enforcement rule it participates in.
+
+---
+
+## 5.7 Data referencing code
+
+Some domain values cannot be expressed as a factor or a literal — they need a
+function. The pattern:
+
+**Rule 5.7 — Data names a function; a validated registry resolves it.** A data
+entry declares a named function; one code-side registry maps names to
+implementations. Schema validation at load rejects unknown names outright. Data
+never contains code, and code never contains the table of which entries use
+which function.
+
+**Rule 5.8 — Redundant representations are proven equal, not assumed equal.**
+Where an entry carries both a factor and a function, a test asserts the factor
+exactly equals the function evaluated at unity. Factor-consuming call sites use
+the factor directly, so silent drift produces wrong results with no error.
+
+**Rule 5.9 — Entries that break an assumption are marked, not just omitted.**
+Genuinely non-linear entries carry an explicit marker so a predicate can exclude
+them from every consumer that assumes linearity. The absence of a flag is not a
+sufficient signal.
+
+**Rule 5.10 — Ordering invariants are declared and independently tested.** Where
+array order is semantic (base entry first, then ascending magnitude), a test
+computes the expected order from the data itself rather than trusting the
+committed order, with a short explicit exemption list. New entries are inserted
+in sorted position, never appended.
 
 ---
 
@@ -490,10 +529,127 @@ contradicts the value it is attached to.
 
 ---
 
-## 15. Target-specific standards
+## 15. Localization and locale data
+
+Applies to any app shipping translated text or locale-sensitive number, date, or
+layout treatment. Full detail on the wiki page
+`concepts/coding-standards-localization`.
+
+**Rule 15.1 — One fallback locale, one chain.** The chain is
+`requested locale → base locale → raw key`, and nothing further. Every string
+any code path can reach exists as a key in the base locale file.
+
+**Rule 15.2 — Adding a language is an all-files change.** The locale code joins
+the canonical supported-languages list and every translation domain gains a file
+with full key coverage. Removing a language removes all of them in the same PR.
+A code in the list without matching files silently degrades with no error.
+
+**Rule 15.3 — Variants carry only the delta**, merged by the single shared
+cascade-resolve function of §5.4. Duplicate values in a variant file are a
+defect.
+
+**Rule 15.4 — Key sets are shape-identical across locales** before any build-time
+pruning. An added or omitted key relative to the base is a bug caught by an
+integrity test.
+
+**Rule 15.5 — Exactly two translation domains** — interface strings, and display
+names of domain entities. A third requires amending the standard first.
+
+**Rule 15.6 — Symbols are never translated.** Unit symbols, element symbols, and
+other international or SI notation stay canonical in every locale. Only display
+names translate.
+
+**Rule 15.7 — Display-name keys are global.** The same key resolves identically
+everywhere, so **two entities in different categories must not share a base-language
+display name.** Collisions are disambiguated with a parenthetical qualifier that
+is part of the name and translates as a whole.
+
+**Rule 15.8 — Dead-key guard.** Every key in a display-name locale file must
+correspond to a current entity name in the data, a title-cased base value, a key
+literally referenced by code through the translate functions, or a
+prefix-generated name. Enforced against a committed allowlist. This exists
+because renames silently left ~120 orphaned keys duplicated across 12 locale
+files. When auditing, note that lowercase strings in code and tests are usually
+entity IDs or symbols, not translation keys.
+
+**Rule 15.9 — Renames and removals are same-PR, all-locale.**
+
+**Rule 15.10 — Source files stay complete; the bundle gets pruned.** A build-only
+step drops entries that would resolve identically through fallback. Dev and test
+always see full files. Pruning is coupled to the fallback chain: if a translate
+function loses its fallback, pruning breaks display, and the two change together.
+
+**Rule 15.11 — Numeral system is decoupled from locale.** Locale controls
+translated text; an independent preference controls the numeral system. New
+locales default to Western Arabic; overrides live in the formatting layer, not in
+locale data.
+
+**Rule 15.12 — RTL treatment.** Layout stays LTR by default; only text runs
+honor natural direction. Compound displays (feet-inches, degrees-minutes-seconds)
+preserve canonical order regardless of direction. Numbers inside RTL runs render
+in Latin numerals unless the user opts in otherwise. The RTL locale set lives in
+one place; adding a locale extends that set rather than adding direction checks
+across components.
+
+**Rule 15.13 — Notation conventions in reference text.** `⋅` for multiplication.
+Unicode superscripts only for single-character exponents (`10ˣ`, `e²ˣ`,
+`10⁻¹⁹`). Fractional and compound exponents stay in caret form — `10^(x/10)`,
+`10^(x/20)`. Superscript-parenthesized fractions were explicitly rejected as
+unreadable and must not be reintroduced by a later cleanup. `×` is reserved for
+physical dimensions (`210 mm × 297 mm`), never scalar multiplication.
+
+---
+
+## 16. Lessons from the architecture pass
+
+Meta-rules from the model-council review that produced these standards. They
+generalize better than any individual limit.
+
+**16.1 — Enforcement that covers only the compliant layer is not enforcement.**
+The review's central finding: the size linter governed exactly the directory that
+already passed, while a 1,211-line view file holding arithmetic, parsing, and
+formatting was invisible to it. Coverage must be widest where violation is most
+likely — views and controllers — not where compliance is easiest to demonstrate.
+
+**16.2 — Extract misplaced logic before splitting large files.** Splitting a file
+that is large *because* it holds logic belonging elsewhere only redistributes the
+violation, and the split reflects line counts rather than responsibilities.
+
+**16.3 — A compliant decomposition must be actively protected.** Fine-grained
+one-function-per-file decomposition looks like overhead to a reader encountering
+it cold. What not to change is as much a part of the standard as what to change.
+
+**16.4 — Duplication drifts before anyone tries to change it.** The two
+implementations of the same operations had already diverged: differing field
+defaults, and in the executed copy, silent rounding of odd exponents and
+dimension preservation where dimensionless input was required. The compliant copy
+was correct and unused; the violating copy was wrong and running. This is why
+§1.6 is a defect rule, not a style rule.
+
+**16.5 — Purity is about reviewability, not just testability.** A policy buried in
+a 30-case switch cannot be reviewed. As a named pure function, a reviewer or test
+can ask "what should this return for √(m³)?" and get an unambiguous answer.
+
+**16.6 — Dead code is a diagnostic, not just debris.** An `if`/`else` with
+identical branches accumulated in the one file no linter or test inspected.
+Finding that class of defect is evidence of a coverage blind spot; fix the
+coverage, not only the line.
+
+**16.7 — Platform workarounds relocate with their comments verbatim.** WebView
+focus and blur handling is non-obvious, load-bearing, and expensive to
+rediscover. Tidying those comments during a move is how the knowledge gets lost.
+
+**16.8 — Refactor history is worth keeping.** Phase-by-phase task records are
+superseded as normative statements but retained as the record of how the codebase
+reached its shape. New standards cite that history rather than deleting it.
+
+---
+
+## 17. Target-specific standards
 
 These layer on top of this document and live on their own wiki pages:
 
-- **Standalone HTML5** — single-file artifact, no network, no persisted user data, URL fragment as the only opt-in state, polyglot XHTML-conformant markup, mandatory final minimization pass.
-- **Hosted Postgres** — one migration per commit, never edit an applied migration, environment separation with distinct databases and secret sets.
-- **Native wrappers** — minimal native shell hosting a WebView over the bundled HTML build; platform storage guidance and signing.
+- **Standalone HTML5** (`concepts/coding-standards-standalone-html5`) — single-file artifact, no network, no persisted user data, URL fragment as the only opt-in state. Carries the full polyglot markup contract (void self-closing, no boolean shorthand, CDATA wrapping, no comments in script/style), the five artifact-verification assertions, and the mandatory final minimization pass with its acceptance criteria and benchmark cadence.
+- **Hosted Postgres** (`concepts/coding-standards-hosted-postgres`) — one migration per commit, never edit an applied migration, environment separation with distinct databases and secret sets.
+- **Native wrappers** (`concepts/coding-standards-native-wrappers`) — minimal native shell hosting a WebView over the bundled HTML build; platform storage guidance and signing.
+- **Localization** (`concepts/coding-standards-localization`) — the full elaboration of §15, including enforcement mapping and the source-citation rules.
