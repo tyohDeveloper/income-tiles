@@ -1,12 +1,13 @@
 # Coding & Architecture Standards
 
-**Status:** Normative. **Version:** 2.1 (portable edition). **Owner:** David Hoyt (@tyohDeveloper).
+**Status:** Normative. **Version:** 2.2 (portable edition). **Owner:** David Hoyt (@tyohDeveloper).
 
 > **Source of truth.** The canonical statement of these standards is the
 > **`programming` project knowledge wiki**, page
 > `concepts/coding-architecture-standards`, with these companion pages:
 > `coding-standards-data-layer`, `coding-standards-localization`,
-> `coding-standards-artifact-contract`, `repository-conventions`,
+> `coding-standards-artifact-contract`, `coding-standards-platform-model-remote`,
+> `repository-conventions`,
 > `architecture-review-lessons`, and the target pages
 > `coding-standards-standalone-html5`, `coding-standards-hosted-postgres`,
 > `coding-standards-native-wrappers`.
@@ -38,6 +39,10 @@ repository has no such layer, and rules naming it are inert.
 | **PURE** | `client/src/lib/**`, `shared/**` |
 | **PURE-CORE** | `shared/**` |
 | **DATA** | `client/public/data/**`, `data/**` |
+| **PLATFORM-PURE** | *(unmapped)* |
+| **PLATFORM-AMBIENT** | *(unmapped)* |
+| **MODEL** | *(unmapped)* |
+| **REMOTE** | *(unmapped)* |
 
 **Target:** hosted app. Default branch is `master` rather than `main` — bring it
 in line with §12 at the next convenient point.
@@ -55,6 +60,9 @@ CONTROLLER    hooks, effects, dispatch, IO, timers, clipboard, requests
 STATE         reducers, action creators, selectors, stores
 PURE          side-effect-free domain logic
 DATA          JSON, no code
+PLATFORM-PURE     mandated deterministic primitives (crypto, IDs) -- importable from PURE
+PLATFORM-AMBIENT  mandated entropy/IO primitives (salts, KMS) -- CONTROLLER-only
+MODEL / REMOTE    persistent state this app owns (MODEL) or consumes via published contract (REMOTE)
 ```
 
 **Rule 1.1 — VIEW computes nothing.** Views render state and call
@@ -120,6 +128,23 @@ These source-selection files are the one legitimate re-export permitted under
 §3.8 and require an `EXCEPTION [coding-standards §3.8]` comment naming the
 migration plan.
 
+**Rule 1.8 -- PLATFORM holds mandated dependencies, split by determinism.**
+Hashing for unique keys, password hashing, canonical serialization, and any
+org-mandated cross-application primitive live in PLATFORM instead of being
+authored per app. PLATFORM-PURE symbols are enumerated on a checked-in
+allowlist and importable from PURE; PLATFORM-AMBIENT symbols (salts,
+`randomUUID()`, KMS calls) are importable only from CONTROLLER, exactly like
+`Date.now()`/`Math.random()`. Full rationale on
+`concepts/coding-standards-platform-model-remote`.
+
+**Rule 1.9 -- MODEL and REMOTE are one port, two adapters, not two ranks.**
+CONTROLLER depends on a single typed interface for "talk to the true model."
+MODEL implements it while this application is the sole schema owner and sole
+writer/migrator; REMOTE implements it once a second writer exists and the
+schema is owned by another service, against a published contract. The port
+never promises atomicity across the boundary. Full split and the
+write-authority trigger on `concepts/coding-standards-platform-model-remote`.
+
 ---
 
 ## 2. Mutable state discipline
@@ -170,6 +195,8 @@ comment citing this section and giving a reason.
 | **PURE** (elsewhere) | **150 lines** |
 | **STATE** | **150 lines** |
 | **CONTROLLER** | **150 lines** |
+| **PLATFORM-PURE** | **100 lines** |
+| **PLATFORM-AMBIENT / MODEL / REMOTE** | **150 lines** |
 | **VIEW** | **250 lines** |
 
 A CONTROLLER file over its limit is either doing pure work (extract to PURE) or
@@ -221,6 +248,10 @@ guess from the filename alone whether a change belongs in that file.
    drifted: rename it, split it, or move the outliers. The check — given a bug
    report like "the DMS parser drops the sign when seconds is empty", does a
    new contributor know where to look?
+
+**`client`, `stub`, `connector`, `gateway` are reserved and prohibited** for the
+shared-state adapter role, in favor of REMOTE -- rationale and citations
+(ADR-0001) on `concepts/coding-standards-platform-model-remote`.
 
 When an extraction produces a file that fits no existing directory, add a new
 directory rather than dropping it in the closest-looking one. When splitting a
@@ -514,6 +545,8 @@ over aggregators. When a primary source is unreachable, cite the aggregator and
 record the blocked primary for later revisit. Never cite a primary source that
 contradicts the value it is attached to.
 
+**Rule 13.3 -- Architecture decisions get a numbered, immutable record.** `docs/adr/NNNN-*.md`, one file per decision, with a required "alternatives rejected and why" section. ADR-0001 (REMOTE chosen over Client/Stub/Connector/Gateway; PLATFORM reinstated as a layer split by determinism) is recorded on the wiki page `concepts/coding-standards-platform-model-remote`.
+
 ---
 
 ## 14. Change process
@@ -661,3 +694,35 @@ These layer on top of this document and live on their own wiki pages:
 - **Localization** (`concepts/coding-standards-localization`) — the full elaboration of §15, including enforcement mapping and source-citation rules.
 - **Data layer** (`concepts/coding-standards-data-layer`) — the full elaboration of §5.
 - **Repository conventions** (`concepts/repository-conventions`) — the full elaboration of §12.
+- **PLATFORM, MODEL, REMOTE** (`concepts/coding-standards-platform-model-remote`) — mandated-dependency and shared/remote-persistent-state roles, plus the Authority and change control rules of §18. Reserved; unmappable on the standalone-HTML5 target.
+
+---
+
+## 18. Authority and change control
+
+Full detail on the wiki page `concepts/coding-standards-platform-model-remote`.
+
+**Rule 18.1 — Authority is orthogonal to layer.** A layer answers where code
+lives and what may import it. Authority answers who may change a mandated
+binding (crypto/ID primitives, vendor-pinned numeric or hardware libraries,
+migrations, RLS policies) and whether the build matches policy. Both are
+required; neither substitutes for the other.
+
+**Rule 18.2 — Mandated bindings are a manifest entry, not a comment.**
+`.architecture-bindings.json` records: binding id -> authority
+(`team-editable` | `org-mandated`) -> approved module specifier and integrity
+hash **per deployment target** -> policy reference -> review date. CI
+resolves each mandated binding in the built artifact and fails the build if it
+does not match the manifest entry for that target.
+
+**Rule 18.3 — Standing policy bindings review; they don't expire.** An org
+mandate is not a violation with a countdown. Record it with an owner, a
+policy reference, and an annual review date, in a manifest separate from
+`.architecture-exceptions.json`, so §11's "exceptions expire" stays literally
+true for actual exceptions.
+
+**Rule 18.4 — Target-conditional binding resolves at build time.** CI builds
+and tests every mandated target, not only the portable dev default. No test
+may assert exact equality on a value derived from a target-conditional
+numeric binding (e.g. vendor BLAS vs. reference BLAS); compare against a
+shared conformance-vector suite with a declared tolerance.
