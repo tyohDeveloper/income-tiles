@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 2,
+  "status": "adopted",
+  "applicationRepository": "tyohDeveloper/income-tiles",
+  "policyVersion": "1.0.1.1",
+  "sourceRepository": "https://github.com/tyohDeveloper/engineering-standards",
+  "sourceTag": "standards-1.0.1.1",
+  "sourceCommit": "9f00458c2f11e8e057dc987b926b4cf1ec4db43e",
+  "approvedBy": "David Hoyt",
+  "adoptedOn": "2026-10-30",
+  "roleMappingDocument": "docs/CODING-STANDARDS.md",
+  "standardsDocument": "docs/CODING-STANDARDS.md",
+  "exceptionsDocument": "docs/EXCEPTIONS.md",
+  "profile": {
+    "state": "none",
+    "packaging": "hosted-web",
+    "store": "none",
+    "identity": "none",
+    "network": "required",
+    "compute": "interactive",
+    "localization": {
+      "scope": [],
+      "mode": "dynamic"
+    },
+    "ports": []
+  },
+  "bindings": [
+    {
+      "language": "typescript",
+      "class": "application"
+    }
+  ],
+  "checks": [
+    {
+      "requirement": "C-19 gating",
+      "command": "npm run check",
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-1, C-2 role mapping and import direction",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-3 purity of PURE",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-6, TS-7 one export, no barrels, no shape names",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-11, C-12 function and file limits",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-14, C-15 data external",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-20 dead code",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-24 dependency policy",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-26 license inventory",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-27 exceptions",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-31 no secrets",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-22, C-23 tests",
+      "command": null,
+      "enforcement": "manual-review"
+    },
+    {
+      "requirement": "C-15 data provenance",
+      "command": null,
+      "enforcement": "manual-review"
+    }
+  ]
+}
